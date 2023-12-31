@@ -4,14 +4,19 @@ import (
 	"net/http"
 
 	"github.com/a-h/templ"
-
-	"github.com/art3xias23/go-blog/templates"
+	comps "github.com/art3xias23/go-blog/components"
 )
 
 func main() {
-	title := templates.Title("Homepage")
-	homecmp := templates.Home()
-	layout := templates.Layout(title, homecmp)
+	// cssContent, err := os.ReadFile("assets/style.css")
+	// if err != nil {
+	// 	//
+	// }
+	// cssString := string(cssContent)
+
+	title := comps.Title("Homepage")
+	homecmp := comps.Home()
+	layout := comps.Layout(title, homecmp)
 
 	http.Handle("/", templ.Handler(layout))
 

@@ -1,4 +1,9 @@
-package templates
+package components 
+
+import _ "embed"
+
+//go:embed assets/style.css
+var _style string
 
 templ Layout(title templ.Component, contents templ.Component){
     <!DOCTYPE html>
@@ -6,6 +11,7 @@ templ Layout(title templ.Component, contents templ.Component){
         <head>
             <meta charset="UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            @unsafeScript(_style)
             @title
         </head>
         <body>
@@ -35,3 +41,16 @@ templ Title(title string){
 templ Home(){
     <h1>Welcome to my personal website!</h1>
 }
+
+templ Style(css string){
+    <style type="text/css">{css}</style>
+}
+
+func unsafeScript(s string) templ.Component {
+    return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
+io.WriteString(w, "<style>\n"+s+"\n</style>")
+
+        return nil
+    })
+}
+

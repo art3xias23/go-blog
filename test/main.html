@@ -1,0 +1,85 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Tinolog</title>
+        <style>
+body{
+    font: italic 400 16px/1.5 "Arial", sans-serif;
+    background-color: #FBF9F1;
+}
+
+#nav{
+    top:0px;
+    left:0px;
+    position:absolute;
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    background-color: #92C7CF;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 3; /* Ensure the navbar is above the image */
+    height: 50px;
+
+}
+
+.icon-blogname div{
+    display:inline;
+}
+
+.icon{
+    border-radius:30%;
+    width:125px;
+    height:125px;
+}
+
+.blogname{
+    margin-bottom:20px;
+}
+
+.content{
+    margin-top:150px;
+}
+
+.nav-left a,
+.nav-right a{
+    text-decoration: none;
+    margin-right:20px;
+    font-size: larger;
+}
+
+.nav-left a:hover,
+.nav-right a:hover{
+    box-shadow: inset 0em 0em 0em 10em rgba(0, 0, 0, 0.05);
+}
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav id="nav">
+                <div class="icon-blogname">
+                    <div class="image-container">
+                        <img class="icon" src="../components/assets/img/baby_keyboard.png" alt="logo-img"/>
+                    </div>
+                    <div class="blogname">
+                        Tino's personal blog
+                    </div>
+                </div>
+                <div class="nav-left">
+                    <a class="nav-item" href="/blog">Blog</a>
+                    <a class="nav-item" href="/goodreads">Goodreads</a>
+                    <a class="nav-item" href="/letterboxd">Letterboxed</a>
+                    <a class="nav-item" href="/github">Github</a>
+                </div>
+                <div class="nav-right">
+                    <a href="contects">Contacts</a>
+                    <a href="about">About</a>
+                </div>
+            </nav>
+            <div class="content">
+                <h1>Welcome1!</h1>
+            </div>
+        </header>
+    </body>
+</html>

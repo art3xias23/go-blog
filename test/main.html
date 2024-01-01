@@ -48,14 +48,17 @@
       }
 
       .nav-buttons {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-rows:1;
+        grid-template-columns: 1fr 1.7fr 0.5fr;
         width: 100%;
       }
-      .nav-right {
+      .nav-left {
+        grid-column:2;
         display: inline-block;
       }
-      .nav-left {
+      .nav-right {
+        grid-column: 3;
         display: inline-block;
       }
 

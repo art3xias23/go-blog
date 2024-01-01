@@ -1,85 +1,109 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Tinolog</title>
-        <style>
-body{
-    font: italic 400 16px/1.5 "Arial", sans-serif;
-    background-color: #FBF9F1;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tinolog</title>
+    <style>
+      body {
+        font: 400 16px/1.5 "Robato", sans-serif;
+        background-color: #fbf9f1;
+      }
 
-#nav{
-    top:0px;
-    left:0px;
-    position:absolute;
-    width: 100%;
-    display:flex;
-    justify-content: space-between;
-    background-color: #92C7CF;
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3; /* Ensure the navbar is above the image */
-    height: 50px;
+      #nav {
+        top: 20px;
+        left: 0px;
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 1;
+        height: 50px;
+      }
 
-}
+      .icon-blogname div {
+        display: inline;
+      }
 
-.icon-blogname div{
-    display:inline;
-}
+      .icon {
+        border-radius: 30%;
+        width: 125px;
+        height: 125px;
+      }
 
-.icon{
-    border-radius:30%;
-    width:125px;
-    height:125px;
-}
+      .blogname {
+        font-style: italic;
+        font-size: small;
+        position: absolute;
+        margin: 65px 130px;
+      }
 
-.blogname{
-    margin-bottom:20px;
-}
+      .content {
+        margin-top: 150px;
+      }
 
-.content{
-    margin-top:150px;
-}
+      .nav-buttons div {
+        display: inline-block;
+      }
 
-.nav-left a,
-.nav-right a{
-    text-decoration: none;
-    margin-right:20px;
-    font-size: larger;
-}
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+      .nav-right {
+        display: inline-block;
+      }
+      .nav-left {
+        display: inline-block;
+      }
 
-.nav-left a:hover,
-.nav-right a:hover{
-    box-shadow: inset 0em 0em 0em 10em rgba(0, 0, 0, 0.05);
-}
-        </style>
-    </head>
-    <body>
-        <header>
-            <nav id="nav">
-                <div class="icon-blogname">
-                    <div class="image-container">
-                        <img class="icon" src="../components/assets/img/baby_keyboard.png" alt="logo-img"/>
-                    </div>
-                    <div class="blogname">
-                        Tino's personal blog
-                    </div>
-                </div>
-                <div class="nav-left">
-                    <a class="nav-item" href="/blog">Blog</a>
-                    <a class="nav-item" href="/goodreads">Goodreads</a>
-                    <a class="nav-item" href="/letterboxd">Letterboxed</a>
-                    <a class="nav-item" href="/github">Github</a>
-                </div>
-                <div class="nav-right">
-                    <a href="contects">Contacts</a>
-                    <a href="about">About</a>
-                </div>
-            </nav>
-            <div class="content">
-                <h1>Welcome1!</h1>
-            </div>
-        </header>
-    </body>
+      .nav-left a,
+      .nav-right a {
+        text-decoration: none;
+        margin-right: 20px;
+        font-size: larger;
+      }
+
+      .nav-left a:hover,
+      .nav-right a:hover {
+        box-shadow: inset 0em 0em 0em 10em rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div id="nav">
+        <div class="image-container">
+          <img
+            class="icon"
+            src="../components/assets/img/baby_keyboard.png"
+            alt="logo-img"
+          />
+        </div>
+        <div class="blogname">
+          "Consistency is the key to mastery."
+          <br />
+          "Small, focused efforts compound into greatness over time."
+        </div>
+        <div class="nav-buttons">
+          <div class="nav-left">
+            <a class="nav-item" href="/blog">Blog</a>
+            <a class="nav-item" href="/goodreads">Goodreads</a>
+            <a class="nav-item" href="/letterboxd">Letterboxed</a>
+            <a class="nav-item" href="/github">Github</a>
+          </div>
+          <div class="nav-right">
+            <a href="contects">Contacts</a>
+            <a href="about">About</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div id="content"></div>
+    <div class="content">
+      <h1>Welcome1!</h1>
+    </div>
+  </body>
 </html>

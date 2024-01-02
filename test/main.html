@@ -49,12 +49,12 @@
 
       .nav-buttons {
         display: grid;
-        grid-template-rows:1;
+        grid-template-rows: 1;
         grid-template-columns: 1fr 1.7fr 0.5fr;
         width: 100%;
       }
       .nav-left {
-        grid-column:2;
+        grid-column: 2;
         display: inline-block;
       }
       .nav-right {
@@ -72,6 +72,28 @@
       .nav-left a:hover,
       .nav-right a:hover {
         box-shadow: inset 0em 0em 0em 10em rgba(0, 0, 0, 0.05);
+      }
+
+      .top-content-container {
+        display:flex;
+        background-color: red;
+        justify-content: space-around;
+      }
+
+      .top-content-container div{
+        display:inline-block;
+      }
+
+      #search-bar{
+        z-index:1;
+      }
+      #search-bar-image{
+        position:absolute;
+        top:148px;
+        right:260px;
+        width:25px;
+        height: 25px;
+        z-index:2;
       }
     </style>
   </head>
@@ -104,9 +126,19 @@
         </div>
       </div>
     </header>
-    <div id="content"></div>
     <div class="content">
-      <h1>Welcome1!</h1>
+      <div class="top-content-container">
+        <div class="top-left-content-container">
+          <label name="latest-posts">Latest Posts</label>
+          <label name="popular-tags">Popular Tags</label>
+        </div>
+        <div class="top-right-content-container">
+          <div class="search-bar">
+            <input type="text" id="search-bar" placeholder="search..."/>
+            <img id="search-bar-image" src="../components/assets/icon/magnifying-glass.png" placeholder="search-icon"/>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

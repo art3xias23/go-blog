@@ -76,7 +76,6 @@
 
       .top-content-container {
         display:flex;
-        background-color: red;
         justify-content: space-around;
       }
 
@@ -84,13 +83,23 @@
         display:inline-block;
       }
 
+      #links-container{
+display:flex;
+        width:20%;
+justify-content: space-between;
+      }
+
+      #links-container label{
+        display:inline-block;
+        text-decoration:underline;
+      }
       #search-bar{
         z-index:1;
       }
       #search-bar-image{
         position:absolute;
         top:148px;
-        right:260px;
+        right:240px;
         width:25px;
         height: 25px;
         z-index:2;
@@ -128,12 +137,12 @@
     </header>
     <div class="content">
       <div class="top-content-container">
-        <div class="top-left-content-container">
-          <label name="latest-posts">Latest Posts</label>
-          <label name="popular-tags">Popular Tags</label>
+        <div id="links-container">
+          <a href="latest-posts" name="latest-posts">Latest Posts</label>
+          <a href="popular-tags" name="popular-tags">Popular Tags</label>
         </div>
         <div class="top-right-content-container">
-          <div class="search-bar">
+          <div class="search-bar-container">
             <input type="text" id="search-bar" placeholder="search..."/>
             <img id="search-bar-image" src="../components/assets/icon/magnifying-glass.png" placeholder="search-icon"/>
           </div>

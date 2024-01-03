@@ -1,0 +1,69 @@
+<head>
+    <style>
+        .toi{
+            display:flex;
+            gap:1rem;
+            flex-direction:column;
+            width:500px;
+        }
+        .toi-top{
+            display:flex;
+            justify-content: space-between;
+            gap:10px;
+            background-color: khaki;
+        }
+
+        .toi-image{
+            height: 400px;
+            width: 500px;
+            object-fit: cover;
+        }
+
+        .toi-middle{
+            display:flex;
+            flex-direction: column;
+            gap:10px;
+        }
+        .toi-middle div{
+            display:block;
+        }
+        .toi-title{
+            font-family:futura-pt, sans-serif;
+            font-size: x-large;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .toi-description{
+            font-weight: 400;
+            font-size:20;
+            text-align: left;
+            line-height: 1.3;
+        }
+
+        .toi-date{
+            font-size:16;
+            font-style:italic;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="toi">
+        <div class="toi-top">
+          <div class="toi-image-div">
+            <img class="toi-image" src="../components/assets/img/toi-main/Blog.jpg" alt="htmx-image"/>
+          </div>
+        </div>
+        <div class="toi-middle">
+          <div class="toi-title">Blog done the HTMX and golang way</div>
+          <div class="toi-description">A simple htmx implementation using go-lang
+            with several other words which i will include here just so i can see what it would look like and possibly add a
+            line height with aligning left
+          </div>
+        </div>
+        <div class="toi-bottom">
+          <div class="toi-date">11/12/2024</div>
+        </div>
+      </div>
+</body>

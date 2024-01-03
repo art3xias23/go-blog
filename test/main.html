@@ -4,6 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tinolog</title>
     <style>
+      @font-face {
+        font-family: 'HoneyBlack';
+        src: url('../components/assets/fonts/HoneyBlackDEMO.otf') format('opentype');
+      }
+
+      @font-face{
+        font-family:'LettersForLearners';
+        src: url("../components/assets/fonts/LFL1.ttf") format("truetype")
+      }
+
       body {
         font: 400 16px/1.5 "Robato", sans-serif;
         background-color: #fbf9f1;
@@ -89,9 +99,11 @@ display:flex;
 justify-content: space-between;
       }
 
-      #links-container label{
+      #links-container a{
         display:inline-block;
         text-decoration:underline;
+        font-family: 'LettersForLearners', sans-serif;
+        font-size:1.5rem;
       }
       #search-bar{
         z-index:1;

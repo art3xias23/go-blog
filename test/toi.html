@@ -14,13 +14,23 @@
 
         .toi-top div{
             display:inline;
+            height:50px;
+        }
+        .toi-image-div{
+            overflow:hidden;
+            width:150px;
+            height:100px;
         }
         .toi-image{
             background-color: aqua;
+            width: 100%;
+            height:auto;
         }
 
         .toi-tags{
-            background-color: aquamarine;
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction: row;
         }
 
         .toi-middle{
@@ -53,8 +63,16 @@
 <body>
     <div class="toi">
         <div class="toi-top">
-          <div class="toi-image">Some image</div>
-          <div class="toi-tags">#htmx, golang</div>
+          <div class="toi-image-div">
+            <img class="toi-image" src="../components/assets/img/toi/htmx.png" alt="htmx-image"/>
+          </div>
+          <div class="toi-tags">
+            <div class="toi-tag">#sineHash</div>
+            <div class="toi-tag">#sineHash</div>
+            <div class="toi-tag">#sineHash</div>
+            <div class="toi-tag">#sineHash</div>
+            <div class="toi-tag">#sineHash</div>
+          </div>
         </div>
         <div class="toi-middle">
           <div class="toi-title">Blog done the HTMX and golang way</div>

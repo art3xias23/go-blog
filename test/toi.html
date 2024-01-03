@@ -13,7 +13,6 @@
         }
 
         .toi-top div{
-            display:inline;
             height:50px;
         }
         .toi-image-div{
@@ -28,9 +27,12 @@
         }
 
         .toi-tags{
-            display:flex;
-            flex-wrap:wrap;
-            flex-direction: row;
+            width:200px;
+            overflow:hidden;
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(auto-fill, 25px);
+            text-align: right;
         }
 
         .toi-middle{

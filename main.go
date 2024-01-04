@@ -8,16 +8,12 @@ import (
 )
 
 func main() {
-	// cssContent, err := os.ReadFile("assets/style.css")
-	// if err != nil {
-	// 	//
-	// }
-	// cssString := string(cssContent)
 
 	title := comps.Title("Homepage")
-	homecmp := comps.Home()
+	homecmp := comps.HomeContents()
 	layout := comps.Layout(title, homecmp)
 
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./components/assets/"))))
 	http.Handle("/", templ.Handler(layout))
 
 	http.ListenAndServe(":3000", nil)

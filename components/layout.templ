@@ -2,43 +2,37 @@ package components
 
 import _ "embed"
 
-//go:embed assets/style.css
+//go:embed assets/styles/style.css
 var _style string
 
 templ Layout(title templ.Component, contents templ.Component){
     <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            @unsafeScript(_style)
-            @title
-        </head>
-        <body>
-            <header>
-                <nav id="nav">
-                    <div class="nav-left">
-                        <a href="/blog">Blog</a>
-                        <a href="/goodreads">Goodreads</a>
-                        <a href="/letterboxd">Letterboxed</a>
-                        <a href="/github">Github</a>
-                    </div>
-                    <div class="nav-right">
-                    <a href="contects">Contacts</a>
-                    <a href="about">About</a>
-                    </div>
-                </nav>
-            </header>
-           @contents
-        </body>
-    </html>
+    <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        @unsafeScript(_style)
+        @title
+   
+  </head>
+  <body>
+    <header>
+      <div id="nav">
+        @iconContainer() 
+        @blogQuotes()
+        @navButtons()
+      </div>
+    </header>
+    
+  </body>
+</html>
 }
 
 templ Title(title string){
     <title>{title}</title>
 }
 
-templ Home(){
+templ HomeContents(){
     <h1>Welcome to my personal website!</h1>
 }
 
@@ -46,6 +40,54 @@ templ Style(css string){
     <style type="text/css">{css}</style>
 }
 
+templ blogQuotes(){
+    <div class="blog-quotes">
+        @quote1()
+        <br/>
+        @quote2()
+    </div>
+}
+
+templ quote1(){
+    "Consistency is the key to mastery."
+}
+
+templ quote2(){
+    "Small, focused efforts compound into greatness over time."
+}
+
+templ iconContainer(){
+     <div class="icon-container">
+          <img
+            id="blog-icon"
+            src="/assets/img/baby_keyboard.png"
+            alt="logo-img"
+          />
+        </div>
+}
+
+templ navButtons(){
+        <div class="nav-buttons">
+            @navButtonsRight()         
+            @navButtonsLeft()         
+        </div>
+}
+
+templ navButtonsLeft(){
+     <div class="nav-left">
+            <a class="nav-item" href="/blog">Blog</a>
+            <a class="nav-item" href="/goodreads">Goodreads</a>
+            <a class="nav-item" href="/letterboxd">Letterboxed</a>
+            <a class="nav-item" href="/github">Github</a>
+          </div>
+}
+
+templ navButtonsRight(){
+<div class="nav-right">
+            <a href="contects">Contacts</a>
+            <a href="about">About</a>
+          </div>
+}
 func unsafeScript(s string) templ.Component {
     return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 io.WriteString(w, "<style>\n"+s+"\n</style>")
@@ -53,4 +95,3 @@ io.WriteString(w, "<style>\n"+s+"\n</style>")
         return nil
     })
 }
-

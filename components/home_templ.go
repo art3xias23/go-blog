@@ -41,7 +41,7 @@ func Home(latestPosts templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</a></div><div class=\"top-right-content-container\"><div class=\"search-bar-container\"><input type=\"text\" id=\"search-bar\" placeholder=\"search...\"> <img id=\"search-bar-image\" src=\"../components/assets/icon/magnifying-glass.png\" placeholder=\"search-icon\"></div></div></div><div id=\"main-content-container\"><!--")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</a></div><div class=\"top-right-content-container\"><div class=\"search-bar-container\"><input type=\"text\" id=\"search-bar\" placeholder=\"search...\"> <img id=\"search-bar-image\" src=\"../assets/icon/magnifying-glass.png\" placeholder=\"search-icon\"></div></div></div><div id=\"main-content-container\"><!--")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

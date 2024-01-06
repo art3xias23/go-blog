@@ -103,8 +103,8 @@ body {
 }
 #search-bar-image {
   position: absolute;
-  top: 148px;
-  right: 240px;
+  top: 150px;
+  right: 260px;
   width: 25px;
   height: 25px;
   z-index: 2;

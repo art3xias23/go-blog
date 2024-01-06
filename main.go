@@ -9,8 +9,8 @@ import (
 
 func main() {
 
-	title := comps.Title("Homepage")
-	homecmp := comps.HomeContents()
+	title := comps.Title("Tinolog")
+	homecmp := comps.Home(nil)
 	layout := comps.Layout(title, homecmp)
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./components/assets/"))))

@@ -1,7 +1,7 @@
 package interfaces
 
 import (
-	_ "github.com/art3xias23/go-blog/domain/types"
+	_ "github.com/art3xias23/go-blog/domain"
 )
 
 type PostsService interface {

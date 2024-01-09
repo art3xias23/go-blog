@@ -15,7 +15,7 @@ func main() {
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./components/assets/"))))
 	http.Handle("/", templ.Handler(layout))
-	http.Handle("/latestPosts", serverLatestPosts)
+	// http.Handle("/latestPosts", serveLatestsPosts)
 
 	http.ListenAndServe(":3000", nil)
 

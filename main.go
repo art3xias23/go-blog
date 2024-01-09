@@ -15,6 +15,12 @@ func main() {
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./components/assets/"))))
 	http.Handle("/", templ.Handler(layout))
+	http.Handle("/latestPosts", serverLatestPosts)
 
 	http.ListenAndServe(":3000", nil)
+
+}
+
+func serveLatestsPosts(r *http.Request, w http.ResponseWriter) {
+
 }

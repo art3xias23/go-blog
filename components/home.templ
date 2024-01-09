@@ -4,7 +4,7 @@ templ Home(latestPosts templ.Component){
     <div class="content">
       <div class="top-content-container">
         <div id="links-container">
-          <a href="latest-posts" name="latest-posts">Latest Posts</a>
+          <a hx-get="/latest-posts" hx-trigger="load" hx-target="#main-content-container" name="latest-posts">Latest Posts</a>
           <a href="popular-tags" name="popular-tags">Popular Tags</a>
         </div>
         <div class="top-right-content-container">

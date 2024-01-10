@@ -30,6 +30,13 @@ func NewMongoDbService(connectionString string) (*MongoDbService, error) {
 	defer cancel()
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(connectionString))
+
+	defer func() {
+		if err = client.Disconnect(ctx); err != nil {
+			panic(err)
+		}
+	}()
+
 	if err != nil {
 		panic(err)
 	}

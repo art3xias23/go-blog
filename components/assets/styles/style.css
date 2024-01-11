@@ -8,17 +8,25 @@
   font-family: "LettersForLearners";
   src: url("../components/assets/fonts/LFL1.ttf") format("truetype");
 }
-
+html{
+  height:100%;
+  margin:0;
+}
 body {
   font: 400 16px/1.5 "Robato", sans-serif;
   background-color: #fbf9f1;
+  height:100%;
+  margin:0;
+  display:flex;
+  flex-direction: column;
+
 }
 
 #nav {
+  max-width:1440px;
+  margin:auto;
   top: 20px;
   left: 0px;
-  position: absolute;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -41,7 +49,11 @@ body {
 }
 
 .content {
+  max-width: 1440px;;
+  width:100%;
+  margin:auto;
   margin-top: 150px;
+
 }
 
 .nav-buttons div {
@@ -159,8 +171,8 @@ body {
 
 .latest-posts-container{
   display:grid;
-  grid-template-columns: repeat(auto-fill,400px);
-  grid-template-rows:400px 400px;
+  grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+  grid-template-rows:repeat(auto-fill, minmax(400px, 1fr));
   gap:20px;
 }
 
@@ -170,8 +182,10 @@ body {
 }
 
 .latest-post{
+  height:100%;
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-template-rows:1fr 5fr 1.5fr;
   border:1px solid;
-  display:block;
   overflow:hidden;
-  background-color:red;
 }

@@ -72,26 +72,15 @@ templ iconContainer(){
 
 templ navButtons(){
         <div class="nav-buttons">
-            @navButtonsRight()         
-            @navButtonsLeft()         
-        </div>
-}
-
-templ navButtonsLeft(){
-     <div class="nav-left">
             <a class="nav-item" href="/blog">Blog</a>
             <a class="nav-item" href="/goodreads">Goodreads</a>
             <a class="nav-item" href="/letterboxd">Letterboxed</a>
             <a class="nav-item" href="/github">Github</a>
-          </div>
-}
-
-templ navButtonsRight(){
-<div class="nav-right">
             <a href="contects">Contacts</a>
             <a href="about">About</a>
           </div>
 }
+
 func unsafeScript(s string) templ.Component {
     return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 io.WriteString(w, "<style>\n"+s+"\n</style>")

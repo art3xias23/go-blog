@@ -33,7 +33,7 @@ grid-column: 2;
   box-sizing: border-box;
   display: grid;
 grid-template-columns: repeat(3, 1fr);
-gap: 10px;
+gap: 30px;
 grid-template-rows: 1fr;
 }
 .icon-container{
@@ -52,10 +52,10 @@ justify-content: center;
 .blog-quotes {
   font-style: italic;
   font-size: small;
-  height: 100px;
 grid-column: 2;
 display: flex;
 justify-content: center;
+text-align: center;;
 }
 
 .content {
@@ -73,16 +73,11 @@ justify-content: center;
 .nav-buttons {
   height: 100px;
 grid-column: 2;
+display:flex;
 }
-.nav-left {
-  grid-row:1;
-  grid-column: 2;
-  display: inline-block;
-}
-.nav-right {
-  grid-row:1;
-  grid-column: 3;
-  display: inline-block;
+
+.nav-buttons a{
+  ju
 }
 
 .nav-left a,

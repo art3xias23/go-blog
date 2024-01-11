@@ -15,37 +15,47 @@ html{
 body {
   font: 400 16px/1.5 "Robato", sans-serif;
   background-color: #fbf9f1;
-  height:100%;
   margin:0;
   display:flex;
   flex-direction: column;
+  height: 100%;
+display: block;
+grid-column: 2;
 
 }
+
+
 
 #nav {
   max-width:1440px;
   margin:auto;
-  top: 20px;
-  left: 0px;
-  display: flex;
-  justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
-  z-index: 1;
-  height: 50px;
+  display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 10px;
+grid-template-rows: 1fr;
 }
-
+.icon-container{
+  grid-column: 2;
+align-items: center;
+display: flex;
+justify-content: center;
+}
 #blog-icon {
   border-radius: 30%;
   width: 125px;
   height: 125px;
+  align-content: center;
 }
 
 .blog-quotes {
   font-style: italic;
   font-size: small;
-  position: absolute;
-  margin: 65px 130px;
+  height: 100px;
+grid-column: 2;
+display: flex;
+justify-content: center;
 }
 
 .content {
@@ -61,10 +71,8 @@ body {
 }
 
 .nav-buttons {
-  display: grid;
-  grid-template-rows: 1;
-  grid-template-columns: 1fr 1fr 0.5fr;
-  width: 100%;
+  height: 100px;
+grid-column: 2;
 }
 .nav-left {
   grid-row:1;

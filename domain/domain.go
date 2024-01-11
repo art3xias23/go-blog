@@ -31,12 +31,6 @@ func NewMongoDbService(connectionString string) (*MongoDbService, error) {
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(connectionString))
 
-	defer func() {
-		if err = client.Disconnect(ctx); err != nil {
-			panic(err)
-		}
-	}()
-
 	if err != nil {
 		panic(err)
 	}
@@ -47,6 +41,15 @@ func NewMongoDbService(connectionString string) (*MongoDbService, error) {
 	}
 
 	return &MongoDbService{client: client}, nil
+}
+
+func (mongo *MongoDbService) Disconnect() error {
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err := mongo.client.Disconnect(ctx); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (mongo *MongoDbService) GetLatestsPosts() ([]Post, error) {

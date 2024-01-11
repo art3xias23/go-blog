@@ -2,16 +2,21 @@ package components
 
 import "github.com/art3xias23/go-blog/domain"
 import "strings"
+import "fmt"
 
 templ LatestPosts(posts []domain.Post){
 <div class="latest-posts-container">
-img := strings.Join(string[]{"assets/img/posts", {item.ImageLocation}})
     for _, item:=range posts{
         <div class="latest-post">
             <h3>{item.Title}</h3>
-            <img src=img alt="blog-image"/>
+            <img src={ getImageSource(item) } alt="blog-image"/>
             <textarea>{item.Description}</textarea>
         </div>
     }
 </div>
+}
+
+func getImageSource(post domain.Post) string{
+    fmt.Println(post.ImageLocation)
+    return strings.Join([]string{"/assets/img/posts/", post.ImageLocation},"")
 }

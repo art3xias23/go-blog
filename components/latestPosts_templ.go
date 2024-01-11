@@ -12,6 +12,7 @@ import "bytes"
 
 import "github.com/art3xias23/go-blog/domain"
 import "strings"
+import "fmt"
 
 func LatestPosts(posts []domain.Post) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
@@ -48,7 +49,7 @@ func LatestPosts(posts []domain.Post) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(strings.Join([]string{"assets/img/posts/", item.ImageLocation})))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(getImageSource(item)))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -79,4 +80,9 @@ func LatestPosts(posts []domain.Post) templ.Component {
 		}
 		return templ_7745c5c3_Err
 	})
+}
+
+func getImageSource(post domain.Post) string {
+	fmt.Println(post.ImageLocation)
+	return strings.Join([]string{"/assets/img/posts/", post.ImageLocation}, "")
 }

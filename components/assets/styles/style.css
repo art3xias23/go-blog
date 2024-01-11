@@ -156,3 +156,22 @@ body {
     font-style:italic;
     text-align: center;
 }
+
+.latest-posts-container{
+  display:grid;
+  grid-template-columns: repeat(auto-fill,400px);
+  grid-template-rows:400px 400px;
+  gap:20px;
+}
+
+.post-image{
+  width: 100%;
+  height: 300px;
+}
+
+.latest-post{
+  border:1px solid;
+  display:block;
+  overflow:hidden;
+  background-color:red;
+}

@@ -8,9 +8,9 @@ templ LatestPosts(posts []domain.Post){
 <div class="latest-posts-container">
     for _, item:=range posts{
         <div class="latest-post">
-            <h3>{item.Title}</h3>
-            <img src={ getImageSource(item) } alt="blog-image"/>
-            <textarea>{item.Description}</textarea>
+            <h3 class="post-title">{item.Title}</h3>
+            <img class="post-image" src={ getImageSource(item) } alt="blog-image"/>
+            <i class="post-description">{item.Description}</i>
         </div>
     }
 </div>

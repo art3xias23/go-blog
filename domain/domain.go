@@ -11,10 +11,14 @@ import (
 )
 
 type Post struct {
-	ID      string    `bson:"_id"`
-	Author  string    `bson:"author"`
-	Content string    `bson:"content"`
-	Created time.Time `bson:"created"`
+	ID            string    `bson:"_id"`
+	Title         string    `bson:"Title"`
+	Content       string    `bson:"Content"`
+	Description   string    `bson:"Description"`
+	Created       time.Time `bson:"Created"`
+	Tags          []string  `bson:"Tags"`
+	ImageLocation string    `bson:"ImageLocation"`
+	Author        string    `bson:"Author"`
 }
 
 type PostsService interface {

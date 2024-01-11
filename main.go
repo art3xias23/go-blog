@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 
@@ -33,6 +34,14 @@ func serveLatestsPosts(w http.ResponseWriter, r *http.Request) {
 	defer mongoService.Disconnect()
 
 	latestPosts, err := mongoService.GetLatestsPosts()
+	if err != nil {
+		fmt.Println("Error retrieving latest posts:", err)
+		return
+	}
+
+	var latestPostsView = comps.LatestPosts(latestPosts)
+
+	err = latestPostsView.Render(context.Background(), w)
 	if err != nil {
 		fmt.Println("Error retrieving latest posts:", err)
 		return

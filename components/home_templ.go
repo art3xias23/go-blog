@@ -23,7 +23,7 @@ func Home(latestPosts templ.Component) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"content\"><div class=\"top-content-container\"><div id=\"links-container\"><a href=\"latest-posts\" name=\"latest-posts\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"content\"><div class=\"top-content-container\"><div id=\"links-container\"><a hx-get=\"/latest-posts\" hx-trigger=\"load\" hx-target=\"#main-content-container\" name=\"latest-posts\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

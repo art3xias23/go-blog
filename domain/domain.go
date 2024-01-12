@@ -56,12 +56,12 @@ func (mongo *MongoDbService) Disconnect() error {
 	return nil
 }
 
-func (mongo *MongoDbService) GetLatestsPosts() ([]Post, error) {
+func (mongo *MongoDbService) GetPosts() ([]Post, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	collection := mongo.client.Database("blog").Collection("posts")
 
-	opts := options.Find().SetSort(map[string]int{"created": -1}).SetLimit(10)
+	opts := options.Find().SetSort(map[string]int{"created": -1})
 
 	cursor, err := collection.Find(ctx, bson.D{}, opts)
 

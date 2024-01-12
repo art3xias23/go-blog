@@ -71,13 +71,11 @@ text-align: center;;
 }
 
 .nav-buttons {
-  height: 100px;
-grid-column: 2;
+grid-column: span 3;
 display:flex;
-}
-
-.nav-buttons a{
-  ju
+gap: 20px;
+align-items: center;
+justify-content: center;
 }
 
 .nav-left a,

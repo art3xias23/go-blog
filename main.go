@@ -14,18 +14,19 @@ func main() {
 
 	fmt.Println("Entered: main()")
 	title := comps.Title("Tinolog")
-	homecmp := comps.Home(nil)
-	layout := comps.Layout(title, homecmp)
+	layout := comps.Layout(title)
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./components/assets/"))))
 	http.Handle("/", templ.Handler(layout))
-	http.HandleFunc("/latest-posts", serveLatestsPosts)
+	// http.HandleFunc("/blog", serveBlog)
+	// http.Handle("/blog", templ.Handler(serveBlogComponent()))
+	http.HandleFunc("/blog", serveBlog)
 
 	http.ListenAndServe(":3000", nil)
 
 }
 
-func serveLatestsPosts(w http.ResponseWriter, r *http.Request) {
+func serveBlog(w http.ResponseWriter, r *http.Request) {
 	mongoService, err := domain.NewMongoDbService("mongodb://172.28.224.1:27017")
 	if err != nil {
 		fmt.Println("Error creating MongoDB service:", err)
@@ -33,15 +34,16 @@ func serveLatestsPosts(w http.ResponseWriter, r *http.Request) {
 	}
 	defer mongoService.Disconnect()
 
-	latestPosts, err := mongoService.GetLatestsPosts()
+	latestPosts, err := mongoService.GetPosts()
 	if err != nil {
 		fmt.Println("Error retrieving latest posts:", err)
 		return
 	}
 
 	var latestPostsView = comps.LatestPosts(latestPosts)
-
-	err = latestPostsView.Render(context.Background(), w)
+	var blogView = comps.Blog(latestPostsView)
+	// templ.Handler(blogView).ServeHTTP(w, r)
+	blogView.Render(context.Background(), w)
 	if err != nil {
 		fmt.Println("Error retrieving latest posts:", err)
 		return

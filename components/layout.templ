@@ -5,7 +5,7 @@ import _ "embed"
 //go:embed assets/styles/style.css
 var _style string
 
-templ Layout(title templ.Component, contents templ.Component){
+templ Layout(title templ.Component){
     <!DOCTYPE html>
     <html lang="en">
   <head>
@@ -26,7 +26,6 @@ templ Layout(title templ.Component, contents templ.Component){
       </div>
     </header>
     <main>
-      @contents 
     </main>
   </body>
 </html>
@@ -34,10 +33,6 @@ templ Layout(title templ.Component, contents templ.Component){
 
 templ Title(title string){
     <title>{title}</title>
-}
-
-templ HomeContents(){
-    <h1>Welcome to my personal website!</h1>
 }
 
 templ Style(css string){
@@ -72,7 +67,10 @@ templ iconContainer(){
 
 templ navButtons(){
         <div class="nav-buttons">
-            <a class="nav-item" href="/blog">Blog</a>
+            <a class="nav-item" 
+               hx-get="/blog" 
+               hx-target="main">Blog</a>
+
             <a class="nav-item" href="/goodreads">Goodreads</a>
             <a class="nav-item" href="/letterboxd">Letterboxed</a>
             <a class="nav-item" href="/github">Github</a>

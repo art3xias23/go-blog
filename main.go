@@ -21,13 +21,22 @@ func main() {
 	// http.HandleFunc("/blog", serveBlog)
 	// http.Handle("/blog", templ.Handler(serveBlogComponent()))
 	http.HandleFunc("/blog", serveBlog)
+	http.HandleFunc("/about", serveAbout)
 
 	http.ListenAndServe(":3000", nil)
 
 }
 
+func serveAbout(w http.ResponseWriter, r *http.Request) {
+	aboutView := comps.About()
+
+	aboutView.Render(context.Background(), w)
+}
+
 func serveBlog(w http.ResponseWriter, r *http.Request) {
-	mongoService, err := domain.NewMongoDbService("mongodb://172.28.224.1:27017")
+	mongocs := "mongodb://172.28.224.1:27017/"
+
+	mongoService, err := domain.NewMongoDbService(mongocs)
 	if err != nil {
 		fmt.Println("Error creating MongoDB service:", err)
 		return

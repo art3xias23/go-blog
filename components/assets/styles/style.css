@@ -196,8 +196,23 @@ justify-content: center;
 .tech-images{
   display:flex;
   justify-content: space-between;
-  flex-direction:row;
+  flex-direction:column;
   flex-wrap:wrap;
+}
+
+.tech-image-group{
+  gap:20px;
+  display:flex;
+  flex-direction:column;
+}
+
+.tech-image-group-items{
+  display:flex;
+  flex-direction: row;
+}
+
+.tech-image-group-title{
+  font-size: medium;
 }
 
 .tech-image{

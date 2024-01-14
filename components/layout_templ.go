@@ -287,7 +287,7 @@ func navButtons() templ.Component {
 			templ_7745c5c3_Var13 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"nav-buttons\"><a class=\"nav-item\" hx-get=\"/blog\" hx-target=\".content\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"nav-buttons\" hx-headers=\"{&#34;Sender&#34;:&#34;art3xias&#34;}\"><a class=\"nav-item\" hx-get=\"/blog\" hx-target=\".content\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

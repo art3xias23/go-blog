@@ -27,10 +27,22 @@ func main() {
 
 }
 
+// rednerSenserContent is a helper function which helps detemine if the request
+// to the resource is coming from inside or outside the blog
+func renderSenderContent(r *http.Request, w http.ResponseWriter, componentToRender templ.Component) {
+	senderHeader := r.Header.Get("Sender")
+	if senderHeader != "" {
+		componentToRender.Render(context.Background(), w)
+		return
+	}
+	layout := comps.Layout(comps.Title("Tinolog"), componentToRender)
+	layout.Render(context.Background(), w)
+}
+
 func serveAbout(w http.ResponseWriter, r *http.Request) {
 	aboutView := comps.About()
 
-	aboutView.Render(context.Background(), w)
+	renderSenderContent(r, w, aboutView)
 }
 
 func serveBlog(w http.ResponseWriter, r *http.Request) {
@@ -52,12 +64,5 @@ func serveBlog(w http.ResponseWriter, r *http.Request) {
 	var latestPostsView = comps.LatestPosts(latestPosts)
 	var blogView = comps.Blog(latestPostsView)
 	// templ.Handler(blogView).ServeHTTP(w, r)
-	blogView.Render(context.Background(), w)
-	if err != nil {
-		fmt.Println("Error retrieving latest posts:", err)
-		return
-	}
-
-	// Use latestPosts as needed...
-	fmt.Println("Latest Posts:", latestPosts)
+	renderSenderContent(r, w, blogView)
 }

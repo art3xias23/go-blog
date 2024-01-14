@@ -71,7 +71,9 @@ templ iconContainer(){
 }
 
 templ navButtons(){
-        <div class="nav-buttons">
+        <div class="nav-buttons" 
+        hx-headers='{"Sender":"art3xias"}'
+        >
             <a class="nav-item" 
                hx-get="/blog" 
                hx-target=".content">Blog</a>

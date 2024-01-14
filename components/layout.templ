@@ -5,7 +5,7 @@ import _ "embed"
 //go:embed assets/styles/style.css
 var _style string
 
-templ Layout(title templ.Component){
+templ Layout(title templ.Component, comp templ.Component){
     <!DOCTYPE html>
     <html lang="en">
   <head>
@@ -27,6 +27,9 @@ templ Layout(title templ.Component){
     </header>
     <main>
     <div class="content">
+    if comp != nil{
+      @comp
+    }
     </div>
     </main>
   </body>
@@ -79,7 +82,8 @@ templ navButtons(){
             <a href="contects">Contacts</a>
             <a class="nav-item"
                hx-get="/about"
-               hx-target=".content">About</a>
+               hx-target=".content"
+               hx-push-url="true">About</a>
           </div>
 }
 

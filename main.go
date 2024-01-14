@@ -14,7 +14,7 @@ func main() {
 
 	fmt.Println("Entered: main()")
 	title := comps.Title("Tinolog")
-	layout := comps.Layout(title)
+	layout := comps.Layout(title, nil)
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./components/assets/"))))
 	http.Handle("/", templ.Handler(layout))

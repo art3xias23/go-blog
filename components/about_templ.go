@@ -50,7 +50,7 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"about-sentences\"><div class=\"about-sentence\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -59,102 +59,48 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<br>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div class=\"about-sentence\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var6 := `After graduating I got hired by Age Partnership in Leeds, UK and have been a c# desktop app diveloper since.`
+		templ_7745c5c3_Var6 := `After graduating I got hired by Age Partnership in Leeds, UK and have been a c# desktop app developer since.`
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<br><div class=\"about-sentence\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var7 := `Tools`
+		templ_7745c5c3_Var7 := `I enjoy learning new things and technologies. `
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var7)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div clas=\"tech-images\"><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div class=\"about-sentence\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var8 := `Web`
+		templ_7745c5c3_Var8 := `Currently on a journey to explore go and htmx.`
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var8)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/html.png\" alt=\"HTML\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/css.png\" alt=\"CSS\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/react.png\" alt=\"React\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<br><div class=\"about-sentence\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var9 := `Desktop`
+		templ_7745c5c3_Var9 := `Hoping future endeavours to inlcude C, Erlang, Clojure, Scala, jq, sed`
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var9)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/winforms.png\" alt=\"WinForms\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/wpf.png\" alt=\"WPF\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/ltk.png\" alt=\"LTK\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div class=\"about-sentence\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var10 := `queue`
+		templ_7745c5c3_Var10 := `I've worked with a wide range of technologies, despite my main focus being .NET`
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var10)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/winforms.png\" alt=\"WinForms\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/wpf.png\" alt=\"WPF\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/ltk.png\" alt=\"LTK\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Var11 := `mobile`
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var11)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/travolta.gif\" alt=\"Travolta\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Var12 := `Database`
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var12)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/mongodb.png\" alt=\"MongoDB\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/sql.png\" alt=\"SQL\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Var13 := `VersionControl`
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var13)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/git.png\" alt=\"Git\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Var14 := `OS`
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var14)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/linux.png\" alt=\"Linux\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Var15 := `Languages`
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var15)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/csharp.png\" alt=\"C#\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/dotnet.png\" alt=\".NET\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/go.png\" alt=\"Go\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/lisp.png\" alt=\"Lisp\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/javascript.png\" alt=\"JavaScript\"></div></div></div>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Var16 := `I've worked with a wide range of technologies, despite my main focus being .NET`
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var16)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -162,12 +108,111 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var17 := `Most of the other technologies have been used as a one off project at the company or as a learning and experimental experience in my free time`
+		templ_7745c5c3_Var11 := `Most of the other technologies have been used as a one off project at the company or as a learning and experimental experience in my free time`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var11)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><h1>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var12 := `Tools`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var12)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"tech-images\"><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var13 := `Web`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var13)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/html.png\" alt=\"HTML\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/css.png\" alt=\"CSS\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/react.png\" alt=\"React\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/bootstrap.png\" alt=\"Bootstrap\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var14 := `Desktop`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var14)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/winforms.png\" alt=\"WinForms\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/wpf.png\" alt=\"WPF\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/ltk.png\" alt=\"LTK\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var15 := `Queue`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var15)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/rabbitmq.png\" alt=\"RabbitMQ\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var16 := `Mobile`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var16)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/travolta.gif\" alt=\"Travolta\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var17 := `Database`
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var17)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/mongodb.png\" alt=\"MongoDB\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/sql.png\" alt=\"SQL\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var18 := `Version Control`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var18)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/git.png\" alt=\"Git\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var19 := `OS`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var19)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/linux.png\" alt=\"Linux\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/windows.png\" alt=\"Windows\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var20 := `Languages`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var20)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/csharp.png\" alt=\"C#\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/go.png\" alt=\"Go\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/lisp.png\" alt=\"Lisp\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/javascript.png\" alt=\"JavaScript\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/ruby.png\" alt=\"Ruby\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var21 := `Code Editor`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var21)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/vim.png\" alt=\"Vim\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/neovim.png\" alt=\"neovim\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/vs.png\" alt=\"Vs\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/vscode.png\" alt=\"VsCode\"></div></div><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Var22 := `Terminal`
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var22)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/wterm.png\" alt=\"Windows Terminal\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/git.png\" alt=\"Git Bash\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/zsh.png\" alt=\"Zsh\"></div></div></div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

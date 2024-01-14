@@ -193,6 +193,12 @@ justify-content: center;
 
 /* About Page */
 
+.about-sentences{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
 .tech-images{
   display:flex;
   justify-content: space-between;

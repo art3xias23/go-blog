@@ -54,7 +54,7 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var5 := `I did a one year course in IT in 2017 where I got introduced to Ruby, Sinatra and Rails.`
+		templ_7745c5c3_Var5 := `I did a one year course in IT in 2017 where I got introduced to Ruby, Sinatra and Rails. `
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var5)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -68,7 +68,7 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<br><div class=\"about-sentence\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div class=\"about-sentence\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -86,7 +86,7 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<br><div class=\"about-sentence\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div class=\"about-sentence\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -212,7 +212,7 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/wterm.png\" alt=\"Windows Terminal\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/git.png\" alt=\"Git Bash\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/zsh.png\" alt=\"Zsh\"></div></div></div></div></div></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em></div><div class=\"tech-image-group-items\"><img class=\"tech-image\" src=\"/assets/img/about/tech/wterm.png\" alt=\"Windows Terminal\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/git.png\" alt=\"Git Bash\"> <img class=\"tech-image\" src=\"/assets/img/about/tech/zsh.png\" alt=\"Zsh\"></div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

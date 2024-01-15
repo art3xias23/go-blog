@@ -8,6 +8,7 @@ import (
 	"github.com/a-h/templ"
 	comps "github.com/art3xias23/go-blog/components"
 	"github.com/art3xias23/go-blog/domain"
+	letterboxd "github.com/art3xias23/go-blog/letterboxd"
 )
 
 func main() {
@@ -25,7 +26,16 @@ func main() {
 
 }
 
-func serverLetterBoxd(w http.ResponseWriter, r *http.Request)
+func serveLetterBoxd(w http.ResponseWriter, r *http.Request) {
+	fileName, err := letterboxd.GetFile()
+	if err != nil {
+		fmt.Println(fileName)
+		return
+	}
+	fmt.Println(fileName)
+
+	letterboxd.ReadFileContents(fileName)
+}
 
 // rednerSenserContent is a helper function which helps detemine if the request
 // to the resource is coming from inside or outside the blog

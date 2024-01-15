@@ -17,14 +17,15 @@ func main() {
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./components/assets/"))))
 	http.Handle("/", templ.Handler(layout))
-	// http.HandleFunc("/blog", serveBlog)
-	// http.Handle("/blog", templ.Handler(serveBlogComponent()))
 	http.HandleFunc("/blog", serveBlog)
 	http.HandleFunc("/about", serveAbout)
+	http.HandleFunc("/letterboxd", serveLetterBoxd)
 
 	http.ListenAndServe(":3000", nil)
 
 }
+
+func serverLetterBoxd(w http.ResponseWriter, r *http.Request)
 
 // rednerSenserContent is a helper function which helps detemine if the request
 // to the resource is coming from inside or outside the blog

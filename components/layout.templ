@@ -5,38 +5,16 @@ import _ "embed"
 //go:embed assets/styles/style.css
 var _style string
 
-templ Layout(title templ.Component, comp templ.Component){
+
+templ Layout(comp templ.Component){
     <!DOCTYPE html>
     <html lang="en">
-  <head>
-  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        @unsafeScript(_style)
-        @title
-        @htmxScript()
-   
-  </head>
-  <body>
-    <header>
-      <div id="nav">
-        @iconContainer() 
-        @blogQuotes()
-        @navButtons()
-      </div>
-    </header>
-    <main>
-    <div class="content">
-    if comp != nil{
-      @comp
-    }
-    </div>
-    </main>
-  </body>
+      @head()
+      @body(comp)
 </html>
 }
 
-templ Title(title string){
+templ title(title string){
     <title>{title}</title>
 }
 
@@ -87,6 +65,48 @@ templ navButtons(){
                hx-target=".content"
                hx-push-url="true">About</a>
           </div>
+}
+
+templ head(){
+  <head>
+    <script src="https://unpkg.com/htmx.org@1.9.10" 
+            integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" 
+            crossorigin="anonymous"></script>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          @unsafeScript(_style)
+         @title("Tinolog") 
+          @htmxScript()
+    
+  </head>
+}
+templ body(comp templ.Component){
+  <body>
+    @header()
+    @main(comp)
+    @footer()
+  </body>
+}
+templ header(){
+    <header>
+      <div id="nav">
+        @iconContainer() 
+        @blogQuotes()
+        @navButtons()
+      </div>
+    </header>
+}
+
+templ main(comp templ.Component){
+    <main>
+      <div class="content">
+        if comp != nil{
+          @comp
+        }
+      </div>
+    </main>
+}
+templ footer(){
 }
 
 func unsafeScript(s string) templ.Component {

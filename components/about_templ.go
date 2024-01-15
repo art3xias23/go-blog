@@ -90,7 +90,7 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var9 := `Hoping future endeavours to inlcude C, Erlang, Clojure, Scala, jq, sed`
+		templ_7745c5c3_Var9 := `Hoping future endeavours to inlcude C, Erlang, Clojure, Scala, jq, sed.`
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var9)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -99,16 +99,16 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var10 := `I've worked with a wide range of technologies, despite my main focus being .NET`
+		templ_7745c5c3_Var10 := `I've worked with a wide range of technologies, despite my main focus being .NET.`
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var10)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" ")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<br>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Var11 := `Most of the other technologies have been used as a one off project at the company or as a learning and experimental experience in my free time`
+		templ_7745c5c3_Var11 := `Most of the other technologies have been used as a one off project at the company or as a learning and experimental experience in my free time.`
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var11)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

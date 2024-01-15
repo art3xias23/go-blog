@@ -13,8 +13,7 @@ import (
 func main() {
 
 	fmt.Println("Entered: main()")
-	title := comps.Title("Tinolog")
-	layout := comps.Layout(title, nil)
+	layout := comps.Layout(nil)
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./components/assets/"))))
 	http.Handle("/", templ.Handler(layout))
@@ -35,7 +34,7 @@ func renderSenderContent(r *http.Request, w http.ResponseWriter, componentToRend
 		componentToRender.Render(context.Background(), w)
 		return
 	}
-	layout := comps.Layout(comps.Title("Tinolog"), componentToRender)
+	layout := comps.Layout(componentToRender)
 	layout.Render(context.Background(), w)
 }
 

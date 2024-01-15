@@ -2,7 +2,6 @@ package components
 
 import "github.com/art3xias23/go-blog/domain"
 import "strings"
-import "fmt"
 
 templ LatestPosts(posts []domain.Post){
 <div class="latest-posts-container">
@@ -17,7 +16,6 @@ templ LatestPosts(posts []domain.Post){
 }
 
 func getImageSource(post domain.Post) string{
-    fmt.Println(post.ImageLocation)
     return strings.Join([]string{"/assets/img/posts/", post.ImageLocation},"")
 }
 

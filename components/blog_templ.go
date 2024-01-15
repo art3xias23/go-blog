@@ -12,7 +12,6 @@ import "bytes"
 
 import "github.com/art3xias23/go-blog/domain"
 import "strings"
-import "fmt"
 
 func LatestPosts(posts []domain.Post) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
@@ -39,7 +38,7 @@ func LatestPosts(posts []domain.Post) templ.Component {
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(item.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\blog.templ`, Line: 10, Col: 46}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\blog.templ`, Line: 9, Col: 46}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -60,7 +59,7 @@ func LatestPosts(posts []domain.Post) templ.Component {
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(item.Description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\blog.templ`, Line: 12, Col: 57}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\blog.templ`, Line: 11, Col: 57}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
@@ -83,7 +82,6 @@ func LatestPosts(posts []domain.Post) templ.Component {
 }
 
 func getImageSource(post domain.Post) string {
-	fmt.Println(post.ImageLocation)
 	return strings.Join([]string{"/assets/img/posts/", post.ImageLocation}, "")
 }
 

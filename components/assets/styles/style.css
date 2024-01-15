@@ -170,11 +170,15 @@ justify-content: center;
     text-align: center;
 }
 
+/* Blog page */
 .latest-posts-container{
   display:grid;
-  grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
-  grid-template-rows:repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill,400px);
+  grid-template-rows:repeat(auto-fill, minmax(300px, 1fr));
   gap:20px;
+}
+.post-title{
+  text-align:center;
 }
 
 .post-image{
@@ -186,7 +190,8 @@ justify-content: center;
   height:100%;
   display:grid;
   grid-template-columns: 1fr;
-  grid-template-rows:1fr 5fr 1.5fr;
+  grid-template-rows: 0.1fr 0.6fr 0.3fr;
+  grid-row-gap: 25px;
   border:1px solid;
   overflow:hidden;
 }

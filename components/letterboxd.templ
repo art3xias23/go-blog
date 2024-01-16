@@ -34,17 +34,17 @@ func extractImageURL(htmlString string) string {
 	return imageURL
 }
 templ Letterboxd(items []letter.Itemm){
-<div class="latest-posts-container">
+<div class="films-container">
     for _, item:=range items{
-        <div class="latest-post">
-          <div class="post-title">
+        <div class="film">
+          <div class="film-title">
               <h3 >{item.Title}</h3>
           </div>
-          <div class="post-image">
-              <img class="post-image" src={ extractImageURL(item.Description) } alt="poster-image"/>
+          <div class="film-image">
+              <img class="film-image" src={ extractImageURL(item.Description) } alt="film-image"/>
           </div>
-          <div class="post-description">
-              <i class="post-description">{item.Year}</i>
+          <div class="film-description">
+              <i>{item.Year}</i>
           </div>
         </div>
     }

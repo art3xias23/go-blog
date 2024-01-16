@@ -40,11 +40,11 @@ templ Letterboxd(items []letter.Itemm){
           <div class="film-title">
               <h3 >{item.Title}</h3>
           </div>
+          <div class="film-year">
+              <i>{item.Year}</i>
+          </div>
           <div class="film-image">
               <img class="film-image" src={ extractImageURL(item.Description) } alt="film-image"/>
-          </div>
-          <div class="film-description">
-              <i>{item.Year}</i>
           </div>
         </div>
     }

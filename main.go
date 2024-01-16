@@ -28,7 +28,8 @@ func main() {
 }
 
 func serveLetterRedirect(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("HX-Redirect", "www.google.com")
+	redirectUrl := r.URL.Query().Get("url")
+	w.Header().Set("HX-Redirect", redirectUrl)
 	renderSenderContent(r, w, nil)
 }
 

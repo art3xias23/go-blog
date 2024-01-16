@@ -129,7 +129,7 @@ func Letterboxd(items []letter.Itemm) templ.Component {
 }
 
 func getHxValsString(url string) string {
-	var a = fmt.Sprintf("{'url':'%s'}", url)
+	var a = fmt.Sprintf(`{"url":"%s"}`, url)
 	fmt.Println("A is: ")
 	fmt.Println(a)
 	return a

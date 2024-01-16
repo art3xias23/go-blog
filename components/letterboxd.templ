@@ -43,6 +43,7 @@ templ Letterboxd(items []letter.Itemm){
           <div class="film-year">
               <i>{item.Year}</i>
           </div>
+		  <div class="film-rating" data-rating={item.MemberRating} />
           <div class="film-image">
               <img class="film-image" src={ extractImageURL(item.Description) } alt="film-image"/>
           </div>

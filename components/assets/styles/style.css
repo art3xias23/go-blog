@@ -227,7 +227,7 @@ justify-content: center;
   height:100%;
   display:grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 0.1fr 1fr;
+  grid-template-rows: 0.1fr 0.05fr 0.1fr 1fr;
   border:1px solid;
   overflow:hidden;
   max-height: 500px;
@@ -242,6 +242,56 @@ justify-content: center;
   height: 100%;
   overflow: hidden;
 }
+.film-year{
+  text-align: center;
+  height: 100%;
+}
+
+.film-rating{
+  text-align: center;
+  display:inline-block;
+}
+
+.film-rating[data-rating='1']::before,
+.film-rating[data-rating='1.0']::before{
+  content:'⭐☆✰✰✰'
+}
+
+.film-rating[data-rating='1.5']::before{
+  content:'⭐½☆✰✰'
+}
+
+.film-rating[data-rating='2']::before,
+.film-rating[data-rating='2.0']::before{
+  content:'⭐⭐✰✰✰'
+}
+
+.film-rating[data-rating='2.5']::before{
+  content:'⭐⭐½✰✰'
+}
+
+.film-rating[data-rating='3']::before,
+.film-rating[data-rating='3.0']::before{
+  content:'⭐⭐⭐✰✰'
+}
+
+.film-rating[data-rating='3.5']::before{
+  content:'⭐⭐⭐½✰✰'
+}
+
+.film-rating[data-rating='4']::before,
+.film-rating[data-rating='4.0']::before{
+  content:'⭐⭐⭐⭐✰'
+}
+
+.film-rating[data-rating='4.5']::before{
+  content:'⭐⭐⭐⭐½✰'
+}
+
+.film-rating[data-rating='5']::before,
+.film-rating[data-rating='5.0']::before{
+  content:'⭐⭐⭐⭐⭐'
+}
 
 .film-image{
   transform: scale(1);
@@ -250,10 +300,6 @@ justify-content: center;
   overflow:hidden;
 }
 
-.film-year{
-  text-align: center;
-  height: 100%;
-}
 /* About Page */
 
 .about-sentences{

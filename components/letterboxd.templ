@@ -4,6 +4,7 @@ package components
 import letter "github.com/art3xias23/go-blog/letterboxd"
 import "strings"
 import html "golang.org/x/net/html"
+import "fmt"
 
 func extractImageURL(htmlString string) string {
 	reader := strings.NewReader(htmlString)
@@ -39,7 +40,7 @@ templ Letterboxd(items []letter.Itemm){
         <div hx-get="/letter-redirect" 
 			hx-push-url="true" 
 			hx-trigger="click" 
-			hx-vals=`"{"url:"{item.Url}}`
+			hx-vals={getHxValsString(item.Url)}
 			class="film" >
           <div class="film-title">
               <h3 >{item.Title}</h3>
@@ -54,4 +55,11 @@ templ Letterboxd(items []letter.Itemm){
         </div>
     }
 </div>
+}
+
+func getHxValsString(url string) string{
+	var a = fmt.Sprintf("{'url':'%s'}", url)
+	fmt.Println("A is: ")
+	fmt.Println(a)
+	return a
 }

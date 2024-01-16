@@ -13,6 +13,7 @@ import "bytes"
 import letter "github.com/art3xias23/go-blog/letterboxd"
 import "strings"
 import html "golang.org/x/net/html"
+import "fmt"
 
 func extractImageURL(htmlString string) string {
 	reader := strings.NewReader(htmlString)
@@ -61,22 +62,22 @@ func Letterboxd(items []letter.Itemm) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		for _, item := range items {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div hx-get=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div hx-get=\"/letter-redirect\" hx-push-url=\"true\" hx-trigger=\"click\" hx-vals=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(item.Url))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(getHxValsString(item.Url)))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-push-url=\"true\" hx-trigger=\"click\" class=\"film\"><div class=\"film-title\"><h3>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"film\"><div class=\"film-title\"><h3>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(item.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\letterboxd.templ`, Line: 40, Col: 30}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\letterboxd.templ`, Line: 45, Col: 30}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -89,7 +90,7 @@ func Letterboxd(items []letter.Itemm) templ.Component {
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(item.Year)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\letterboxd.templ`, Line: 43, Col: 27}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\letterboxd.templ`, Line: 48, Col: 27}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
@@ -125,4 +126,11 @@ func Letterboxd(items []letter.Itemm) templ.Component {
 		}
 		return templ_7745c5c3_Err
 	})
+}
+
+func getHxValsString(url string) string {
+	var a = fmt.Sprintf("{'url':'%s'}", url)
+	fmt.Println("A is: ")
+	fmt.Println(a)
+	return a
 }

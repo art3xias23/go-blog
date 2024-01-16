@@ -4,42 +4,25 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
-	"io/fs"
 	"net/http"
-	"os"
 )
 
-func GetFile() (string, error) {
+func GetRssData() (*Channel, error) {
 	url := "http://www.letterboxd.com/art3xias/rss"
-	outputFile := "file.xml"
 
 	resp, err := http.Get(url)
 
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf(fmt.Sprintln(resp.StatusCode))
+		return nil, fmt.Errorf(fmt.Sprintln(resp.StatusCode))
 	}
 
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", err
-	}
-
-	err = os.WriteFile(outputFile, body, fs.FileMode(0644))
-	if err != nil {
-		return "", err
-	}
-
-	return outputFile, nil
-}
-
-func ReadFileContents(fileName string) (*Channel, error) {
-	xmlContent, err := os.ReadFile(fileName)
+	xmlContent, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}

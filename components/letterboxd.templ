@@ -1,0 +1,52 @@
+
+package components
+
+import letter "github.com/art3xias23/go-blog/letterboxd"
+import "strings"
+import html "golang.org/x/net/html"
+
+func extractImageURL(htmlString string) string {
+	reader := strings.NewReader(htmlString)
+	doc, err := html.Parse(reader)
+	if err != nil {
+		return ""
+	}
+
+	var imageURL string
+
+	var extractURL func(*html.Node)
+	extractURL = func(n *html.Node) {
+		if n.Type == html.ElementNode && n.Data == "img" {
+			for _, attr := range n.Attr {
+				if attr.Key == "src" {
+					imageURL = attr.Val
+					return
+				}
+			}
+		}
+		for c := n.FirstChild; c != nil; c = c.NextSibling {
+			extractURL(c)
+		}
+	}
+
+	extractURL(doc)
+
+	return imageURL
+}
+templ Letterboxd(items []letter.Itemm){
+<div class="latest-posts-container">
+    for _, item:=range items{
+        <div class="latest-post">
+          <div class="post-title">
+              <h3 >{item.Title}</h3>
+          </div>
+          <div class="post-image">
+              <img class="post-image" src={ extractImageURL(item.Description) } alt="poster-image"/>
+          </div>
+          <div class="post-description">
+              <i class="post-description">{item.Year}</i>
+          </div>
+        </div>
+    }
+</div>
+}

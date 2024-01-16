@@ -27,14 +27,15 @@ func main() {
 }
 
 func serveLetterBoxd(w http.ResponseWriter, r *http.Request) {
-	fileName, err := letterboxd.GetFile()
+	contents, err := letterboxd.GetRssData()
 	if err != nil {
-		fmt.Println(fileName)
+		fmt.Println(err)
 		return
 	}
-	fmt.Println(fileName)
-
-	letterboxd.ReadFileContents(fileName)
+	fmt.Println(contents.Title)
+	var letterboxdView = comps.Letterboxd(contents.Items)
+	// templ.Handler(blogView).ServeHTTP(w, r)
+	renderSenderContent(r, w, letterboxdView)
 }
 
 // rednerSenserContent is a helper function which helps detemine if the request

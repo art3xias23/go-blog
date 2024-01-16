@@ -36,7 +36,11 @@ func extractImageURL(htmlString string) string {
 templ Letterboxd(items []letter.Itemm){
 <div class="films-container">
     for _, item:=range items{
-        <div class="film">
+        <div hx-get="/letter-redirect" 
+			hx-push-url="true" 
+			hx-trigger="click" 
+			hx-vals=`"{"url:"{item.Url}}`
+			class="film" >
           <div class="film-title">
               <h3 >{item.Title}</h3>
           </div>

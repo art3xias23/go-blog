@@ -55,4 +55,5 @@ type Itemm struct {
 	Year         string `xml:"filmYear"`
 	MemberRating string `xml:"memberRating"`
 	Description  string `xml:"description"`
+	Url          string `xml:"link"`
 }

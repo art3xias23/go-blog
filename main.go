@@ -21,9 +21,15 @@ func main() {
 	http.HandleFunc("/blog", serveBlog)
 	http.HandleFunc("/about", serveAbout)
 	http.HandleFunc("/letterboxd", serveLetterBoxd)
+	http.HandleFunc("/letter-redirect", serveLetterRedirect)
 
 	http.ListenAndServe(":3000", nil)
 
+}
+
+func serveLetterRedirect(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("HX-Redirect", "www.google.com")
+	renderSenderContent(r, w, nil)
 }
 
 func serveLetterBoxd(w http.ResponseWriter, r *http.Request) {

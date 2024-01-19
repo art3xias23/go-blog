@@ -8,7 +8,7 @@ import (
 	"github.com/a-h/templ"
 	comps "github.com/art3xias23/go-blog/components"
 	"github.com/art3xias23/go-blog/domain"
-	letterboxd "github.com/art3xias23/go-blog/letterboxd"
+	rssHelper "github.com/art3xias23/go-blog/rssHelper"
 )
 
 func main() {
@@ -21,7 +21,9 @@ func main() {
 	http.HandleFunc("/blog", serveBlog)
 	http.HandleFunc("/about", serveAbout)
 	http.HandleFunc("/letterboxd", serveLetterBoxd)
+	http.HandleFunc("/goodreads", serveGoodReads)
 	http.HandleFunc("/letter-redirect", serveLetterRedirect)
+	http.HandleFunc("/good-redirect", serveGoodRedirect)
 
 	http.ListenAndServe(":3000", nil)
 
@@ -33,7 +35,25 @@ func serveLetterRedirect(w http.ResponseWriter, r *http.Request) {
 	renderSenderContent(r, w, nil)
 }
 
+func serveGoodRedirect(w http.ResponseWriter, r *http.Request) {
+	redirectUrl := r.URL.Query().Get("url")
+	w.Header().Set("HX-Redirect", redirectUrl)
+	renderSenderContent(r, w, nil)
+}
+
 func serveLetterBoxd(w http.ResponseWriter, r *http.Request) {
+	contents, err := rssHelper.GetLetterBoxdRssData()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(contents.Title)
+	var letterboxdView = comps.Letterboxd(contents.Items)
+	// templ.Handler(blogView).ServeHTTP(w, r)
+	renderSenderContent(r, w, letterboxdView)
+}
+
+func serveGoodReads(w http.ResponseWriter, r *http.Request) {
 	contents, err := letterboxd.GetRssData()
 	if err != nil {
 		fmt.Println(err)

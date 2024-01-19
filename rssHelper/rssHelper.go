@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func GetRssData() (*Channel, error) {
+func GetLetterBoxdRssData() (*Channel, error) {
 	url := "http://www.letterboxd.com/art3xias/rss"
 
 	resp, err := http.Get(url)
@@ -39,7 +39,37 @@ func GetRssData() (*Channel, error) {
 	return &rssFeed.Channel, nil
 }
 
-type MyFeed struct {
+func GetGoodReadsRssData() (*Channel, error) {
+	url := "https://www.goodreads.com/user/updates_rss/44259798"
+
+	resp, err := http.Get(url)
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf(fmt.Sprintln(resp.StatusCode))
+	}
+
+	xmlContent, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	var rssFeed MyLetterBoxdFeed
+	err = xml.Unmarshal(xmlContent, &rssFeed)
+	if err != nil {
+		fmt.Println("Error unmarshalling XML:", err)
+		return nil, err
+	}
+
+	return &rssFeed.Channel, nil
+}
+
+type MyLetterBoxdFeed struct {
 	XMLName xml.Name `xml:"rss"`
 	Channel Channel  `xml:"channel"`
 }

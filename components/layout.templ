@@ -60,9 +60,12 @@ templ navButtons(){
             <a class="nav-item" 
             hx-get="/letterboxd"
             hx-push-url="true"
-            hx-target=".content">Letterboxed</a>
+            hx-target=".content">Letterboxd</a>
 
-            <a class="nav-item" href="/goodreads">Goodreads</a>
+            <a class="nav-item" 
+              hx-get="/goodreads"
+              hx-push-url="true">Goodreads</a>
+
             <a class="nav-item" href="/github">Github</a>
             <a href="contects">Contacts</a>
             <a class="nav-item"

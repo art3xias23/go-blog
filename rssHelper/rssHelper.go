@@ -1,12 +1,13 @@
 package rssHelper
 
 import (
+	csv "encoding/csv"
 	"encoding/xml"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
-
-	easyCsv "github.com/yunabe/easycsv"
+	"strconv"
 )
 
 func GetLetterBoxdRssData() (*Channel, error) {
@@ -44,28 +45,93 @@ func GetLetterBoxdRssData() (*Channel, error) {
 func GetGoodReadsRssData() (*[]Book, error) {
 	url := "https://www.goodreads.com/review_porter/export/44259798/goodreads_export.csv"
 
-	resp, err := http.Get(url)
-
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
+		fmt.Println("Error creating request:", err)
 		return nil, err
 	}
+	req.Header.Set("Accept", "text/csv")
 
+	// Send the request
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return nil, err
+	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf(fmt.Sprintln(resp.StatusCode))
 	}
 
-	csvReader := easyCsv.NewReader(resp.Body)
-	if err != nil {
+	contentType := resp.Header.Get("Content-Type")
+	if contentType != "text/csv" {
+		fmt.Println("Error: Unexpected content type:", contentType)
 		return nil, err
 	}
 
-	entry := Book{}
+	r := csv.NewReader(resp.Body)
 	var books []Book
-	for csvReader.Read(&entry) {
-		books = append(books, entry)
+
+	if _, err := r.Read(); err != nil {
+		log.Fatal(err)
 	}
+	cnt, err := io.ReadAll(resp.Body)
+	fmt.Println(cnt)
+	for {
+		item, err := r.Read()
+		log.Println(item)
+		record, err := r.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		bookID, _ := strconv.Atoi(record[0])
+		myRating, _ := strconv.Atoi(record[7])
+		averageRating, _ := strconv.ParseFloat(record[8], 64)
+		numberOfPages, _ := strconv.Atoi(record[11])
+		yearPublished, _ := strconv.Atoi(record[12])
+		originalPublicationYear, _ := strconv.Atoi(record[13])
+		readCount, _ := strconv.Atoi(record[22])
+		ownedCopies, _ := strconv.Atoi(record[23])
+
+		book := Book{
+			BookID:                   bookID,
+			Title:                    record[1],
+			Author:                   record[2],
+			AuthorLF:                 record[3],
+			AdditionalAuthors:        record[4],
+			ISBN:                     record[5],
+			ISBN13:                   record[6],
+			MyRating:                 myRating,
+			AverageRating:            averageRating,
+			Publisher:                record[9],
+			Binding:                  record[10],
+			NumberOfPages:            numberOfPages,
+			YearPublished:            yearPublished,
+			OriginalPublicationYear:  originalPublicationYear,
+			DateRead:                 record[14],
+			DateAdded:                record[15],
+			Bookshelves:              record[16],
+			BookshelvesWithPositions: record[17],
+			ExclusiveShelf:           record[18],
+			MyReview:                 record[19],
+			Spoiler:                  record[20],
+			PrivateNotes:             record[21],
+			ReadCount:                readCount,
+			OwnedCopies:              ownedCopies,
+		}
+
+		// Append Book to the slice
+		books = append(books, book)
+
+	}
+
+	// Print the slice of Books
+	fmt.Println(books)
 
 	return &books, nil
 }

@@ -59,7 +59,7 @@ func serveGoodReads(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		return
 	}
-	var letterboxdView = comps.Goodreads(contents)
+	var letterboxdView = comps.Goodreads(*contents)
 	// templ.Handler(blogView).ServeHTTP(w, r)
 	renderSenderContent(r, w, letterboxdView)
 }

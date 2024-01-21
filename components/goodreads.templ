@@ -1,0 +1,41 @@
+
+package components
+
+import rssHelper "github.com/art3xias23/go-blog/rssHelper"
+import "fmt"
+import gapi "github.com/art3xias23/go-blog/gapi"
+import "strconv"
+
+func getBookCover(isbn string) string {
+str, _:= gapi.GetThumbnail(isbn)	
+return str
+}
+
+templ Goodreads(items []rssHelper.Book){
+<div class="films-container">
+    for _, item:=range items{
+        <div hx-get="/goodreads-redirect" 
+			hx-push-url="true" 
+			hx-trigger="click" 
+			hx-vals={getGrHxValsString(strconv.Itoa(item.BookID))}
+			class="film" >
+          <div class="film-title">
+              <h3 >{item.Title}</h3>
+          </div>
+          <div class="film-year">
+              <i>{strconv.Itoa(item.YearPublished)}</i>
+          </div>
+		  <div class="film-rating" data-rating={strconv.Itoa(item.MyRating)} />
+          <div class="film-image">
+              <img class="film-image" src={ getBookCover(item.ISBN) } alt="film-image"/>
+          </div>
+        </div>
+    }
+</div>
+}
+
+func getGrHxValsString(bookId string) string{
+	url := fmt.Sprintf("https://www.goodreads.com/book/show/%s", bookId)
+	var a = fmt.Sprintf(`{"url":"%s"}`, url)
+	return a
+}

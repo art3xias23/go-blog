@@ -266,7 +266,7 @@ func navButtons() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</a> <a class=\"nav-item\" hx-get=\"/goodreads\" hx-push-url=\"true\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</a> <a class=\"nav-item\" hx-get=\"/goodreads\" hx-push-url=\"true\" hx-target=\".content\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

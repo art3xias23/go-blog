@@ -11,7 +11,7 @@ str, _:= gapi.GetThumbnail(isbn)
 return str
 }
 
-templ Goodreads(items []rssHelper.Book){
+templ Goodreads(items []*rssHelper.Book){
 <div class="films-container">
     for _, item:=range items{
         <div hx-get="/goodreads-redirect" 

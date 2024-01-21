@@ -54,7 +54,7 @@ func serveLetterBoxd(w http.ResponseWriter, r *http.Request) {
 }
 
 func serveGoodReads(w http.ResponseWriter, r *http.Request) {
-	contents, err := letterboxd.GetRssData()
+	contents, err := rssHelper.GetLetterBoxdRssData()
 	if err != nil {
 		fmt.Println(err)
 		return

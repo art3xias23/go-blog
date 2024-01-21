@@ -1,4 +1,4 @@
-package letterboxd
+package rssHelper
 
 import (
 	"encoding/xml"
@@ -27,7 +27,7 @@ func GetLetterBoxdRssData() (*Channel, error) {
 		return nil, err
 	}
 
-	var rssFeed MyFeed
+	var rssFeed MyLetterBoxdFeed
 	err = xml.Unmarshal(xmlContent, &rssFeed)
 	if err != nil {
 		fmt.Println("Error unmarshalling XML:", err)

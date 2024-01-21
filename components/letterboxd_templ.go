@@ -10,7 +10,7 @@ import "context"
 import "io"
 import "bytes"
 
-import letter "github.com/art3xias23/go-blog/letterboxd"
+import rssHelper "github.com/art3xias23/go-blog/rssHelper"
 import "strings"
 import html "golang.org/x/net/html"
 import "fmt"
@@ -44,7 +44,7 @@ func extractImageURL(htmlString string) string {
 	return imageURL
 }
 
-func Letterboxd(items []letter.Itemm) templ.Component {
+func Letterboxd(items []rssHelper.Itemm) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {

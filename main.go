@@ -54,13 +54,12 @@ func serveLetterBoxd(w http.ResponseWriter, r *http.Request) {
 }
 
 func serveGoodReads(w http.ResponseWriter, r *http.Request) {
-	contents, err := rssHelper.GetLetterBoxdRssData()
+	contents, err := rssHelper.GetGoodReadsRssData()
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(contents.Title)
-	var letterboxdView = comps.Letterboxd(contents.Items)
+	var letterboxdView = comps.Goodreads(contents)
 	// templ.Handler(blogView).ServeHTTP(w, r)
 	renderSenderContent(r, w, letterboxdView)
 }

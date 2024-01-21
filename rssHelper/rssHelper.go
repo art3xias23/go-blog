@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	easyCsv "github.com/yunabe/easycsv"
 )
 
 func GetLetterBoxdRssData() (*Channel, error) {
@@ -39,8 +41,8 @@ func GetLetterBoxdRssData() (*Channel, error) {
 	return &rssFeed.Channel, nil
 }
 
-func GetGoodReadsRssData() (*Channel, error) {
-	url := "https://www.goodreads.com/user/updates_rss/44259798"
+func GetGoodReadsRssData() (*[]Book, error) {
+	url := "https://www.goodreads.com/review_porter/export/44259798/goodreads_export.csv"
 
 	resp, err := http.Get(url)
 
@@ -54,19 +56,18 @@ func GetGoodReadsRssData() (*Channel, error) {
 		return nil, fmt.Errorf(fmt.Sprintln(resp.StatusCode))
 	}
 
-	xmlContent, err := io.ReadAll(resp.Body)
+	csvReader := easyCsv.NewReader(resp.Body)
 	if err != nil {
 		return nil, err
 	}
 
-	var rssFeed MyLetterBoxdFeed
-	err = xml.Unmarshal(xmlContent, &rssFeed)
-	if err != nil {
-		fmt.Println("Error unmarshalling XML:", err)
-		return nil, err
+	entry := Book{}
+	var books []Book
+	for csvReader.Read(&entry) {
+		books = append(books, entry)
 	}
 
-	return &rssFeed.Channel, nil
+	return &books, nil
 }
 
 type MyLetterBoxdFeed struct {
@@ -86,4 +87,31 @@ type Itemm struct {
 	MemberRating string `xml:"memberRating"`
 	Description  string `xml:"description"`
 	Url          string `xml:"link"`
+}
+
+type Book struct {
+	BookID                   int     `index:"0"`
+	Title                    string  `index:"1"`
+	Author                   string  `index:"2"`
+	AuthorLF                 string  `index:"3"`
+	AdditionalAuthors        string  `index:"4"`
+	ISBN                     string  `index:"5"`
+	ISBN13                   string  `index:"6"`
+	MyRating                 int     `index:"7"`
+	AverageRating            float64 `index:"8"`
+	Publisher                string  `index:"9"`
+	Binding                  string  `index:"10"`
+	NumberOfPages            int     `index:"11"`
+	YearPublished            int     `index:"12"`
+	OriginalPublicationYear  int     `index:"13"`
+	DateRead                 string  `index:"14"`
+	DateAdded                string  `index:"15"`
+	Bookshelves              string  `index:"16"`
+	BookshelvesWithPositions string  `index:"17"`
+	ExclusiveShelf           string  `index:"18"`
+	MyReview                 string  `index:"19"`
+	Spoiler                  string  `index:"20"`
+	PrivateNotes             string  `index:"21"`
+	ReadCount                int     `index:"22"`
+	OwnedCopies              int     `index:"23"`
 }

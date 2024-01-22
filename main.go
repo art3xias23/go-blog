@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"embed"
 	"fmt"
 	"net/http"
 
@@ -10,6 +11,9 @@ import (
 	"github.com/art3xias23/go-blog/domain"
 	rssHelper "github.com/art3xias23/go-blog/rssHelper"
 )
+
+// go.embed secret.key
+var content embed.FS
 
 func main() {
 

@@ -1,16 +1,25 @@
 package gapi
 
 import (
+	"embed"
 	"encoding/json"
 	"fmt"
 	"net/http"
 )
 
+//go:embed secret.key
+var content embed.FS
+
 const GoogleBooksAPIURL = "https://www.googleapis.com/books/v1/volumes"
 const GoogleBooksAPI = "AIzaSyBBYb3Mr7iaU2lfgHmb6BSwEnkYpo7-uJQ"
 
 func GetThumbnail(isbn string) (string, error) {
-	url := fmt.Sprintf("%s?q=isbn:%s&key=%s", GoogleBooksAPIURL, isbn, GoogleBooksAPI)
+	key, err := content.ReadFile("secret.key")
+	if err != nil {
+		fmt.Println("Error obtaining secret key:", err)
+		return "", err
+	}
+	url := fmt.Sprintf("%s?q=isbn:%s&key=%s", GoogleBooksAPIURL, isbn, key)
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Println("Error making API request:", err)

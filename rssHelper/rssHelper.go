@@ -82,28 +82,28 @@ type Itemm struct {
 }
 
 type Book struct {
-	BookID                   int     `index:"0"`
-	Title                    string  `index:"1"`
-	Author                   string  `index:"2"`
-	AuthorLF                 string  `index:"3"`
-	AdditionalAuthors        string  `index:"4"`
-	ISBN                     string  `index:"5"`
-	ISBN13                   string  `index:"6"`
-	MyRating                 int     `index:"7"`
-	AverageRating            float64 `index:"8"`
-	Publisher                string  `index:"9"`
-	Binding                  string  `index:"10"`
-	NumberOfPages            int     `index:"11"`
-	YearPublished            int     `index:"12"`
-	OriginalPublicationYear  int     `index:"13"`
-	DateRead                 string  `index:"14"`
-	DateAdded                string  `index:"15"`
-	Bookshelves              string  `index:"16"`
-	BookshelvesWithPositions string  `index:"17"`
-	ExclusiveShelf           string  `index:"18"`
-	MyReview                 string  `index:"19"`
-	Spoiler                  string  `index:"20"`
-	PrivateNotes             string  `index:"21"`
-	ReadCount                int     `index:"22"`
-	OwnedCopies              int     `index:"23"`
+	BookID                   int     `csv:"Book Id"`
+	Title                    string  `csv:"Title"`
+	Author                   string  `csv:"Author"`
+	AuthorLF                 string  `csv:"Author l-f"`
+	AdditionalAuthors        string  `csv:"Additional Authors"`
+	ISBN                     string  `csv:"ISBN"`
+	ISBN13                   string  `csv:"ISBN13"`
+	MyRating                 int     `csv:"My Rating"`
+	AverageRating            float64 `csv:"Average Rating"`
+	Publisher                string  `csv:"Publisher"`
+	Binding                  string  `csv:"Binding"`
+	NumberOfPages            int     `csv:"Number of Pages"`
+	YearPublished            int     `csv:"Year Published"`
+	OriginalPublicationYear  int     `csv:"Original Publication Year"`
+	DateRead                 string  `csv:"Date Read"`
+	DateAdded                string  `csv:"Date Added"`
+	Bookshelves              string  `csv:"Bookshelves"`
+	BookshelvesWithPositions string  `csv:"Bookshelves with Positions"`
+	ExclusiveShelf           string  `csv:"Exclusive Shelf"`
+	MyReview                 string  `csv:"My Review"`
+	Spoiler                  string  `csv:"Spoiler"`
+	PrivateNotes             string  `csv:"Private Notes"`
+	ReadCount                int     `csv:"Read Count"`
+	OwnedCopies              int     `csv:"Owned Copies"`
 }

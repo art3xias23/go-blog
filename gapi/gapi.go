@@ -51,6 +51,11 @@ func GetThumbnail(isbn string) (string, error) {
 		return "", err
 	}
 
+	if len(bookInfo.Items) == 0 {
+		fmt.Printf("No items found for bookinfo")
+		return "", nil
+	}
+
 	thumbNailUrl := bookInfo.Items[0].VolumeInfo.ImageLinks.Thumbnail
 	if len(thumbNailUrl) > 0 {
 		// Print the thumbnail URL

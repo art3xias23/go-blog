@@ -12,11 +12,14 @@ import "bytes"
 
 import rssHelper "github.com/art3xias23/go-blog/rssHelper"
 import "fmt"
-import gapi "github.com/art3xias23/go-blog/gapi"
 import "strconv"
+import "strings"
 
 func getBookCover(isbn string) string {
-	str, _ := gapi.GetThumbnail(isbn)
+	isbn = strings.TrimPrefix(isbn, "=\"")
+	isbn = strings.TrimSuffix(isbn, "\"")
+	str := fmt.Sprintf("/assets/img/books/%s.jpg", isbn)
+	fmt.Println(str)
 	return str
 }
 
@@ -53,7 +56,7 @@ func Goodreads(items []*rssHelper.Book) templ.Component {
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(item.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\goodreads.templ`, Line: 22, Col: 30}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\goodreads.templ`, Line: 25, Col: 30}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -66,7 +69,7 @@ func Goodreads(items []*rssHelper.Book) templ.Component {
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(item.YearPublished))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\goodreads.templ`, Line: 25, Col: 50}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\goodreads.templ`, Line: 28, Col: 50}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {

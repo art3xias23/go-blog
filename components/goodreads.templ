@@ -3,11 +3,14 @@ package components
 
 import rssHelper "github.com/art3xias23/go-blog/rssHelper"
 import "fmt"
-import gapi "github.com/art3xias23/go-blog/gapi"
 import "strconv"
+import "strings"
 
 func getBookCover(isbn string) string {
-str, _:= gapi.GetThumbnail(isbn)	
+    isbn = strings.TrimPrefix(isbn, "=\"")
+    isbn = strings.TrimSuffix(isbn, "\"")
+str:= fmt.Sprintf("/assets/img/books/%s.jpg",isbn)
+fmt.Println(str)
 return str
 }
 
@@ -27,7 +30,7 @@ templ Goodreads(items []*rssHelper.Book){
           </div>
 		  <div class="film-rating" data-rating={strconv.Itoa(item.MyRating)} />
           <div class="film-image">
-              <img class="film-image" src={ getBookCover(item.ISBN) } alt="film-image"/>
+              <img class="film-image" src={ getBookCover(item.ISBN) } alt="No book cover found"/>
           </div>
         </div>
     }

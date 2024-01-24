@@ -4,7 +4,10 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
+	"os"
+	"strings"
 )
 
 //go:embed secret.key
@@ -19,7 +22,14 @@ func GetThumbnail(isbn string) (string, error) {
 		fmt.Println("Error obtaining secret key:", err)
 		return "", err
 	}
+	isbn = strings.TrimPrefix(isbn, "=\"")
+	isbn = strings.TrimSuffix(isbn, "\"")
+	if isbn == "" {
+		fmt.Println("ISBN is empty")
+		return "", nil
+	}
 	url := fmt.Sprintf("%s?q=isbn:%s&key=%s", GoogleBooksAPIURL, isbn, key)
+	fmt.Println(url)
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Println("Error making API request:", err)
@@ -41,24 +51,57 @@ func GetThumbnail(isbn string) (string, error) {
 		return "", err
 	}
 
-	if len(bookInfo.VolumeInfo.ImageLinks.Thumbnail) > 0 {
+	thumbNailUrl := bookInfo.Items[0].VolumeInfo.ImageLinks.Thumbnail
+	if len(thumbNailUrl) > 0 {
 		// Print the thumbnail URL
-		return bookInfo.VolumeInfo.ImageLinks.Thumbnail, nil
+
+		imageResponse, err := http.Get(thumbNailUrl)
+		if err != nil {
+			fmt.Println("Error in thumbnail response")
+			return "", nil
+		}
+
+		defer imageResponse.Body.Close()
+		if response.StatusCode != http.StatusOK {
+			fmt.Println("Error in thumbnail status code")
+			return "", nil
+		}
+
+		imageData, err := io.ReadAll(imageResponse.Body)
+		if err != nil {
+			fmt.Println("Error reading body of image response")
+			return "", nil
+		}
+
+		fileName := isbn
+		err = os.WriteFile(fmt.Sprintf("%s.jpg", fileName), imageData, 0644)
+
+		if err != nil {
+			fmt.Println("Error writing file")
+			return "", nil
+		}
+		fmt.Println("File saved successfully")
 	} else {
+		fmt.Println("No thumbnail present")
 		return "", fmt.Errorf("no thumnail present")
 	}
+	return "", nil
 }
 
 type BookInfo struct {
-	VolumeInfo struct {
-		Title               string   `json:"title"`
-		Authors             []string `json:"authors"`
-		ImageLinks          ImageLinks
-		IndustryIdentifiers []struct {
-			Type       string `json:"type"`
-			Identifier string `json:"identifier"`
-		} `json:"industryIdentifiers"`
-	} `json:"volumeInfo"`
+	Kind       string `json:"kind"`
+	TotalItems int    `json:"totalItems"`
+	Items      []struct {
+		VolumeInfo struct {
+			Title               string   `json:"title"`
+			Authors             []string `json:"authors"`
+			ImageLinks          ImageLinks
+			IndustryIdentifiers []struct {
+				Type       string `json:"type"`
+				Identifier string `json:"identifier"`
+			} `json:"industryIdentifiers"`
+		} `json:"volumeInfo"`
+	}
 }
 
 type ImageLinks struct {

@@ -55,9 +55,6 @@ func GetGoodReadsRssData() ([]*Book, error) {
 	if err := gocsv.UnmarshalFile(in, &books); err != nil {
 		panic(err)
 	}
-	for _, book := range books {
-		fmt.Println("Hello, ", book.Title)
-	}
 
 	return books, nil
 }

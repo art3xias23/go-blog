@@ -15,22 +15,25 @@ return str
 }
 
 templ Goodreads(items []*rssHelper.Book){
-<div class="films-container">
+<div class="media-items-container">
     for _, item:=range items{
         <div hx-get="/goodreads-redirect" 
 			hx-push-url="true" 
 			hx-trigger="click" 
 			hx-vals={getGrHxValsString(strconv.Itoa(item.BookID))}
-			class="film" >
-          <div class="film-title">
+			class="book-media-item" >
+          <div class="media-item-title">
               <h3 >{item.Title}</h3>
           </div>
-          <div class="film-year">
+          <div class="media-item-shelf">
+            <p>{ GetBookShelve(item.Bookshelves) }</p>
+          </div>
+          <div class="media-item-year">
               <i>{strconv.Itoa(item.YearPublished)}</i>
           </div>
-		  <div class="film-rating" data-rating={strconv.Itoa(item.MyRating)} />
-          <div class="film-image">
-              <img class="film-image" src={ getBookCover(item.ISBN) } alt="No book cover found"/>
+		  <div class="media-item-rating" data-rating={strconv.Itoa(item.MyRating)} />
+          <div class="media-item-image">
+              <img class="media-item-image" src={ getBookCover(item.ISBN) } alt="No book cover found"/>
           </div>
         </div>
     }
@@ -41,4 +44,11 @@ func getGrHxValsString(bookId string) string{
 	url := fmt.Sprintf("https://www.goodreads.com/book/show/%s", bookId)
 	var a = fmt.Sprintf(`{"url":"%s"}`, url)
 	return a
+}
+
+func GetBookShelve(bookshelf string) string{
+    if bookshelf != ""{
+        return bookshelf
+    } 
+    return "Finished"
 }

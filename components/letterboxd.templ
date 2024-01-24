@@ -35,22 +35,22 @@ func extractImageURL(htmlString string) string {
 	return imageURL
 }
 templ Letterboxd(items []rssHelper.Itemm){
-<div class="films-container">
+<div class="media-items-container">
     for _, item:=range items{
         <div hx-get="/letter-redirect" 
 			hx-push-url="true" 
 			hx-trigger="click" 
 			hx-vals={getHxValsString(item.Url)}
-			class="film" >
-          <div class="film-title">
+			class="media-item" >
+          <div class="media-item-title">
               <h3 >{item.Title}</h3>
           </div>
-          <div class="film-year">
+          <div class="media-item-year">
               <i>{item.Year}</i>
           </div>
-		  <div class="film-rating" data-rating={item.MemberRating} />
-          <div class="film-image">
-              <img class="film-image" src={ extractImageURL(item.Description) } alt="film-image"/>
+		  <div class="media-item-rating" data-rating={item.MemberRating} />
+          <div class="media-item-image">
+              <img class="media-item-image" src={ extractImageURL(item.Description) } alt="media-item-image"/>
           </div>
         </div>
     }

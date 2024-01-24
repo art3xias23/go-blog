@@ -36,7 +36,7 @@ func Goodreads(items []*rssHelper.Book) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"films-container\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"media-items-container\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -49,7 +49,7 @@ func Goodreads(items []*rssHelper.Book) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"film\"><div class=\"film-title\"><h3>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"book-media-item\"><div class=\"media-item-title\"><h3>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -62,20 +62,33 @@ func Goodreads(items []*rssHelper.Book) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h3></div><div class=\"film-year\"><i>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h3></div><div class=\"media-item-shelf\"><p>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
-			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(item.YearPublished))
+			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(GetBookShelve(item.Bookshelves))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\goodreads.templ`, Line: 28, Col: 50}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\goodreads.templ`, Line: 28, Col: 48}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</i></div><div class=\"film-rating\" data-rating=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><div class=\"media-item-year\"><i>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var4 string
+			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(item.YearPublished))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\goodreads.templ`, Line: 31, Col: 50}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</i></div><div class=\"media-item-rating\" data-rating=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -83,7 +96,7 @@ func Goodreads(items []*rssHelper.Book) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></div><div class=\"film-image\"><img class=\"film-image\" src=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></div><div class=\"media-item-image\"><img class=\"media-item-image\" src=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -91,7 +104,7 @@ func Goodreads(items []*rssHelper.Book) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" alt=\"film-image\"></div></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" alt=\"No book cover found\"></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -111,4 +124,11 @@ func getGrHxValsString(bookId string) string {
 	url := fmt.Sprintf("https://www.goodreads.com/book/show/%s", bookId)
 	var a = fmt.Sprintf(`{"url":"%s"}`, url)
 	return a
+}
+
+func GetBookShelve(bookshelf string) string {
+	if bookshelf != "" {
+		return bookshelf
+	}
+	return "Finished"
 }

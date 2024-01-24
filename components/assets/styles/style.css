@@ -213,7 +213,7 @@ justify-content: center;
 
 /* LetterBoxd */
 
-.films-container{
+.media-items-container{
   display:grid;
   gap:20px;
   grid-template-columns: repeat(auto-fill,300px);
@@ -221,7 +221,7 @@ justify-content: center;
 }
 
 
-.film{
+.media-item{
   background-color: white;
   border-radius: 10%;
   height:100%;
@@ -235,69 +235,87 @@ justify-content: center;
   align-content: center;
 }
 
-.film-title{
+.book-media-item{
+  background-color: white;
+  border-radius: 10%;
+  height:100%;
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 0.05fr 0.05fr 0.1fr 1fr;
+  border:1px solid;
+  overflow:hidden;
+  max-height: 500px;
+  align-items: center;
+  align-content: center;
+}
+
+.media-item-title{
   text-decoration: italic;
   text-align:center;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
-.film-year{
+.media-item-year{
   text-align: center;
   height: 100%;
 }
 
-.film-rating{
+.media-item-rating{
   text-align: center;
   display:inline-block;
 }
 
-.film-rating[data-rating='1']::before,
-.film-rating[data-rating='1.0']::before{
+.media-item-rating[data-rating='1']::before,
+.media-item-rating[data-rating='1.0']::before{
   content:'⭐☆✰✰✰'
 }
 
-.film-rating[data-rating='1.5']::before{
+.media-item-rating[data-rating='1.5']::before{
   content:'⭐½☆✰✰'
 }
 
-.film-rating[data-rating='2']::before,
-.film-rating[data-rating='2.0']::before{
+.media-item-rating[data-rating='2']::before,
+.media-item-rating[data-rating='2.0']::before{
   content:'⭐⭐✰✰✰'
 }
 
-.film-rating[data-rating='2.5']::before{
+.media-item-rating[data-rating='2.5']::before{
   content:'⭐⭐½✰✰'
 }
 
-.film-rating[data-rating='3']::before,
-.film-rating[data-rating='3.0']::before{
+.media-item-rating[data-rating='3']::before,
+.media-item-rating[data-rating='3.0']::before{
   content:'⭐⭐⭐✰✰'
 }
 
-.film-rating[data-rating='3.5']::before{
+.media-item-rating[data-rating='3.5']::before{
   content:'⭐⭐⭐½✰✰'
 }
 
-.film-rating[data-rating='4']::before,
-.film-rating[data-rating='4.0']::before{
+.media-item-rating[data-rating='4']::before,
+.media-item-rating[data-rating='4.0']::before{
   content:'⭐⭐⭐⭐✰'
 }
 
-.film-rating[data-rating='4.5']::before{
+.media-item-rating[data-rating='4.5']::before{
   content:'⭐⭐⭐⭐½✰'
 }
 
-.film-rating[data-rating='5']::before,
-.film-rating[data-rating='5.0']::before{
+.media-item-rating[data-rating='5']::before,
+.media-item-rating[data-rating='5.0']::before{
   content:'⭐⭐⭐⭐⭐'
 }
 
-.film-image{
+.media-item-image{
   transform: scale(1);
   height: 100%;
   width: 100%;
   overflow:hidden;
+}
+
+.media-item-shelf{
+  text-align: center;
 }
 
 /* About Page */

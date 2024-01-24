@@ -241,7 +241,7 @@ justify-content: center;
   height:100%;
   display:grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 0.05fr 0.05fr 0.1fr 1fr;
+  grid-template-rows: 1fr 0.05fr 0.05fr 0.1fr 1fr;
   border:1px solid;
   overflow:hidden;
   max-height: 500px;

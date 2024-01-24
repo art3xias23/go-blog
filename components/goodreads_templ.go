@@ -54,9 +54,9 @@ func Goodreads(items []*rssHelper.Book) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var2 string
-			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(item.Title)
+			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(GetShortTitle(item.Title))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\goodreads.templ`, Line: 25, Col: 30}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components\goodreads.templ`, Line: 25, Col: 45}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -126,6 +126,14 @@ func getGrHxValsString(bookId string) string {
 	return a
 }
 
+func GetShortTitle(title string) string {
+	split_items := strings.SplitN(title, ":", 2)
+
+	if len(split_items) > 1 {
+		return strings.TrimSpace(split_items[0])
+	}
+	return title
+}
 func GetBookShelve(bookshelf string) string {
 	if bookshelf != "" {
 		return bookshelf

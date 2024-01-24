@@ -23,7 +23,7 @@ templ Goodreads(items []*rssHelper.Book){
 			hx-vals={getGrHxValsString(strconv.Itoa(item.BookID))}
 			class="book-media-item" >
           <div class="media-item-title">
-              <h3 >{item.Title}</h3>
+              <h3 >{GetShortTitle(item.Title)}</h3>
           </div>
           <div class="media-item-shelf">
             <p>{ GetBookShelve(item.Bookshelves) }</p>
@@ -46,6 +46,15 @@ func getGrHxValsString(bookId string) string{
 	return a
 }
 
+
+func GetShortTitle(title string) string{
+    split_items:=strings.SplitN(title, ":", 2)
+
+    if len(split_items) > 1{
+        return strings.TrimSpace(split_items[0])
+    }
+    return title
+}
 func GetBookShelve(bookshelf string) string{
     if bookshelf != ""{
         return bookshelf

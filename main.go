@@ -29,7 +29,7 @@ func main() {
 	http.HandleFunc("/letter-redirect", serveLetterRedirect)
 	http.HandleFunc("/good-redirect", serveGoodRedirect)
 
-	http.ListenAndServe(":3000", nil)
+	http.ListenAndServe("localhost:8080", nil)
 
 }
 

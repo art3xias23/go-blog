@@ -2,7 +2,7 @@ package components
 
 import _ "embed"
 
-//go:embed assets/styles/style.css
+//go:embed assets/styles/output.css
 var _style string
 
 
@@ -31,7 +31,7 @@ templ blogQuotes(){
 }
 
 templ quote1(){
-    "Consistency is the key to mastery."
+    <div class="text-orange-600">"Consistency is the key to mastery."</div>
 }
 
 templ quote2(){

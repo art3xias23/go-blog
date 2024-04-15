@@ -41,7 +41,7 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em><h1>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</em><h1 class=\"text-orange-600\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -122,7 +122,7 @@ func About() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"tech-images\"><div class=\"tech-image-group\"><div class=\"tech-image-group-title\"><em>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"tech-images\"><div class=\"tech-image-group text-orange-40\"><div class=\"tech-image-group-title\"><em>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

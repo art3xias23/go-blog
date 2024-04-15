@@ -1,0 +1,18 @@
+# .air.toml
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -o ./tmp/main ."
+  bin = "./tmp/main"
+  include_ext = ["go", "templ", "tmpl"]
+  exclude_dir = ["tmp", "../node_modules/", "node_modules"]  # Make sure 'node_modules' is included here
+
+[log]
+  time = true
+
+[color]
+  main = "yellow"
+  watcher = "cyan"
+  build = "green"
+  runner = "magenta"

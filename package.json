@@ -4,13 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	  "build":"npx tailwindcss -i ./components/assets/styles/input.css -o ./components/assets/styles/output.css --minify",
-	  "watch":"npx tailwindcss -i ./components/assets/styles/input.css -o ./components/assets/styles/output.css --minify --watch"
+    "build": "npx tailwindcss -i ./components/assets/styles/input.css -o ./components/assets/styles/output.css --minify",
+    "watch": "npx tailwindcss -i ./components/assets/styles/input.css -o ./components/assets/styles/output.css --minify --watch",
+    "watch:css": "npx tailwindcss -i ./components/assets/styles/input.css -o ./components/assets/styles/output.css --minify --watch",
+    "start": "concurrently \"air\" \"npm run watch:css\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "tailwindcss": "^3.4.3"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
   }
 }

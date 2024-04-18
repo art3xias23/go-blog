@@ -1,7 +1,7 @@
-run: build
+dev: go run .
 	
-templ:
-	@templ generate -watch -proxy=http://localhost:3000
+build: go build -o ./tmp/ .
+	
 
-tailwind:
-	@tailwindcss -i components/assets/styles/input.css -o components/assets/styles/output.css --watch
+watch:css:
+	@tailwindcss -i ./input.css -o components/styles/output.css --watch

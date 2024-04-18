@@ -14,12 +14,36 @@ templ Layout(comp templ.Component){
 </html>
 }
 
-templ title(title string){
-    <title>{title}</title>
+templ head(){
+  <head>
+    <script src="https://unpkg.com/htmx.org@1.9.10" 
+            integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" 
+            crossorigin="anonymous"></script>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          @unsafeScript(_style)
+         @title("Tinolog") 
+          @htmxScript()
+    
+  </head>
+}
+templ body(comp templ.Component){
+  <body>
+    @header()
+    @main(comp)
+    @footer()
+  </body>
 }
 
-templ Style(css string){
-    <style type="text/css">{css}</style>
+
+templ header(){
+    <header>
+      <div id="nav">
+        @iconContainer() 
+        @blogQuotes()
+        @navButtons()
+      </div>
+    </header>
 }
 
 templ blogQuotes(){
@@ -31,10 +55,31 @@ templ blogQuotes(){
 }
 
 templ quote1(){
-    <div class="text-orange-600">"Consistency is the key to mastery."</div>
+    <div class="text-white-600">"onsistency is the key to mastery."</div>
 }
 templ quote2(){
     "Small, focused efforts compound into greatness over time."
+}
+
+
+templ main(comp templ.Component){
+    <main>
+      <div class="content">
+        if comp != nil{
+          @comp
+        }
+      </div>
+    </main>
+}
+templ footer(){
+}
+
+templ title(title string){
+    <title>{title}</title>
+}
+
+templ Style(css string){
+    <style type="text/css">{css}</style>
 }
 
 templ iconContainer(){
@@ -75,47 +120,6 @@ templ navButtons(){
           </div>
 }
 
-templ head(){
-  <head>
-    <script src="https://unpkg.com/htmx.org@1.9.10" 
-            integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" 
-            crossorigin="anonymous"></script>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          @unsafeScript(_style)
-         @title("Tinolog") 
-          @htmxScript()
-    
-  </head>
-}
-templ body(comp templ.Component){
-  <body>
-    @header()
-    @main(comp)
-    @footer()
-  </body>
-}
-templ header(){
-    <header>
-      <div id="nav">
-        @iconContainer() 
-        @blogQuotes()
-        @navButtons()
-      </div>
-    </header>
-}
-
-templ main(comp templ.Component){
-    <main>
-      <div class="content">
-        if comp != nil{
-          @comp
-        }
-      </div>
-    </main>
-}
-templ footer(){
-}
 
 func unsafeScript(s string) templ.Component {
     return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {

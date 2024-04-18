@@ -1,19 +1,32 @@
-# .air.toml
 root = "."
 tmp_dir = "tmp"
 
 [build]
   bin = "./tmp/main"
-  cmd = "go build -o ./tmp/main ."
-  delay=1000
-  include_ext = ["go", "templ", "tmpl"]
-  exclude_dir = ["tmp"]
-
-[log]
-  time = true
+  cmd = "templ generate && go build -o ./tmp/main ."
+  delay = 1000
+  exclude_dir = ["assets", "tmp", "vendor", "node_modules"]
+  exclude_file = []
+  exclude_regex = [".*_templ.go"]
+  exclude_unchanged = false
+  follow_symlink = false
+  full_bin = ""
+  include_dir = []
+  include_ext = ["go", "tpl", "tmpl", "templ", "html"]
+  kill_delay = "0s"
+  log = "build-errors.log"
+  send_interrupt = false
+  stop_on_error = true
 
 [color]
-  main = "yellow"
+  app = ""
+  build = "yellow"
+  main = "magenta"
+  runner = "green"
   watcher = "cyan"
-  build = "green"
-  runner = "magenta"
+
+[log]
+  time = false
+
+[misc]
+  clean_on_exit = false

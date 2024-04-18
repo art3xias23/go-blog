@@ -3,10 +3,11 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-  cmd = "go build -o ./tmp/main ."
   bin = "./tmp/main"
+  cmd = "go build -o ./tmp/main ."
+  delay=1000
   include_ext = ["go", "templ", "tmpl"]
-  exclude_dir = ["tmp", "../node_modules/", "node_modules"]  # Make sure 'node_modules' is included here
+  exclude_dir = ["tmp"]
 
 [log]
   time = true

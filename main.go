@@ -17,10 +17,11 @@ var content embed.FS
 
 func main() {
 
+	fileServer := http.FileServer(http.Dir("./components/styles/"))
+	http.Handle("/styles/", http.StripPrefix("/styles/", fileServer))
 	fmt.Println("Entered: main()")
 	layout := comps.Layout(nil)
 
-	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./components/assets/"))))
 	http.Handle("/", templ.Handler(layout))
 	http.HandleFunc("/blog", serveBlog)
 	http.HandleFunc("/about", serveAbout)

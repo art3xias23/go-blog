@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tailwindcss -i ./components/assets/styles/input.css -o ./components/assets/styles/output.css --minify",
-    "watch": "npx tailwindcss -i ./components/assets/styles/input.css -o ./components/assets/styles/output.css --minify --watch",
-    "watch:css": "npx tailwindcss -i ./components/assets/styles/input.css -o ./components/assets/styles/output.css --minify --watch",
-    "start": "concurrently \"air\" \"npm run watch:css\""
+    "build": "npx tailwindcss -i ./input.css -o ./components/styles/output.css --minify",
+    "watch": "npx tailwindcss -i ./input.css -o ./components/styles/output.css --minify --watch"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +14,6 @@
     "tailwindcss": "^3.4.3"
   },
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "browser-sync": "^3.0.2"
   }
 }

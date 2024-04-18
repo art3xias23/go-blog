@@ -12,7 +12,7 @@ import "bytes"
 
 import _ "embed"
 
-//go:embed assets/styles/output.css
+//go:embed styles/output.css
 var _style string
 
 func Layout(comp templ.Component) templ.Component {

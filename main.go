@@ -16,7 +16,6 @@ import (
 var content embed.FS
 
 func main() {
-
 	fileServer := http.FileServer(http.Dir("./components/styles/"))
 	http.Handle("/styles/", http.StripPrefix("/styles/", fileServer))
 	fmt.Println("Entered: main()")

@@ -5,7 +5,6 @@ import _ "embed"
 //go:embed styles/output.css
 var _style string
 
-
 templ Layout(comp templ.Component){
     <!DOCTYPE html>
     <html lang="en">
@@ -55,7 +54,7 @@ templ blogQuotes(){
 }
 
 templ quote1(){
-    <div class="text-white-600">"onsistency is the key to mastery."</div>
+    <div class="text-orange-600">"onsistency is the key to mastery."</div>
 }
 templ quote2(){
     "Small, focused efforts compound into greatness over time."

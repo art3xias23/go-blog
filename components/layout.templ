@@ -31,7 +31,9 @@ templ head() {
 
 func unsafeScript(s string) templ.Component {
 return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
-io.WriteString(w, "<style>\n"+s+" \n</style>")
+io.WriteString(w, "<style>
+	\n"+s+" \n
+</style>")
 
 return nil
 })
@@ -64,6 +66,7 @@ templ header() {
 
 templ navButtons() {
 <nav class="bg-gray-200 border-solid border-2 text-black w-full flex flex-row items-center px-3">
+	<div class="w-full sm:block">
 		<div id="left-nav" class="w-1/5">
 			<img src="assets/img/baby_keyboard.png" alt="bby_image" class="rounded-full h-auto h-14 w-14" />
 		</div>
@@ -74,6 +77,10 @@ templ navButtons() {
 			<i class="fa-solid fa-envelope fa-2xl" href="mailto:konstantin.v.milchev@gmail.com"></i>
 			<i class="fa-brands fa-github-alt fa-2xl" href="https://github.com/art3xias23"></i>
 		</div>
+	</div>
+	<div class="sm-hidden right-0">
+		<i class="fa-solid fa-bars"></i>
+	</div>
 </nav>
 }
 

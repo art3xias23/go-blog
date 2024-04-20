@@ -40,6 +40,10 @@ func Layout(comp templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
+		templ_7745c5c3_Err = sidebar().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -208,7 +212,7 @@ func navButtons() templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"bg-gray-200 border-solid border-2 text-black w-full flex flex-row items-center px-3\"><div id=\"left-nav\" class=\"w-1/5\"><img src=\"assets/img/baby_keyboard.png\" alt=\"bby_image\" class=\"rounded-full h-auto h-14 w-14\"></div><div id=\"center-nav\" class=\"w-4/5 flex justify-between mx-auto items-center\"><a class=\"text-md\" hx-get=\"/blog\" hx-push-url=\"true\" hx-target=\".content\">Blog</a> <a class=\"text-lg\" hx-get=\"/letterboxd\" hx-push-url=\"true\" hx-target=\".content\">Letterboxd</a> <a class=\"nav-item\" hx-get=\"/goodreads\" hx-push-url=\"true\" hx-target=\".content\">Goodreads</a> <i class=\"fa-solid fa-envelope fa-2xl\" href=\"mailto:konstantin.v.milchev@gmail.com\"></i> <i class=\"fa-brands fa-github-alt fa-2xl\" href=\"https://github.com/art3xias23\"></i></div></nav>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"bg-gray-200 border-solid border-2 text-black w-full flex flex-row items-center px-3\"><div class=\"w-full sm:block\"><div id=\"left-nav\" class=\"w-1/5\"><img src=\"assets/img/baby_keyboard.png\" alt=\"bby_image\" class=\"rounded-full h-auto h-14 w-14\"></div><div id=\"center-nav\" class=\"w-4/5 flex justify-between mx-auto items-center\"><a class=\"text-md\" hx-get=\"/blog\" hx-push-url=\"true\" hx-target=\".content\">Blog</a> <a class=\"text-lg\" hx-get=\"/letterboxd\" hx-push-url=\"true\" hx-target=\".content\">Letterboxd</a> <a class=\"nav-item\" hx-get=\"/goodreads\" hx-push-url=\"true\" hx-target=\".content\">Goodreads</a> <i class=\"fa-solid fa-envelope fa-2xl\" href=\"mailto:konstantin.v.milchev@gmail.com\"></i> <i class=\"fa-brands fa-github-alt fa-2xl\" href=\"https://github.com/art3xias23\"></i></div></div><div class=\"sm-hidden right-0\"><i class=\"fa-solid fa-bars\"></i></div></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -341,7 +345,7 @@ func main(comp templ.Component) templ.Component {
 	})
 }
 
-func footer() templ.Component {
+func sidebar() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -352,6 +356,30 @@ func footer() templ.Component {
 		templ_7745c5c3_Var11 := templ.GetChildren(ctx)
 		if templ_7745c5c3_Var11 == nil {
 			templ_7745c5c3_Var11 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"sidebar\" class=\"fixed top-0 right-0 w-3/4 h-full z-50 transform bg-white transition-transform duration-300 ease-in-out translate-x-full\"><div id=\"closemenu\" class=\"fixed top-0 right-0 mt-5 me-4\"><img src=\"assets/images/icon-menu-close.svg\" alt=\"closemenu\"></div><div id=\"sidebaritems\" class=\"flex items-center h-full ms-5 text-gray-600 text-base font-medium\"><ul class=\"space-y-4\"><li>Home</li><li>New</li><li>Popular</li><li>Trending</li><li>Categories</li></ul></div></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if !templ_7745c5c3_IsBuffer {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteTo(templ_7745c5c3_W)
+		}
+		return templ_7745c5c3_Err
+	})
+}
+
+func footer() templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
+		if !templ_7745c5c3_IsBuffer {
+			templ_7745c5c3_Buffer = templ.GetBuffer()
+			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var12 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var12 == nil {
+			templ_7745c5c3_Var12 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		if !templ_7745c5c3_IsBuffer {
@@ -369,21 +397,21 @@ func title(title string) templ.Component {
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var12 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var12 == nil {
-			templ_7745c5c3_Var12 = templ.NopComponent
+		templ_7745c5c3_Var13 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var13 == nil {
+			templ_7745c5c3_Var13 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<title>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var13 string
-		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(title)
+		var templ_7745c5c3_Var14 string
+		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/layout.templ`, Line: 110, Col: 14}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/layout.templ`, Line: 135, Col: 14}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -406,9 +434,9 @@ func Style(css string) templ.Component {
 			defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var14 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var14 == nil {
-			templ_7745c5c3_Var14 = templ.NopComponent
+		templ_7745c5c3_Var15 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var15 == nil {
+			templ_7745c5c3_Var15 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<style type=\"text/css\">\n\t{\n\t\tcss\n\t}\n</style>")

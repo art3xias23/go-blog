@@ -11,6 +11,8 @@ templ Layout(comp templ.Component) {
 @head()
 @body(comp)
 @sidebar()
+@scriptjs()
+
 
 </html>
 }
@@ -126,6 +128,11 @@ templ sidebar(){
 
 	</div>
 </div>
+}
+
+templ scriptjs(){
+<script src="script.js"></script>
+
 }
 
 templ footer() {

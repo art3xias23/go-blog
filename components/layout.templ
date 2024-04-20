@@ -26,6 +26,19 @@ templ head(){
     
   </head>
 }
+
+func unsafeScript(s string) templ.Component {
+    return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
+io.WriteString(w, "<style>\n"+s+"\n</style>")
+
+        return nil
+    })
+}
+
+templ htmxScript(){
+  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+}
+
 templ body(comp templ.Component){
   <body>
     @header()
@@ -38,8 +51,8 @@ templ body(comp templ.Component){
 templ header(){
     <header>
       <div id="nav">
-        @iconContainer() 
-        @blogQuotes()
+        //@iconContainer() 
+        //@blogQuotes()
         @navButtons()
       </div>
     </header>
@@ -54,7 +67,7 @@ templ blogQuotes(){
 }
 
 templ quote1(){
-    <div class="text-orange-600">"onsistency is the key to mastery."</div>
+    <div class="text-rose-600">"nsistency is the key to mastery."</div>
 }
 templ quote2(){
     "Small, focused efforts compound into greatness over time."
@@ -81,53 +94,36 @@ templ Style(css string){
     <style type="text/css">{css}</style>
 }
 
-templ iconContainer(){
-     <div class="icon-container">
-          <img
-            id="blog-icon"
-            src="/assets/img/baby_keyboard.png"
-            alt="logo-img"
-          />
-        </div>
-}
 
 templ navButtons(){
-        <div class="nav-buttons" 
-        hx-headers='{"Sender":"art3xias"}'
-        >
-            <a class="nav-item" 
-               hx-get="/blog" 
-               hx-push-url="true"
-               hx-target=".content">Blog</a>
+<nav class="bg-gray-800 text-white">
+Helloo
+</nav>
+        //<div class="nav-buttons" 
+        //hx-headers='{"Sender":"art3xias"}'
+        //>
+        //    <a class="nav-item" 
+        //       hx-get="/blog" 
+        //       hx-push-url="true"
+        //       hx-target=".content">Blog</a>
 
-            <a class="nav-item" 
-            hx-get="/letterboxd"
-            hx-push-url="true"
-            hx-target=".content">Letterboxd</a>
+        //    <a class="nav-item" 
+        //    hx-get="/letterboxd"
+        //    hx-push-url="true"
+        //    hx-target=".content">Letterboxd</a>
 
-            <a class="nav-item" 
-              hx-get="/goodreads"
-              hx-push-url="true"
-              hx-target=".content">Goodreads</a>
+        //    <a class="nav-item" 
+        //      hx-get="/goodreads"
+        //      hx-push-url="true"
+        //      hx-target=".content">Goodreads</a>
 
-            <a class="nav-item" href="/github">Github</a>
-            <a href="contects">Contacts</a>
-            <a class="nav-item"
-               hx-get="/about"
-               hx-target=".content"
-               hx-push-url="true">About</a>
-          </div>
+        //    <a class="nav-item" href="/github">Github</a>
+        //    <a href="contects">Contacts</a>
+        //    <a class="nav-item"
+        //       hx-get="/about"
+        //       hx-target=".content"
+        //       hx-push-url="true">About</a>
+        //  </div>
 }
 
 
-func unsafeScript(s string) templ.Component {
-    return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
-io.WriteString(w, "<style>\n"+s+"\n</style>")
-
-        return nil
-    })
-}
-
-templ htmxScript(){
-  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
-}

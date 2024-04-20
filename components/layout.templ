@@ -1,129 +1,119 @@
-package components 
+package components
 
 import _ "embed"
 
 //go:embed styles/output.css
 var _style string
 
-templ Layout(comp templ.Component){
-    <!DOCTYPE html>
-    <html lang="en">
-      @head()
-      @body(comp)
+templ Layout(comp templ.Component) {
+<!DOCTYPE html>
+<html lang="en">
+@head()
+@body(comp)
+
 </html>
 }
 
-templ head(){
-  <head>
-    <script src="https://unpkg.com/htmx.org@1.9.10" 
-            integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" 
-            crossorigin="anonymous"></script>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          @unsafeScript(_style)
-         @title("Tinolog") 
-          @htmxScript()
-    
-  </head>
+templ head() {
+
+<head>
+	<script src="https://unpkg.com/htmx.org@1.9.10"
+		integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+		crossorigin="anonymous"></script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	@unsafeScript(_style)
+	@title("Tinolog")
+	@htmxScript()
+	<script src="https://kit.fontawesome.com/8dcf44513b.js" crossorigin="anonymous"></script>
+</head>
 }
 
 func unsafeScript(s string) templ.Component {
-    return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
-io.WriteString(w, "<style>\n"+s+"\n</style>")
+return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
+io.WriteString(w, "<style>\n"+s+" \n</style>")
 
-        return nil
-    })
+return nil
+})
 }
 
-templ htmxScript(){
-  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+templ htmxScript() {
+<script src="https://unpkg.com/htmx.org@1.9.10"
+	integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+	crossorigin="anonymous"></script>
 }
 
-templ body(comp templ.Component){
-  <body>
-    @header()
-    @main(comp)
-    @footer()
-  </body>
+templ body(comp templ.Component) {
+
+<body>
+	@header()
+	@main(comp)
+	@footer()
+</body>
 }
 
-
-templ header(){
-    <header>
-      <div id="nav">
-        //@iconContainer() 
-        //@blogQuotes()
-        @navButtons()
-      </div>
-    </header>
+templ header() {
+<header>
+	<div id="nav">
+		//@iconContainer()
+		//@blogQuotes()
+		@navButtons()
+	</div>
+</header>
 }
 
-templ blogQuotes(){
-    <div class="blog-quotes">
-        @quote1()
-        <br/>
-        @quote2()
-    </div>
-}
-
-templ quote1(){
-    <div class="text-rose-600">"nsistency is the key to mastery."</div>
-}
-templ quote2(){
-    "Small, focused efforts compound into greatness over time."
-}
-
-
-templ main(comp templ.Component){
-    <main>
-      <div class="content">
-        if comp != nil{
-          @comp
-        }
-      </div>
-    </main>
-}
-templ footer(){
-}
-
-templ title(title string){
-    <title>{title}</title>
-}
-
-templ Style(css string){
-    <style type="text/css">{css}</style>
-}
-
-
-templ navButtons(){
-<nav class="bg-gray-800 text-white">
-Helloo
+templ navButtons() {
+<nav class="bg-gray-200 border-solid border-2 text-black w-full flex flex-row items-center px-3">
+		<div id="left-nav" class="w-1/5">
+			<img src="assets/img/baby_keyboard.png" alt="bby_image" class="rounded-full h-auto h-14 w-14" />
+		</div>
+		<div id="center-nav" class="w-4/5 flex justify-between mx-auto items-center">
+			<a class="text-md" hx-get="/blog" hx-push-url="true" hx-target=".content">Blog</a>
+			<a class="text-lg" hx-get="/letterboxd" hx-push-url="true" hx-target=".content">Letterboxd</a>
+			<a class="nav-item" hx-get="/goodreads" hx-push-url="true" hx-target=".content">Goodreads</a>
+			<i class="fa-solid fa-envelope fa-2xl" href="mailto:konstantin.v.milchev@gmail.com"></i>
+			<i class="fa-brands fa-github-alt fa-2xl" href="https://github.com/art3xias23"></i>
+		</div>
 </nav>
-        //<div class="nav-buttons" 
-        //hx-headers='{"Sender":"art3xias"}'
-        //>
-        //    <a class="nav-item" 
-        //       hx-get="/blog" 
-        //       hx-push-url="true"
-        //       hx-target=".content">Blog</a>
-
-        //    <a class="nav-item" 
-        //    hx-get="/letterboxd"
-        //    hx-push-url="true"
-        //    hx-target=".content">Letterboxd</a>
-
-        //    <a class="nav-item" 
-        //      hx-get="/goodreads"
-        //      hx-push-url="true"
-        //      hx-target=".content">Goodreads</a>
-
-        //    <a class="nav-item" href="/github">Github</a>
-        //    <a href="contects">Contacts</a>
-        //    <a class="nav-item"
-        //       hx-get="/about"
-        //       hx-target=".content"
-        //       hx-push-url="true">About</a>
-        //  </div>
 }
 
+templ blogQuotes() {
+<div class="blog-quotes">
+	@quote1()
+	<br />
+	@quote2()
+</div>
+}
 
+templ quote1() {
+<div class="text-rose-600">"nsistency is the key to mastery."</div>
+}
+
+templ quote2() {
+"Small, focused efforts compound into greatness over time."
+}
+
+templ main(comp templ.Component) {
+<main>
+	<div class="content">
+		if comp != nil {
+		@comp
+		}
+	</div>
+</main>
+}
+
+templ footer() {
+}
+
+templ title(title string) {
+<title>{ title }</title>
+}
+
+templ Style(css string) {
+<style type="text/css">
+	{
+		css
+	}
+</style>
+}

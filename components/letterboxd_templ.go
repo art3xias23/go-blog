@@ -57,25 +57,25 @@ func Letterboxd(items []rssHelper.Itemm) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"media-items-container\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 gap-4\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, item := range items {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div hx-get=\"/letter-redirect\" hx-push-url=\"true\" hx-trigger=\"click\" hx-vals=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div hx-get=\"/letter-redirect\" class=\"bg-gray-400 rounded-sm h-full border-black border-2 overflow-hidden grid grid-cols-1 grid-rows-layout\" hx-push-url=\"true\" hx-trigger=\"click\" hx-vals=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(getHxValsString(item.Url))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/letterboxd.templ`, Line: 43, Col: 37}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/letterboxd.templ`, Line: 44, Col: 37}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"media-item\"><div class=\"media-item-title\"><h3>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"><div class=\"italic text-center w-full h-full overflow-hidden\"><h3>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -88,7 +88,7 @@ func Letterboxd(items []rssHelper.Itemm) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h3></div><div class=\"media-item-year\"><i>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h3></div><div class=\"text-center h-full\"><i>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -101,27 +101,27 @@ func Letterboxd(items []rssHelper.Itemm) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</i></div><div class=\"media-item-rating\" data-rating=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</i></div><div class=\"text-center media-item-rating\" data-rating=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(item.MemberRating)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/letterboxd.templ`, Line: 51, Col: 65}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/letterboxd.templ`, Line: 51, Col: 77}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></div><div class=\"media-item-image\"><img class=\"media-item-image\" src=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></div><div class=\"transform scale-100 h-full w-full overflow-hidden\"><img class=\"transform scale-100 h-25 w-25 overflow-hidden\" src=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(extractImageURL(item.Description))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/letterboxd.templ`, Line: 53, Col: 83}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/letterboxd.templ`, Line: 53, Col: 112}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {

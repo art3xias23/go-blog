@@ -57,7 +57,6 @@ func serveLetterBoxd(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(contents.Title)
 	var letterboxdView = comps.Letterboxd(contents.Items)
-	// templ.Handler(blogView).ServeHTTP(w, r)
 	renderSenderContent(r, w, letterboxdView)
 }
 
@@ -75,7 +74,7 @@ func serveGoodReads(w http.ResponseWriter, r *http.Request) {
 // rednerSenserContent is a helper function which helps detemine if the request
 // to the resource is coming from inside or outside the blog
 func renderSenderContent(r *http.Request, w http.ResponseWriter, componentToRender templ.Component) {
-	senderHeader := r.Header.Get("Sender")
+	senderHeader := r.Header.Get("HX-Request")
 	if senderHeader != "" {
 		componentToRender.Render(context.Background(), w)
 		return

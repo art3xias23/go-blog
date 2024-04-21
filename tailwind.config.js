@@ -4,26 +4,26 @@ module.exports = {
 	theme: {
 		screens: {
 			'sm': '640px',
-			// => @media (min-width: 640px) { ... }
 
 			'md': '768px',
-			// => @media (min-width: 768px) { ... }
 
 			'lg': '1024px',
-			// => @media (min-width: 1024px) { ... }
 
 			'xl': '1280px',
-			// => @media (min-width: 1280px) { ... }
 
 			'2xl': '1536px',
-			// => @media (min-width: 1536px) { ... }
 		},
-    extend: {},
+		extend: {
+			gridTemplateRows: {
+				// Define custom row sizes
+				layout: '0.1fr 0.05fr 0.1fr 1fr',
+			}
+		},
 	},
 	safelist: [
-    'bg-gray-800',
+		'bg-gray-800',
 		'bg-opacity-70',
-  ],
+	],
 	plugins: [],
 }
 

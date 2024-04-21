@@ -602,6 +602,10 @@ video {
   display: none;
 }
 
+.h-3\/4 {
+  height: 75%;
+}
+
 .h-auto {
   height: auto;
 }
@@ -669,8 +673,12 @@ video {
   justify-content: space-between;
 }
 
-.gap-4 {
-  gap: 1rem;
+.gap-10 {
+  gap: 2.5rem;
+}
+
+.gap-7 {
+  gap: 1.75rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -737,6 +745,11 @@ video {
   text-align: center;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -747,12 +760,12 @@ video {
   line-height: 1.75rem;
 }
 
-.font-medium {
-  font-weight: 500;
+.font-bold {
+  font-weight: 700;
 }
 
-.italic {
-  font-style: italic;
+.font-medium {
+  font-weight: 500;
 }
 
 .text-black {

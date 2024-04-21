@@ -35,10 +35,10 @@ func extractImageURL(htmlString string) string {
 	return imageURL
 }
 templ Letterboxd(items []rssHelper.Itemm){
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 gap-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 gap-10">
     for _, item:=range items{
         <div hx-get="/letter-redirect" 
-			class="bg-gray-400 rounded-sm h-full border-black border-2 overflow-hidden grid grid-cols-1 grid-rows-layout" 
+			class="bg-gray-400 rounded-sm h-3/4 border-black border-2 overflow-hidden grid grid-cols-1 grid-rows-layout" 
 			hx-push-url="true" 
 			hx-trigger="click" 
 			hx-vals={getHxValsString(item.Url)} >
@@ -50,7 +50,7 @@ templ Letterboxd(items []rssHelper.Itemm){
           </div>
 		  <div class="text-center media-item-rating" data-rating={item.MemberRating} />
           <div class="transform scale-100 h-full w-full overflow-hidden">
-              <img class="transform scale-100 h-25 w-25 overflow-hidden" src={ extractImageURL(item.Description) } alt="media-item-image"/>
+              <img class="transform scale-100 h-15 w-15 overflow-hidden" src={ extractImageURL(item.Description) } alt="media-item-image"/>
           </div>
         </div>
     }

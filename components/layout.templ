@@ -11,7 +11,6 @@ templ Layout(comp templ.Component) {
 @head()
 @body(comp)
 @sidebar()
-@scriptjs()
 
 
 </html>
@@ -29,6 +28,7 @@ templ head() {
 	@title("Tinolog")
 	@htmxScript()
 	<script src="https://kit.fontawesome.com/8dcf44513b.js" crossorigin="anonymous"></script>
+	@jsScript()
 </head>
 }
 
@@ -45,6 +45,12 @@ templ htmxScript() {
 	integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
 	crossorigin="anonymous"></script>
 }
+templ jsScript(){
+<script src="assets/scripts/script.js"></script>
+
+}
+
+
 
 templ body(comp templ.Component) {
 
@@ -67,11 +73,11 @@ templ header() {
 
 templ navButtons() {
 <nav class="bg-gray-200 border-solid border-2 text-black w-full flex flex-row items-center px-3">
-	<div class="w-full sm:block">
-		<div id="left-nav" class="w-1/5">
-			<img src="assets/img/baby_keyboard.png" alt="bby_image" class="rounded-full h-auto h-14 w-14" />
+	<div class="w-full flex justify-between">
+		<div id="left-nav" class="w-8">
+			<img src="assets/img/baby_keyboard.png" alt="bby_image" class="block rounded-full h-auto h-14 w-14" />
 		</div>
-		<div id="center-nav" class="w-4/5 flex justify-between mx-auto items-center">
+		<div id="center-nav" class="w-4/5 hidden sm:flex sm:justify-between sm:items-center">
 			<a class="text-md" hx-get="/blog" hx-push-url="true" hx-target=".content">Blog</a>
 			<a class="text-lg" hx-get="/letterboxd" hx-push-url="true" hx-target=".content">Letterboxd</a>
 			<a class="nav-item" hx-get="/goodreads" hx-push-url="true" hx-target=".content">Goodreads</a>
@@ -79,7 +85,7 @@ templ navButtons() {
 			<i class="fa-brands fa-github-alt fa-2xl" href="https://github.com/art3xias23"></i>
 		</div>
 	</div>
-	<div class="sm-hidden right-0">
+	<div  id="openmenu" class="sm:hidden left-0">
 		<i class="fa-solid fa-bars"></i>
 	</div>
 </nav>
@@ -115,24 +121,19 @@ templ sidebar(){
 <div id="sidebar"
 	class="fixed top-0 right-0 w-3/4 h-full z-50 transform bg-white transition-transform duration-300 ease-in-out translate-x-full">
 	<div id="closemenu" class="fixed top-0 right-0 mt-5 me-4">
-		<img src="assets/images/icon-menu-close.svg" alt="closemenu" />
+		<i class="fa-solid fa-xmark"></i>
 	</div>
 	<div id="sidebaritems" class="flex items-center h-full ms-5 text-gray-600 text-base font-medium">
 		<ul class="space-y-4">
-			<li>Home</li>
-			<li>New</li>
-			<li>Popular</li>
-			<li>Trending</li>
-			<li>Categories</li>
+			<li>Blog</li>
+			<li>Letterboxd</li>
+			<li>Goodreads</li>
+			<li>Github</li>
+			<li>Email</li>
 		</ul>
 
 	</div>
 </div>
-}
-
-templ scriptjs(){
-<script src="script.js"></script>
-
 }
 
 templ footer() {

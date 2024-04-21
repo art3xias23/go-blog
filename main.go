@@ -18,6 +18,8 @@ var content embed.FS
 func main() {
 	fileServer := http.FileServer(http.Dir("./components/styles/"))
 	http.Handle("/styles/", http.StripPrefix("/styles/", fileServer))
+	fileServerjs := http.FileServer(http.Dir("./components/assets/scripts"))
+	http.Handle("/assets/scripts/", http.StripPrefix("/assets/scripts/", fileServerjs))
 	fmt.Println("Entered: main()")
 	layout := comps.Layout(nil)
 

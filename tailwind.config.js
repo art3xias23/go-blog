@@ -20,6 +20,10 @@ module.exports = {
 		},
     extend: {},
 	},
+	safelist: [
+    'bg-gray-800',
+		'bg-opacity-70',
+  ],
 	plugins: [],
 }
 

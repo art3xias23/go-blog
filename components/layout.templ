@@ -12,7 +12,6 @@ templ Layout(comp templ.Component) {
 @body(comp)
 @sidebar()
 
-
 </html>
 }
 
@@ -27,8 +26,8 @@ templ head() {
 	@unsafeScript(_style)
 	@title("Tinolog")
 	@htmxScript()
-	<script src="https://kit.fontawesome.com/8dcf44513b.js" crossorigin="anonymous"></script>
 	@jsScript()
+	<script src="https://kit.fontawesome.com/8dcf44513b.js" crossorigin="anonymous"></script>
 </head>
 }
 
@@ -45,12 +44,10 @@ templ htmxScript() {
 	integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
 	crossorigin="anonymous"></script>
 }
-templ jsScript(){
-<script src="assets/scripts/script.js"></script>
 
+templ jsScript() {
+<script src="/scripts/script.js"></script>
 }
-
-
 
 templ body(comp templ.Component) {
 
@@ -75,17 +72,25 @@ templ navButtons() {
 <nav class="bg-gray-200 border-solid border-2 text-black w-full flex flex-row items-center px-3">
 	<div class="w-full flex justify-between">
 		<div id="left-nav" class="w-8">
-			<img src="assets/img/baby_keyboard.png" alt="bby_image" class="block rounded-full h-auto h-14 w-14" />
+			<img src="/img/baby_keyboard.png" alt="bby_image"
+				class="block rounded-full h-auto h-14 w-14" />
 		</div>
 		<div id="center-nav" class="w-4/5 hidden sm:flex sm:justify-between sm:items-center">
-			<a class="text-lg cursor-pointer" hx-get="/blog" hx-push-url="true" hx-target=".content">Blog</a>
-			<a class="text-lg cursor-pointer" hx-get="/letterboxd" hx-push-url="true" hx-target=".content">Letterboxd</a>
-			<a class="text-lg cursor-pointer" hx-get="/goodreads" hx-push-url="true" hx-target=".content">Goodreads</a>
-			<i class="text-lg cursor-pointer fa-envelope fa-2xl" href="mailto:konstantin.v.milchev@gmail.com"></i>
-			<i class="text-lg cursor-pointer fa-github-alt fa-2xl" href="https://github.com/art3xias23"></i>
+			<a class="text-lg cursor-pointer" hx-get="/blog" hx-push-url="true"
+				hx-target=".content">Blog</a>
+			<a class="text-lg cursor-pointer" hx-get="/letterboxd" hx-push-url="true"
+				hx-target=".content">Letterboxd</a>
+			<a class="text-lg cursor-pointer" hx-get="/goodreads" hx-push-url="true"
+				hx-target=".content">Goodreads</a>
+			<a class="cursor-pointer" href="mailto:konstantin.v.milchev@gmail.com">
+				<i class="fa-solid fa-envelope fa-2xl"></i>
+			</a>
+			<a class="cursor-pointer" href="https://github.com/art3xias23">
+				<i class="fa-brands fa-github-alt fa-2xl" ></i>
+			</a>
 		</div>
 	</div>
-	<div  id="openmenu" class="sm:hidden left-0">
+	<div id="openmenu" class="sm:hidden left-0">
 		<i class="fa-solid fa-bars"></i>
 	</div>
 </nav>
@@ -117,7 +122,7 @@ templ main(comp templ.Component) {
 </main>
 }
 
-templ sidebar(){
+templ sidebar() {
 <div id="sidebar"
 	class="fixed top-0 right-0 w-3/4 h-full z-50 transform bg-white transition-transform duration-300 ease-in-out translate-x-full">
 	<div id="closemenu" class="fixed top-0 right-0 mt-5 me-4">
@@ -131,7 +136,6 @@ templ sidebar(){
 			<li>Github</li>
 			<li>Email</li>
 		</ul>
-
 	</div>
 </div>
 }

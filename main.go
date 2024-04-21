@@ -16,10 +16,12 @@ import (
 var content embed.FS
 
 func main() {
+	fileServerImg := http.FileServer(http.Dir("./components/assets/img/"))
+	http.Handle("/img/", http.StripPrefix("/img/", fileServerImg))
 	fileServer := http.FileServer(http.Dir("./components/styles/"))
 	http.Handle("/styles/", http.StripPrefix("/styles/", fileServer))
 	fileServerjs := http.FileServer(http.Dir("./components/assets/scripts"))
-	http.Handle("/assets/scripts/", http.StripPrefix("/assets/scripts/", fileServerjs))
+	http.Handle("/scripts/", http.StripPrefix("/scripts/", fileServerjs))
 	fmt.Println("Entered: main()")
 	layout := comps.Layout(nil)
 

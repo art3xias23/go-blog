@@ -61,8 +61,6 @@ templ body(comp templ.Component) {
 templ header() {
 <header>
 	<div id="nav">
-		//@iconContainer()
-		//@blogQuotes()
 		@navButtons()
 	</div>
 </header>
@@ -73,7 +71,7 @@ templ navButtons() {
 	<div class="w-full flex justify-between">
 		<div id="left-nav" class="w-8">
 			<img src="/img/baby_keyboard.png" alt="bby_image"
-				class="block rounded-full h-auto h-14 w-14" />
+				class="block rounded-full h-auto w-14" />
 		</div>
 		<div id="center-nav" class="w-4/5 hidden sm:flex sm:justify-between sm:items-center">
 			<a class="text-lg cursor-pointer" hx-get="/blog" hx-push-url="true"
@@ -94,18 +92,6 @@ templ navButtons() {
 		<i class="fa-solid fa-bars"></i>
 	</div>
 </nav>
-}
-
-templ blogQuotes() {
-<div class="blog-quotes">
-	@quote1()
-	<br />
-	@quote2()
-</div>
-}
-
-templ quote1() {
-<div class="text-rose-600">"nsistency is the key to mastery."</div>
 }
 
 templ quote2() {

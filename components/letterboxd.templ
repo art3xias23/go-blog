@@ -42,8 +42,8 @@ templ Letterboxd(items []rssHelper.Itemm){
 			hx-push-url="true" 
 			hx-trigger="click" 
 			hx-vals={getHxValsString(item.Url)} >
-          <div class="italic text-center w-full h-full overflow-hidden">
-              <h3 >{item.Title}</h3>
+          <div class="font-bold text-2xl text-center w-full h-full overflow-hidden">
+              {item.Title}
           </div>
           <div class="text-center h-full">
               <i>{item.Year}</i>

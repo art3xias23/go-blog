@@ -871,3 +871,15 @@ video {
   }
 }
 
+@media (min-width: 1920px) {
+  .\33xl\:grid-cols-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 2560px) {
+  .\34xl\:grid-cols-8 {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+

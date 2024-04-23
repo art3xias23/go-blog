@@ -42,7 +42,7 @@ templ Letterboxd(items []rssHelper.Itemm){
 			hx-push-url="true" 
 			hx-trigger="click" 
 			hx-vals={getHxValsString(item.Url)} >
-          <div class="font-bold text-2xl text-center w-full h-full overflow-hidden">
+          <div class="font-bold text-xl text-center w-full h-full overflow-hidden">
               {item.Title}
           </div>
           <div class="text-center h-full">

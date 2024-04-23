@@ -9,31 +9,31 @@ import "strings"
 func getBookCover(isbn string) string {
     isbn = strings.TrimPrefix(isbn, "=\"")
     isbn = strings.TrimSuffix(isbn, "\"")
-str:= fmt.Sprintf("/assets/img/books/%s.jpg",isbn)
+str:= fmt.Sprintf("/img/books/%s.jpg",isbn)
 fmt.Println(str)
 return str
 }
 
 templ Goodreads(items []*rssHelper.Book){
-<div class="media-items-container">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 gap-20 m-5">
     for _, item:=range items{
         <div hx-get="/goodreads-redirect" 
 			hx-push-url="true" 
 			hx-trigger="click" 
 			hx-vals={getGrHxValsString(strconv.Itoa(item.BookID))}
 			class="book-media-item" >
-          <div class="media-item-title">
+          <div class="font-bold text-2xl text-center w-full overflow-hidden">
               <h3 >{GetShortTitle(item.Title)}</h3>
           </div>
-          <div class="media-item-shelf">
+          <div class="italic text-xl text-center">
             <p>{ GetBookShelve(item.Bookshelves) }</p>
           </div>
-          <div class="media-item-year">
+          <div class="text-center mb-5">
               <i>{strconv.Itoa(item.YearPublished)}</i>
           </div>
-		  <div class="media-item-rating" data-rating={strconv.Itoa(item.MyRating)} />
-          <div class="media-item-image">
-              <img class="media-item-image" src={ getBookCover(item.ISBN) } alt="No book cover found"/>
+		  <div class="text-center media-item-rating" data-rating={strconv.Itoa(item.MyRating)} />
+          <div class="flex justify-center transform scale-100 w-full overflow-hidden">
+              <img class="transform scale-100 h-15 w-15 overflow-hidden" src={ getBookCover(item.ISBN) } alt="No book cover found"/>
           </div>
         </div>
     }

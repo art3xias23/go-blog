@@ -10,18 +10,13 @@ func getBookCover(isbn string) string {
     isbn = strings.TrimPrefix(isbn, "=\"")
     isbn = strings.TrimSuffix(isbn, "\"")
 str:= fmt.Sprintf("/img/books/%s.jpg",isbn)
-fmt.Println(str)
 return str
 }
 
 templ Goodreads(items []*rssHelper.Book){
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 gap-20 m-5">
     for _, item:=range items{
-        <div hx-get="/goodreads-redirect" 
-			hx-push-url="true" 
-			hx-trigger="click" 
-			hx-vals={getGrHxValsString(strconv.Itoa(item.BookID))}
-			class="book-media-item" >
+    <a href={templ.SafeURL(getGrHxValsString(strconv.Itoa(item.BookID)))}>
           <div class="font-bold text-2xl text-center w-full overflow-hidden">
               <h3 >{GetShortTitle(item.Title)}</h3>
           </div>
@@ -35,15 +30,14 @@ templ Goodreads(items []*rssHelper.Book){
           <div class="flex justify-center transform scale-100 w-full overflow-hidden">
               <img class="transform scale-100 h-15 w-15 overflow-hidden" src={ getBookCover(item.ISBN) } alt="No book cover found"/>
           </div>
-        </div>
+	</a>
     }
 </div>
 }
 
 func getGrHxValsString(bookId string) string{
 	url := fmt.Sprintf("https://www.goodreads.com/book/show/%s", bookId)
-	var a = fmt.Sprintf(`{"url":"%s"}`, url)
-	return a
+	return url
 }
 
 

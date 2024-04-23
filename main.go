@@ -45,6 +45,7 @@ func serveLetterRedirect(w http.ResponseWriter, r *http.Request) {
 
 func serveGoodRedirect(w http.ResponseWriter, r *http.Request) {
 	redirectUrl := r.URL.Query().Get("url")
+	fmt.Println("Url is ", redirectUrl)
 	w.Header().Set("HX-Redirect", redirectUrl)
 	renderSenderContent(r, w, nil)
 }

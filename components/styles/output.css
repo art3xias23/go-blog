@@ -721,7 +721,7 @@ video {
 }
 
 .grid-rows-layout {
-  grid-template-rows: 0.1fr 0.05fr 0.1fr 1fr;
+  grid-template-rows: 0.12fr 0.05fr 0.1fr 1fr;
 }
 
 .flex-row {

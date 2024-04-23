@@ -20,7 +20,7 @@ module.exports = {
 		extend: {
 			gridTemplateRows: {
 				// Define custom row sizes
-				layout: '0.2fr 0.05fr 0.1fr 1fr',
+				layout: '0.12fr 0.05fr 0.1fr 1fr',
 			}
 		},
 	},

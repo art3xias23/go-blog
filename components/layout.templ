@@ -70,21 +70,20 @@ templ navButtons() {
 <nav class="bg-gray-200 border-solid border-2 text-black w-full flex flex-row items-center px-3">
 	<div class="w-full flex justify-between">
 		<div id="left-nav" class="w-8">
-			<img src="/img/baby_keyboard.png" alt="bby_image"
-				class="block rounded-full h-auto w-14" />
+			<img src="/img/baby_keyboard.png" alt="bby_image" class="block rounded-full h-auto w-14" />
 		</div>
 		<div id="center-nav" class="w-4/5 hidden sm:flex sm:justify-between sm:items-center">
-			<a class="text-lg cursor-pointer" hx-get="/blog" hx-push-url="true"
-				hx-target=".content">Blog</a>
+			<a class="text-lg cursor-pointer" hx-get="/blog" hx-push-url="true" hx-target=".content"
+				hx-indicator="#spinner">Blog</a>
 			<a class="text-lg cursor-pointer" hx-get="/letterboxd" hx-push-url="true"
-				hx-target=".content">Letterboxd</a>
+				hx-target=".content" hx-indicator="#spinner">Letterboxd</a>
 			<a class="text-lg cursor-pointer" hx-get="/goodreads" hx-push-url="true"
-				hx-target=".content">Goodreads</a>
+				hx-target=".content" hx-indicator="#spinner">Goodreads</a>
 			<a class="cursor-pointer" href="mailto:konstantin.v.milchev@gmail.com">
 				<i class="fa-solid fa-envelope fa-2xl"></i>
 			</a>
 			<a class="cursor-pointer" href="https://github.com/art3xias23">
-				<i class="fa-brands fa-github-alt fa-2xl" ></i>
+				<i class="fa-brands fa-github-alt fa-2xl"></i>
 			</a>
 		</div>
 	</div>
@@ -100,6 +99,9 @@ templ quote2() {
 
 templ main(comp templ.Component) {
 <main>
+	<div id="spinner_wrapper" class="flex justify-center">
+		<img id="spinner" class="my-indicator" src="/img/spinner.svg" />
+	</div>
 	<div class="content container mx-auto m-7">
 		if comp != nil {
 		@comp

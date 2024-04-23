@@ -240,7 +240,7 @@ func navButtons() templ.Component {
 			templ_7745c5c3_Var7 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"bg-gray-200 border-solid border-2 text-black w-full flex flex-row items-center px-3\"><div class=\"w-full flex justify-between\"><div id=\"left-nav\" class=\"w-8\"><img src=\"/img/baby_keyboard.png\" alt=\"bby_image\" class=\"block rounded-full h-auto w-14\"></div><div id=\"center-nav\" class=\"w-4/5 hidden sm:flex sm:justify-between sm:items-center\"><a class=\"text-lg cursor-pointer\" hx-get=\"/blog\" hx-push-url=\"true\" hx-target=\".content\">Blog</a> <a class=\"text-lg cursor-pointer\" hx-get=\"/letterboxd\" hx-push-url=\"true\" hx-target=\".content\">Letterboxd</a> <a class=\"text-lg cursor-pointer\" hx-get=\"/goodreads\" hx-push-url=\"true\" hx-target=\".content\">Goodreads</a> <a class=\"cursor-pointer\" href=\"mailto:konstantin.v.milchev@gmail.com\"><i class=\"fa-solid fa-envelope fa-2xl\"></i></a> <a class=\"cursor-pointer\" href=\"https://github.com/art3xias23\"><i class=\"fa-brands fa-github-alt fa-2xl\"></i></a></div></div><div id=\"openmenu\" class=\"sm:hidden left-0\"><i class=\"fa-solid fa-bars\"></i></div></nav>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"bg-gray-200 border-solid border-2 text-black w-full flex flex-row items-center px-3\"><div class=\"w-full flex justify-between\"><div id=\"left-nav\" class=\"w-8\"><img src=\"/img/baby_keyboard.png\" alt=\"bby_image\" class=\"block rounded-full h-auto w-14\"></div><div id=\"center-nav\" class=\"w-4/5 hidden sm:flex sm:justify-between sm:items-center\"><a class=\"text-lg cursor-pointer\" hx-get=\"/blog\" hx-push-url=\"true\" hx-target=\".content\" hx-indicator=\"#spinner\">Blog</a> <a class=\"text-lg cursor-pointer\" hx-get=\"/letterboxd\" hx-push-url=\"true\" hx-target=\".content\" hx-indicator=\"#spinner\">Letterboxd</a> <a class=\"text-lg cursor-pointer\" hx-get=\"/goodreads\" hx-push-url=\"true\" hx-target=\".content\" hx-indicator=\"#spinner\">Goodreads</a> <a class=\"cursor-pointer\" href=\"mailto:konstantin.v.milchev@gmail.com\"><i class=\"fa-solid fa-envelope fa-2xl\"></i></a> <a class=\"cursor-pointer\" href=\"https://github.com/art3xias23\"><i class=\"fa-brands fa-github-alt fa-2xl\"></i></a></div></div><div id=\"openmenu\" class=\"sm:hidden left-0\"><i class=\"fa-solid fa-bars\"></i></div></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -288,7 +288,7 @@ func main(comp templ.Component) templ.Component {
 			templ_7745c5c3_Var9 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<main><div class=\"content container mx-auto m-7\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<main><div id=\"spinner_wrapper\" class=\"flex justify-center\"><img id=\"spinner\" class=\"my-indicator\" src=\"/img/spinner.svg\"></div><div class=\"content container mx-auto m-7\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -373,7 +373,7 @@ func title(title string) templ.Component {
 		var templ_7745c5c3_Var13 string
 		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/layout.templ`, Line: 133, Col: 14}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/layout.templ`, Line: 135, Col: 14}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 		if templ_7745c5c3_Err != nil {

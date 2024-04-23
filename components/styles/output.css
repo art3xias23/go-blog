@@ -914,6 +914,20 @@ video {
   content: '⭐⭐⭐⭐⭐';
 }
 
+/* Htmx Spinner Item */
+
+.my-indicator{
+  display:none;
+}
+
+.htmx-request .my-indicator{
+  display:inline;
+}
+
+.htmx-request.my-indicator{
+  display:inline;
+}
+
 @media (min-width: 640px) {
   .sm\:flex {
     display: flex;

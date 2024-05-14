@@ -26,7 +26,7 @@ func LatestPosts(posts []domain.Post) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"grid gap-5 auto-cols-[300px] grid-rows-[1fr]\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"grid gap-10 auto-rows-auto grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))]\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -87,7 +87,7 @@ func LatestPosts(posts []domain.Post) templ.Component {
 }
 
 func getImageSource(post domain.Post) string {
-	return strings.Join([]string{"/assets/img/posts/", post.ImageLocation}, "")
+	return strings.Join([]string{"/img/posts/", post.ImageLocation}, "")
 }
 
 func Blog(comp templ.Component) templ.Component {
@@ -103,7 +103,7 @@ func Blog(comp templ.Component) templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"max-w-[1440px] w-full m-auto mt-[150px]\"><div class=\"flex justify-around\"><div id=\"flex w-[20%]\"><a>Popular Tags</a></div><div><div class=\"\"><input type=\"text\" id=\"search-bar\" placeholder=\"search...\"> <img class=\"absolute top-[150px] right-[260px] w-[25px] h-[25px] z-[2]\" src=\"/icon/magnifying-glass.png\" placeholder=\"search-icon\"></div></div></div><div id=\"\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"max-w-[1440px] w-full m-auto mt-[150px]\"><div id=\"search\" class=\"container mx-auto flex justify-center my-10\"><input type=\"search\" class=\"border\" id=\"search-bar\" placeholder=\"search...\"></div></div><div id=\"blog-component\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -111,7 +111,7 @@ func Blog(comp templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

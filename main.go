@@ -18,10 +18,13 @@ var content embed.FS
 func main() {
 	fileServerIcon := http.FileServer(http.Dir("./components/assets/icon/"))
 	http.Handle("/icon/", http.StripPrefix("/icon/", fileServerIcon))
+
 	fileServerImg := http.FileServer(http.Dir("./components/assets/img/"))
 	http.Handle("/img/", http.StripPrefix("/img/", fileServerImg))
+
 	fileServer := http.FileServer(http.Dir("./components/styles/"))
 	http.Handle("/styles/", http.StripPrefix("/styles/", fileServer))
+
 	fileServerjs := http.FileServer(http.Dir("./components/assets/scripts"))
 	http.Handle("/scripts/", http.StripPrefix("/scripts/", fileServerjs))
 	layout := comps.Layout(nil)

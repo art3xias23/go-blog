@@ -4,17 +4,17 @@ import "github.com/art3xias23/go-blog/domain"
 import "strings"
 
 templ LatestPosts(posts []domain.Post){
-<div class="latest-posts-container">
+<div class="grid gap-5 auto-cols-[300px] grid-rows-[1fr]">
     for _, item:=range posts{
-        <div class="latest-post">
-          <div class="post-title">
+<div class="bg-white rounded-[10%] h-full grid grid-cols-1 grid-rows-[0.2fr_0.6fr_0.3fr] gap-y-6 border border-solid overflow-hidden max-h-[500px] items-center content-center">
+          <div class="w-full h-full text-center overflow-hidden">
               <h3 >{item.Title}</h3>
           </div>
-          <div class="post-image">
-              <img class="post-image" src={ getImageSource(item) } alt="blog-image"/>
+<div class="h-full w-full overflow-hidden transform scale-90">
+              <img class="h-full w-full overflow-hidden transform scale-90" src={ getImageSource(item) } alt="blog-image"/>
           </div>
-          <div class="post-description">
-              <i class="post-description">{item.Description}</i>
+          <div class="text-center h-full">
+              <i class="text-center h-full">{item.Description}</i>
           </div>
         </div>
     }
@@ -26,23 +26,23 @@ func getImageSource(post domain.Post) string{
 }
 
 templ Blog(comp templ.Component){
-    <div class="content">
-      <div class="top-content-container">
-        <div id="links-container">
+    <div class="max-w-[1440px] w-full m-auto mt-[150px]">
+      <div class="flex justify-around">
+        <div id="flex w-[20%]">
           <a>Popular Tags</a>
         </div>
-        <div class="top-right-content-container">
-          <div class="search-bar-container">
+        <div>
+          <div class="">
             <input type="text" id="search-bar" placeholder="search..." />
             <img
-              id="search-bar-image"
-              src="../assets/icon/magnifying-glass.png"
+	    class="absolute top-[150px] right-[260px] w-[25px] h-[25px] z-[2]"
+              src="/icon/magnifying-glass.png"
               placeholder="search-icon"
             />
           </div>
         </div>
       </div>
-      <div id="main-content-container">
+      <div id="">
       @comp
       </div>
     </div>

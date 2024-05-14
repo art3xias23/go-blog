@@ -132,7 +132,6 @@ func Goodreads(items []*rssHelper.Book) templ.Component {
 
 func getGrHxValsString(bookId string) string {
 	url := fmt.Sprintf("https://www.goodreads.com/book/show/%s", bookId)
-	fmt.Println("url is: ", url)
 	return url
 }
 

@@ -26,12 +26,12 @@ func LatestPosts(posts []domain.Post) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"latest-posts-container\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"grid gap-5 auto-cols-[300px] grid-rows-[1fr]\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, item := range posts {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"latest-post\"><div class=\"post-title\"><h3>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-white rounded-[10%] h-full grid grid-cols-1 grid-rows-[0.2fr_0.6fr_0.3fr] gap-y-6 border border-solid overflow-hidden max-h-[500px] items-center content-center\"><div class=\"w-full h-full text-center overflow-hidden\"><h3>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -44,27 +44,27 @@ func LatestPosts(posts []domain.Post) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h3></div><div class=\"post-image\"><img class=\"post-image\" src=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h3></div><div class=\"h-full w-full overflow-hidden transform scale-90\"><img class=\"h-full w-full overflow-hidden transform scale-90\" src=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(getImageSource(item))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/blog.templ`, Line: 14, Col: 64}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/blog.templ`, Line: 14, Col: 102}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" alt=\"blog-image\"></div><div class=\"post-description\"><i class=\"post-description\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" alt=\"blog-image\"></div><div class=\"text-center h-full\"><i class=\"text-center h-full\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(item.Description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/blog.templ`, Line: 17, Col: 59}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/blog.templ`, Line: 17, Col: 61}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
@@ -103,7 +103,7 @@ func Blog(comp templ.Component) templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"content\"><div class=\"top-content-container\"><div id=\"links-container\"><a>Popular Tags</a></div><div class=\"top-right-content-container\"><div class=\"search-bar-container\"><input type=\"text\" id=\"search-bar\" placeholder=\"search...\"> <img id=\"search-bar-image\" src=\"../assets/icon/magnifying-glass.png\" placeholder=\"search-icon\"></div></div></div><div id=\"main-content-container\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"max-w-[1440px] w-full m-auto mt-[150px]\"><div class=\"flex justify-around\"><div id=\"flex w-[20%]\"><a>Popular Tags</a></div><div><div class=\"\"><input type=\"text\" id=\"search-bar\" placeholder=\"search...\"> <img class=\"absolute top-[150px] right-[260px] w-[25px] h-[25px] z-[2]\" src=\"/icon/magnifying-glass.png\" placeholder=\"search-icon\"></div></div></div><div id=\"\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

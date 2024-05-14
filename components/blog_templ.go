@@ -31,7 +31,7 @@ func LatestPosts(posts []domain.Post) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		for _, item := range posts {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-white rounded-[10%] h-full grid grid-cols-1 grid-rows-[0.2fr_0.6fr_0.3fr] gap-y-6 border border-solid overflow-hidden max-h-[500px] items-center content-center\"><div class=\"w-full h-full text-center overflow-hidden\"><h3>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"blog-post\" class=\"bg-white rounded-[10%] h-full grid grid-cols-1 grid-rows-[0.2fr_0.6fr_0.3fr] gap-y-6 border border-solid overflow-hidden max-h-[500px] items-center content-center\"><div class=\"w-full h-full text-center overflow-hidden\"><h3>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

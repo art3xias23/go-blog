@@ -31,6 +31,7 @@ func main() {
 
 	http.Handle("/", templ.Handler(layout))
 	http.HandleFunc("/blog", serveBlog)
+	http.HandleFunc("/blog-post", servePost)
 	http.HandleFunc("/about", serveAbout)
 	http.HandleFunc("/letterboxd", serveLetterBoxd)
 	http.HandleFunc("/goodreads", serveGoodReads)
@@ -93,6 +94,15 @@ func serveAbout(w http.ResponseWriter, r *http.Request) {
 	aboutView := comps.About()
 
 	renderSenderContent(r, w, aboutView)
+}
+func servePost(w http.ResponseWriter, r *http.Request) {
+	var tags [3]string
+	tags[0]="One"
+	tags[1]="Two"
+	tags[2]="Three"
+	postView := comps.PostTest(tags[:])
+
+	renderSenderContent(r, w, postView)
 }
 
 func serveBlog(w http.ResponseWriter, r *http.Request) {

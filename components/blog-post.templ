@@ -1,16 +1,52 @@
 package components
+
 import "github.com/art3xias23/go-blog/domain"
 
-templ BlogPost(post domain.Post){
-<div id="post-title">{post.Title}</div>
-<div id="post-description">{post.Description}</div>
-@tagList(post.Tags)
-
-<div id="content">{post.Content}</div>
+templ Post(post domain.Post) {
+	<div id="post-title">{ post.Title }</div>
+	<div id="post-description">{ post.Description }</div>
+	@tagList(post.Tags)
+	<div id="content">{ post.Content }</div>
 }
 
-templ tagList(tags []string){
-	for _,tag:= range tags{
-	<div id="post-tag">{tag}</div>
+templ PostTest(tags []string) {
+	<div id="post-title">@titlea()</div>
+	<div id="post-description">@desc()</div>
+	@tagList(tags)
+	<div id="content">@content()</div>
+}
+templ tagList(tags []string) {
+	for _,tag:= range tags {
+		<div id="post-tag">{ tag }</div>
 	}
+}
+
+templ titlea(){
+This is my witle
+}
+
+templ desc(){
+In this blog post, we delve into the fundamentals of arrays in the Go programming language. You'll learn how to create and initialize arrays, access and modify elements, and explore practical examples. Whether you're new to Go or looking to solidify your understanding, this guide provides clear explanations and code snippets to help you master arrays. By the end of this post, you'll be equipped with the knowledge to effectively use arrays in your Go projects.
+}
+
+templ content(){
+Mastering Arrays in Go: A Beginner's Guide
+Arrays are a fundamental data structure in many programming languages, and Go (Golang) is no exception. In this guide, we'll explore the basics of arrays in Go, how to create and initialize them, access and modify their elements, and provide practical examples to solidify your understanding.
+
+What is an Array?
+An array is a collection of elements, all of the same type, stored in contiguous memory locations. In Go, the length of an array is fixed at the time of its declaration and cannot be changed.
+
+Creating and Initializing Arrays
+To create an array in Go, you specify the type of its elements and its length. After declaring an array, you can initialize each element with a value and then print the entire array.
+
+Accessing and Modifying Elements
+You can access and modify elements in an array using their index. Remember that array indices in Go start at 0. You can access a specific element, modify an element, and then print the modified array.
+
+Practical Example: Counting Words
+Let’s see a practical example where we count the occurrence of each word in an array of strings. By using a map, we can count the occurrences of each word in the array, demonstrating how arrays can be used in conjunction with other data structures to solve practical problems.
+
+Conclusion
+Arrays are a powerful and essential data structure in Go. By understanding how to create, initialize, access, and modify arrays, you can efficiently manage collections of data in your Go programs. The examples provided in this guide should give you a solid foundation to start using arrays in your own projects. Happy coding!
+
+Feel free to use this blog post as is or modify it to suit your audience and style!
 }

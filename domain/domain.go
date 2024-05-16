@@ -2,9 +2,11 @@ package domain
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -80,4 +82,27 @@ func (mongo *MongoDbService) GetPosts() ([]Post, error) {
 	}
 
 	return posts, nil
+}
+
+func (mongo *MongoDbService) GetPostById(id string) (Post, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	collection := mongo.client.Database("blog").Collection("posts")
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		fmt.Println("Invalid ID format: ", id)
+		return Post{}, err
+	}
+	filter := bson.M{"_id": objectID}
+
+	var post = Post{}
+
+	err = collection.FindOne(ctx, filter).Decode(&post)
+
+	if err != nil {
+		fmt.Println("Could not decode post for id: ", id)
+		return Post{}, err
+	}
+
+	return post, nil
 }

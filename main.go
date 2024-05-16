@@ -31,7 +31,7 @@ func main() {
 
 	http.Handle("/", templ.Handler(layout))
 	http.HandleFunc("/blog", serveBlog)
-	http.HandleFunc("/blog-post", servePost)
+	http.HandleFunc("/posts/{id}", servePost)
 	http.HandleFunc("/about", serveAbout)
 	http.HandleFunc("/letterboxd", serveLetterBoxd)
 	http.HandleFunc("/goodreads", serveGoodReads)
@@ -96,11 +96,26 @@ func serveAbout(w http.ResponseWriter, r *http.Request) {
 	renderSenderContent(r, w, aboutView)
 }
 func servePost(w http.ResponseWriter, r *http.Request) {
-	var tags [3]string
-	tags[0]="One"
-	tags[1]="Two"
-	tags[2]="Three"
-	postView := comps.PostTest(tags[:])
+
+	mongocs := "mongodb://172.28.224.1:27017/"
+	idString := r.PathValue("id")
+	fmt.Printf("Post id is %s\n", idString)
+
+	mongoService, err := domain.NewMongoDbService(mongocs)
+	if err != nil {
+		fmt.Println("Error creating MongoDB service:", err)
+		return
+	}
+	if err != nil {
+		fmt.Println("Error converting id to int:", err)
+		return
+	}
+	post, err := mongoService.GetPostById(idString)
+	if err != nil {
+		fmt.Println("Error obtaining post:", err)
+		return
+	}
+	postView := comps.Post(post)
 
 	renderSenderContent(r, w, postView)
 }

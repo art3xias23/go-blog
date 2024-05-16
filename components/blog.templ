@@ -1,37 +1,49 @@
 package components
 
-import "github.com/art3xias23/go-blog/domain"
-import "strings"
+import (
+"github.com/art3xias23/go-blog/domain"
+"fmt"
+ "strings"
+)
 
 templ LatestPosts(posts []domain.Post){
 <div class="grid gap-10 auto-rows-auto grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))]">
-    for _, item:=range posts{
-<div id="blog-post" class="bg-white rounded-[10%] h-full grid grid-cols-1 grid-rows-[0.2fr_0.6fr_0.3fr] gap-y-6 border border-solid overflow-hidden max-h-[500px] items-center content-center">
-          <div class="w-full h-full text-center overflow-hidden">
-              <h3 >{item.Title}</h3>
-          </div>
-<div class="h-full w-full overflow-hidden transform scale-90">
-              <img class="h-full w-full overflow-hidden transform scale-90" src={ getImageSource(item) } alt="blog-image"/>
-          </div>
-          <div class="text-center h-full">
-              <i class="text-center h-full">{item.Description}</i>
-          </div>
-        </div>
-    }
+	for _, item:=range posts{
+	<div id="blog-post" 
+	hx-get={ getPostEndpoint(item.ID) }
+	hx-target="main"
+	hx-push-url="true"
+		class="bg-white rounded-[10%] h-full grid grid-cols-1 grid-rows-[0.2fr_0.6fr_0.3fr] gap-y-6 border border-solid overflow-hidden max-h-[500px] items-center content-center cursor-pointer">
+		<div class="w-full h-full text-center overflow-hidden">
+			<h3>{item.Title}</h3>
+		</div>
+		<div class="h-full w-full overflow-hidden transform scale-90">
+			<img class="h-full w-full overflow-hidden transform scale-90" src={ getImageSource(item) }
+				alt="blog-image" />
+		</div>
+		<div class="text-center h-full">
+			<i class="text-center h-full">{item.Description}</i>
+		</div>
+	</div>
+	}
 </div>
 }
 
+func getPostEndpoint(postId string)string{
+return fmt.Sprintf("/posts/%s", postId)
+}
+
 func getImageSource(post domain.Post) string{
-    return strings.Join([]string{"/img/posts/", post.ImageLocation},"")
+return strings.Join([]string{"/img/posts/", post.ImageLocation},"")
 }
 
 templ Blog(comp templ.Component){
-    <div class="max-w-[1440px] w-full m-auto mt-[150px]">
-          <div id="search" class="container mx-auto flex justify-center my-10">
-            <input type="search" class="border" id="search-bar" placeholder="search..." />
-          </div>
-        </div>
-      <div id="blog-component">
-      @comp
-      </div>
+<div class="max-w-[1440px] w-full m-auto mt-[150px]">
+	<div id="search" class="container mx-auto flex justify-center my-10">
+		<input type="search" class="border" id="search-bar" placeholder="search..." />
+	</div>
+</div>
+<div id="blog-component">
+	@comp
+</div>
 }

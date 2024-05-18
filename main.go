@@ -30,7 +30,7 @@ func main() {
 	layout := comps.Layout(nil)
 
 	http.Handle("/", templ.Handler(layout))
-	http.HandleFunc("/blog", serveBlog)
+	http.HandleFunc("/posts", serveBlog)
 	http.HandleFunc("/posts/{id}", servePost)
 	http.HandleFunc("/tags/{tag}", serveTag)
 	http.HandleFunc("/about", serveAbout)
@@ -135,8 +135,8 @@ func serveTag(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error obtaining posts from tag:", err)
 		return
 	}
-	postView := comps.LatestPosts(posts)
-	blogView := comps.Blog(postView)
+	postView := comps.Posts(posts)
+	blogView := comps.PostsMain(postView)
 
 	renderSenderContent(r, w, blogView)
 }
@@ -157,8 +157,8 @@ func serveBlog(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var latestPostsView = comps.LatestPosts(latestPosts)
-	var blogView = comps.Blog(latestPostsView)
+	var latestPostsView = comps.Posts(latestPosts)
+	var blogView = comps.PostsMain(latestPostsView)
 	// templ.Handler(blogView).ServeHTTP(w, r)
 	renderSenderContent(r, w, blogView)
 }

@@ -3,14 +3,13 @@ package components
 import (
 "github.com/art3xias23/go-blog/domain"
 "github.com/art3xias23/go-blog/common"
-"fmt"
 )
 
-templ LatestPosts(posts []domain.Post){
+templ Posts(posts []domain.Post){
 <div class="grid gap-10 auto-rows-auto grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))]">
 	for _, item:=range posts{
 	<div id="blog-post" 
-	hx-get={ getPostEndpoint(item.ID) }
+	hx-get={ common.GetEndpoint("posts", item.ID) }
 	hx-target="main"
 	hx-push-url="true"
 		class="bg-white rounded-[10%] h-full grid grid-cols-1 grid-rows-[0.2fr_0.6fr_0.3fr] gap-y-6 border border-solid overflow-hidden max-h-[500px] items-center content-center cursor-pointer">
@@ -29,11 +28,7 @@ templ LatestPosts(posts []domain.Post){
 </div>
 }
 
-func getPostEndpoint(postId string)string{
-	return fmt.Sprintf("/posts/%s", postId)
-}
-
-templ Blog(comp templ.Component){
+templ PostsMain(comp templ.Component){
 <div class="max-w-[1440px] w-full m-auto mt-[150px]">
 	<div id="search" class="container mx-auto flex justify-center my-10">
 		<input type="search" class="border" id="search-bar" placeholder="search..." />

@@ -30,7 +30,7 @@ templ LatestPosts(posts []domain.Post){
 }
 
 func getPostEndpoint(postId string)string{
-return fmt.Sprintf("/posts/%s", postId)
+	return fmt.Sprintf("/posts/%s", postId)
 }
 
 templ Blog(comp templ.Component){

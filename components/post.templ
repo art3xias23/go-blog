@@ -32,6 +32,7 @@ templ tagList(tags []string) {
 		<div 
 		id="post-tag" 
 		hx-target="main"
+		hx-push-url="true"
 		hx-get={common.GetEndpoint( "tags",   tag )} 
 		class="border-dotted border-2 border-red-500 rounded-lg p-1 hover:scale-125 cursor-pointer"
 		>

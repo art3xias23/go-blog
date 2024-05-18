@@ -30,7 +30,7 @@ func main() {
 	layout := comps.Layout(nil)
 
 	http.Handle("/", templ.Handler(layout))
-	http.HandleFunc("/posts", serveBlog)
+	http.HandleFunc("/posts", servePosts)
 	http.HandleFunc("/posts/{id}", servePost)
 	http.HandleFunc("/tags/{tag}", serveTag)
 	http.HandleFunc("/about", serveAbout)
@@ -141,7 +141,7 @@ func serveTag(w http.ResponseWriter, r *http.Request) {
 	renderSenderContent(r, w, blogView)
 }
 
-func serveBlog(w http.ResponseWriter, r *http.Request) {
+func servePosts(w http.ResponseWriter, r *http.Request) {
 	mongocs := "mongodb://172.28.224.1:27017/"
 
 	mongoService, err := domain.NewMongoDbService(mongocs)

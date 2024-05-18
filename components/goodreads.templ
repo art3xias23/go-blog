@@ -9,6 +9,9 @@ import "strings"
 func getBookCover(isbn string) string {
     isbn = strings.TrimPrefix(isbn, "=\"")
     isbn = strings.TrimSuffix(isbn, "\"")
+    if len(isbn) == 0{
+    	isbn = "GenericBookCover"
+    }
 str:= fmt.Sprintf("/img/books/%s.jpg",isbn)
 return str
 }
@@ -21,15 +24,15 @@ templ Goodreads(items []*rssHelper.Book){
               <h3 >{GetShortTitle(item.Title)}</h3>
           </div>
           <div class="italic text-xl text-center">
-            <p>{ GetBookShelve(item.Bookshelves) }</p>
+            <p>{ GetBookShelf(item.Bookshelves) }</p>
           </div>
           <div class="text-center mb-5">
               <i>{strconv.Itoa(item.YearPublished)}</i>
           </div>
-		  <div class="text-center media-item-rating" data-rating={strconv.Itoa(item.MyRating)} />
+		  <div class="text-center media-item-rating" data-rating={ strconv.Itoa(item.MyRating) } />
           <div class="flex justify-center transform scale-100 w-full overflow-hidden">
-              <img class="transform scale-100 h-15 w-15 overflow-hidden" src={ getBookCover(item.ISBN) } alt="No book cover found"/>
-          </div>
+              <img class="transform scale-100 h-15 w-15 overflow-hidden" src={ getBookCover(item.ISBN) } alt="No image found"  />
+	</div>
 	</a>
     }
 </div>
@@ -49,8 +52,8 @@ func GetShortTitle(title string) string{
     }
     return title
 }
-func GetBookShelve(bookshelf string) string{
-    if bookshelf != ""{
+func GetBookShelf(bookshelf string) string{
+    if bookshelf != "" {
         return bookshelf
     } 
     return "Finished"

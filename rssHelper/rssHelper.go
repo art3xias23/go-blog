@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/art3xias23/go-blog/common"
 	"github.com/gocarina/gocsv"
 )
 
@@ -56,7 +57,12 @@ func GetGoodReadsRssData() ([]*Book, error) {
 		panic(err)
 	}
 
-	return books, nil
+	var finishedBooks= common.Filter(books, func(b *Book) bool{
+		fmt.Println(b.Bookshelves)
+		return len(b.Bookshelves)== 0
+	})
+
+	return finishedBooks, nil
 }
 
 type MyLetterBoxdFeed struct {

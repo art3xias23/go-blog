@@ -1,6 +1,7 @@
 package components
 
 import "github.com/art3xias23/go-blog/domain"
+import "github.com/art3xias23/go-blog/common"
 
 templ Post(post domain.Post) {
 	<div id="post" class="max-w-3xl mx-auto flex flex-col justify-center items-center text-lg">
@@ -15,7 +16,7 @@ templ Post(post domain.Post) {
 			{ post.Description }
 		</div>
 		<div id="post-date" class="w-full mt-5 mb-3 text-center text-sm">
-			{ post.Created.String() }
+			{ post.Created.Format("2006-January-02")}
 		</div>
 		<div class="flex justify-around w-full my-3 text-sm">
 			@tagList(post.Tags)

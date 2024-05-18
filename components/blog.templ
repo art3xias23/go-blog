@@ -2,8 +2,8 @@ package components
 
 import (
 "github.com/art3xias23/go-blog/domain"
+"github.com/art3xias23/go-blog/common"
 "fmt"
- "strings"
 )
 
 templ LatestPosts(posts []domain.Post){
@@ -18,7 +18,7 @@ templ LatestPosts(posts []domain.Post){
 			<h3>{item.Title}</h3>
 		</div>
 		<div class="h-full w-full overflow-hidden transform scale-90">
-			<img class="h-full w-full overflow-hidden transform scale-90" src={ getImageSource(item) }
+			<img class="h-full w-full overflow-hidden transform scale-90" src={ common.GetImageSource(item.ImageLocation) }
 				alt="blog-image" />
 		</div>
 		<div class="text-center h-full">
@@ -31,10 +31,6 @@ templ LatestPosts(posts []domain.Post){
 
 func getPostEndpoint(postId string)string{
 return fmt.Sprintf("/posts/%s", postId)
-}
-
-func getImageSource(post domain.Post) string{
-return strings.Join([]string{"/img/posts/", post.ImageLocation},"")
 }
 
 templ Blog(comp templ.Component){

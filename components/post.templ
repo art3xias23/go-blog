@@ -7,10 +7,14 @@ templ Post(post domain.Post) {
 		<div id="post-title">
 			{ post.Title }
 		</div>
+		<div class="h-full w-full overflow-hidden transform scale-90">
+			<img class="h-full w-full overflow-hidden transform scale-90" src={ common.GetImageSource(post.ImageLocation) }
+				alt="blog-image" />
+		</div>
 		<div id="post-description" class="mt-10">
 			{ post.Description }
 		</div>
-		<div id="post-date" class="w-full mt-5 mb-3 text-left text-sm">
+		<div id="post-date" class="w-full mt-5 mb-3 text-center text-sm">
 			{ post.Created.String() }
 		</div>
 		<div class="flex justify-around w-full my-3 text-sm">
@@ -18,26 +22,6 @@ templ Post(post domain.Post) {
 		</div>
 		<div id="content" class="my-10">
 			{ post.Content }
-		</div>
-	</div>
-}
-
-templ PostTest(tags []string) {
-	<div id="post" class="max-w-3xl mx-auto flex flex-col justify-center items-center text-lg">
-		<div id="post-title">
-			@titlea()
-		</div>
-		<div id="post-description" class="mt-10">
-			@desc()
-		</div>
-		<div id="post-date" class="w-full mt-5 mb-3 text-left text-sm">
-			11-05-2024
-		</div>
-		<div class="flex justify-around w-full my-3 text-sm">
-			@tagList(tags)
-		</div>
-		<div id="content" class="my-10">
-			@content()
 		</div>
 	</div>
 }

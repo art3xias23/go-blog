@@ -32,6 +32,7 @@ func main() {
 	http.Handle("/", templ.Handler(layout))
 	http.HandleFunc("/blog", serveBlog)
 	http.HandleFunc("/posts/{id}", servePost)
+	http.HandleFunc("/tags/{tag}", serveTag)
 	http.HandleFunc("/about", serveAbout)
 	http.HandleFunc("/letterboxd", serveLetterBoxd)
 	http.HandleFunc("/goodreads", serveGoodReads)
@@ -106,10 +107,7 @@ func servePost(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error creating MongoDB service:", err)
 		return
 	}
-	if err != nil {
-		fmt.Println("Error converting id to int:", err)
-		return
-	}
+
 	post, err := mongoService.GetPostById(idString)
 	if err != nil {
 		fmt.Println("Error obtaining post:", err)
@@ -118,6 +116,29 @@ func servePost(w http.ResponseWriter, r *http.Request) {
 	postView := comps.Post(post)
 
 	renderSenderContent(r, w, postView)
+}
+
+func serveTag(w http.ResponseWriter, r *http.Request) {
+
+	mongocs := "mongodb://172.28.224.1:27017/"
+	tag := r.PathValue("tag")
+	fmt.Printf("Tag name is %s\n", tag)
+
+	mongoService, err := domain.NewMongoDbService(mongocs)
+	if err != nil {
+		fmt.Println("Error creating MongoDB service:", err)
+		return
+	}
+
+	posts, err := mongoService.GetPostsByTag(tag)
+	if err != nil {
+		fmt.Println("Error obtaining posts from tag:", err)
+		return
+	}
+	postView := comps.LatestPosts(posts)
+	blogView := comps.Blog(postView)
+
+	renderSenderContent(r, w, blogView)
 }
 
 func serveBlog(w http.ResponseWriter, r *http.Request) {

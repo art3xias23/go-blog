@@ -84,6 +84,42 @@ func (mongo *MongoDbService) GetPosts() ([]Post, error) {
 	return posts, nil
 }
 
+func (mongo *MongoDbService) GetPostsByTag(tag string) ([]Post, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	collection := mongo.client.Database("blog").Collection("posts")
+
+
+	filter := bson.M{"Tags": bson.M{"$in": []string{tag}}}
+
+	cursor, err := collection.Find(ctx, filter)
+
+	if err != nil {
+		fmt.Println("Could not find a collection for a tag", tag)
+		return nil, err
+	}
+
+	defer cursor.Close(ctx)
+
+	var posts []Post
+	for cursor.Next(ctx) {
+
+		var post Post
+
+		err = cursor.Decode(&post)
+		if err != nil {
+			fmt.Println("Could not decode a tag result", tag)
+			return nil, err
+		}
+
+		posts = append(posts, post)
+	}
+
+
+
+	return posts, nil
+}
+
 func (mongo *MongoDbService) GetPostById(id string) (Post, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()

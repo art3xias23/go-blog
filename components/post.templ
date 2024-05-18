@@ -29,7 +29,12 @@ templ Post(post domain.Post) {
 
 templ tagList(tags []string) {
 	for _,tag:= range tags {
-		<div id="post-tag" class="border-dotted border-2 border-red-500 rounded-lg p-1 hover:scale-125 cursor-pointer">
+		<div 
+		id="post-tag" 
+		hx-target="main"
+		hx-get={common.GetEndpoint( "tags",   tag )} 
+		class="border-dotted border-2 border-red-500 rounded-lg p-1 hover:scale-125 cursor-pointer"
+		>
 			#{ tag }
 		</div>
 	}

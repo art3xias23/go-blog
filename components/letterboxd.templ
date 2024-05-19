@@ -35,6 +35,9 @@ return imageURL
 }
 
 templ Letterboxd(items []rssHelper.Itemm) {
+
+@TopStatement()
+
 <div
 	class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 gap-10 m-5">
 	for _, item:=range items {
@@ -56,6 +59,16 @@ templ Letterboxd(items []rssHelper.Itemm) {
 	</a>
 	}
 </div>
+
+}
+
+templ TopStatement(){
+<div class="flex justify-center my-20 font-bold text-3xl">
+	<section class="border-black border-2 border-dotted p-5">
+		Here you can find my latest Letterboxd entries for which I've added a review
+	</section>
+</div>
+
 }
 
 func getHxValsString(url string) string {

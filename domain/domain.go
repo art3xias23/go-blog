@@ -2,8 +2,9 @@ package domain
 
 import (
 	"context"
+	"embed"
 	"fmt"
-	"os"
+	"io/fs"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -13,6 +14,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"gopkg.in/yaml.v2"
 )
+
+//go:embed creds.yaml
+var configFile embed.FS
 
 type Config struct {
 	MongoDb struct {
@@ -24,7 +28,7 @@ type Config struct {
 
 func ReadConfig() Config {
 	var config Config
-	yamlFile, err := os.ReadFile("domain/creds.yaml")
+	yamlFile, err := fs.ReadFile(configFile, "creds.yaml")
 
 	fmt.Println("Printing yaml")
 	fmt.Println(yamlFile)

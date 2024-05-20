@@ -1,15 +1,20 @@
 package rssHelper
 
 import (
+	"bytes"
+	"embed"
 	"encoding/xml"
 	"fmt"
 	"io"
+	"io/fs"
 	"net/http"
-	"os"
 
 	"github.com/art3xias23/go-blog/common"
 	"github.com/gocarina/gocsv"
 )
+
+//go:embed goodreads.csv
+var goodreadsFS embed.FS
 
 func GetLetterBoxdRssData() (*Channel, error) {
 	url := "http://www.letterboxd.com/art3xias/rss"
@@ -45,21 +50,22 @@ func GetLetterBoxdRssData() (*Channel, error) {
 
 func GetGoodReadsRssData() ([]*Book, error) {
 
-	in, err := os.Open("goodreads.csv")
+	fileData, err := fs.ReadFile(goodreadsFS, "goodreads.csv")
 	if err != nil {
-		panic(err)
-	}
-	defer in.Close()
-
-	books := []*Book{}
-
-	if err := gocsv.UnmarshalFile(in, &books); err != nil {
-		panic(err)
+		fmt.Println("Could not open goodreads.csv")
+		panic(err) // Or handle the error more gracefully if preferred
 	}
 
-	var finishedBooks= common.Filter(books, func(b *Book) bool{
+   reader := bytes.NewReader(fileData)
+    books := []*Book{}
+
+	if err := gocsv.Unmarshal(reader, &books); err != nil {
+		panic(err)
+	}
+
+	var finishedBooks = common.Filter(books, func(b *Book) bool {
 		fmt.Println(b.Bookshelves)
-		return len(b.Bookshelves)== 0
+		return len(b.Bookshelves) == 0
 	})
 
 	return finishedBooks, nil

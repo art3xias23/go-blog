@@ -1,2 +1,3 @@
 secret.key
 node_modules
+domain/creds.yaml

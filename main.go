@@ -98,11 +98,11 @@ func serveAbout(w http.ResponseWriter, r *http.Request) {
 }
 func servePost(w http.ResponseWriter, r *http.Request) {
 
-	mongocs := "mongodb://172.28.224.1:27017/"
+	// mongocs := "mongodb://172.28.224.1:27017/"
 	idString := r.PathValue("id")
 	fmt.Printf("Post id is %s\n", idString)
 
-	mongoService, err := domain.NewMongoDbService(mongocs)
+	mongoService, err := domain.NewMongoDbService()
 	if err != nil {
 		fmt.Println("Error creating MongoDB service:", err)
 		return
@@ -120,11 +120,11 @@ func servePost(w http.ResponseWriter, r *http.Request) {
 
 func serveTag(w http.ResponseWriter, r *http.Request) {
 
-	mongocs := "mongodb://172.28.224.1:27017/"
+	// mongocs := "mongodb://172.28.224.1:27017/"
 	tag := r.PathValue("tag")
 	fmt.Printf("Tag name is %s\n", tag)
 
-	mongoService, err := domain.NewMongoDbService(mongocs)
+	mongoService, err := domain.NewMongoDbService()
 	if err != nil {
 		fmt.Println("Error creating MongoDB service:", err)
 		return
@@ -142,9 +142,9 @@ func serveTag(w http.ResponseWriter, r *http.Request) {
 }
 
 func servePosts(w http.ResponseWriter, r *http.Request) {
-	mongocs := "mongodb://172.28.224.1:27017/"
+	// mongocs := "mongodb://172.28.224.1:27017/
 
-	mongoService, err := domain.NewMongoDbService(mongocs)
+	mongoService, err := domain.NewMongoDbService()
 	if err != nil {
 		fmt.Println("Error creating MongoDB service:", err)
 		return

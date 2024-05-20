@@ -3,6 +3,7 @@ package domain
 import (
 	"context"
 	"fmt"
+	"os"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -10,7 +11,36 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
+	"gopkg.in/yaml.v2"
 )
+
+type Config struct {
+	MongoDb struct {
+		Username string `yaml:"username"`
+		Password string `yaml:"password"`
+		Url      string `yaml:"url"`
+	} `yaml:"mongodb"`
+}
+
+func ReadConfig() Config {
+	var config Config
+	yamlFile, err := os.ReadFile("domain/creds.yaml")
+
+	fmt.Println("Printing yaml")
+	fmt.Println(yamlFile)
+
+	if err != nil {
+		fmt.Println("Error reading yaml", err)
+	}
+
+	err = yaml.Unmarshal(yamlFile, &config)
+	if err != nil {
+		fmt.Println("Could not unmarshal yaml", err)
+	}
+
+	return config
+
+}
 
 type Post struct {
 	ID            string    `bson:"_id"`
@@ -31,11 +61,21 @@ type MongoDbService struct {
 	client *mongo.Client
 }
 
-func NewMongoDbService(connectionString string) (*MongoDbService, error) {
+func NewMongoDbService() (*MongoDbService, error) {
+	var config = ReadConfig();
+	fmt.Println("Before returning config")
+	fmt.Println("username", config.MongoDb.Username)
+	fmt.Println("password", config.MongoDb.Password)
+	fmt.Println("url", config.MongoDb.Url)
+
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(connectionString))
+	var mongoConnection = "mongodb+srv://"+config.MongoDb.Username+":"+config.MongoDb.Password+"@"+config.MongoDb.Url
+
+
+	fmt.Println("mongoConnection", mongoConnection)
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoConnection))
 
 	if err != nil {
 		panic(err)
@@ -89,7 +129,6 @@ func (mongo *MongoDbService) GetPostsByTag(tag string) ([]Post, error) {
 	defer cancel()
 	collection := mongo.client.Database("blog").Collection("posts")
 
-
 	filter := bson.M{"Tags": bson.M{"$in": []string{tag}}}
 
 	cursor, err := collection.Find(ctx, filter)
@@ -114,8 +153,6 @@ func (mongo *MongoDbService) GetPostsByTag(tag string) ([]Post, error) {
 
 		posts = append(posts, post)
 	}
-
-
 
 	return posts, nil
 }

@@ -6,16 +6,6 @@ import "fmt"
 import "strconv"
 import "strings"
 
-func getBookCover(isbn string) string {
-    isbn = strings.TrimPrefix(isbn, "=\"")
-    isbn = strings.TrimSuffix(isbn, "\"")
-    if len(isbn) == 0{
-    	isbn = "GenericBookCover"
-    }
-str:= fmt.Sprintf("/img/books/%s.jpg",isbn)
-return str
-}
-
 templ Goodreads(items []*rssHelper.Book){
 
 @topStatement()
@@ -34,7 +24,7 @@ templ Goodreads(items []*rssHelper.Book){
           </div>
 		  <div class="text-center media-item-rating" data-rating={ strconv.Itoa(item.MyRating) } />
           <div class="flex justify-center transform scale-100 w-full overflow-hidden">
-              <img class="transform scale-100 h-15 w-15 overflow-hidden" src={ getBookCover(item.ISBN) } alt="No image found"  />
+              <img class="transform scale-100 h-15 w-15 overflow-hidden" src="/img/books/Generic.jpg" alt="No image found"  />
 	</div>
 	</a>
     }

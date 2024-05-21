@@ -74,6 +74,9 @@ func serveGoodReads(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		return
 	}
+	fmt.Printf("Books count = %d", len(contents))
+
+
 	var goodreadsView = comps.Goodreads(contents)
 	// templ.Handler(blogView).ServeHTTP(w, r)
 	renderSenderContent(r, w, goodreadsView)

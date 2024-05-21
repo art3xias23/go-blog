@@ -64,7 +64,6 @@ func GetGoodReadsRssData() ([]*Book, error) {
 	}
 
 	var finishedBooks = common.Filter(books, func(b *Book) bool {
-		fmt.Println(b.Bookshelves)
 		return len(b.Bookshelves) == 0
 	})
 
@@ -115,4 +114,23 @@ type Book struct {
 	PrivateNotes             string  `csv:"Private Notes"`
 	ReadCount                int     `csv:"Read Count"`
 	OwnedCopies              int     `csv:"Owned Copies"`
+	Thumbnail string 
 }
+
+type VolumeInfo struct {
+    ImageLinks ImageLinks `json:"imageLinks"`
+}
+
+type ImageLinks struct {
+    Thumbnail string `json:"thumbnail"`
+}
+
+type Item struct {
+    VolumeInfo VolumeInfo `json:"volumeInfo"`
+}
+
+type GoogleBooksResponse struct {
+    Items []Item `json:"items"`
+}
+
+

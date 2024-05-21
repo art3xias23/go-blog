@@ -25,6 +25,7 @@ func main() {
 
 	staticFs, err := fs.Sub(images, "components/assets/img")
 	if err != nil {
+		fmt.Println("Could not read static img files")
 		fmt.Println(err)
 	}
 	fileServerImg := http.FileServer(http.FS(staticFs))
@@ -39,6 +40,7 @@ func main() {
 
 	http.Handle("/", templ.Handler(layout))
 	http.HandleFunc("/posts", servePosts)
+	http.HandleFunc("/post/new", servePostNew)
 	http.HandleFunc("/posts/{id}", servePost)
 	http.HandleFunc("/tags/{tag}", serveTag)
 	http.HandleFunc("/about", serveAbout)
@@ -51,6 +53,23 @@ func main() {
 
 	http.ListenAndServe("localhost:3000", nil)
 
+}
+
+func servePostNew(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case "GET":
+		handleNewPostGet(w, r)
+	case "POST":
+		handleNewPostPost(w,r)
+	}
+}
+
+func handleNewPostGet(w http.ResponseWriter, r *http.Request) {
+	newPostView := comps.PostNew()
+	renderSenderContent(r, w , newPostView)
+}
+
+func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
 }
 
 func serveLetterRedirect(w http.ResponseWriter, r *http.Request) {

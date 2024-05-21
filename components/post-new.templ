@@ -1,0 +1,29 @@
+package components
+
+templ PostNew(){
+<div class="container flex flex-col items-center">
+	<form action="/post-new" method="POST">
+		<div class="flex mb-4">
+			<label for="title">Title</label>
+			<input name="title" />
+		</div>
+		<div class="flex mb-4">
+			<label for="desc">Description</label>
+			<input name="desc" />
+		</div>
+		<div class="flex mb-4">
+			<label for="content">Content</label>
+			<textarea name="content"/>
+		</div>
+		<div class="flex mb-4">
+			<label for="imgurl">Image Url</label>
+			<input name="imgurl" />
+		</div>
+		<div class="flex mb-4">
+			<label for="author">Author</label>
+			<p readonly name="author">Konstantin Milchev</p>
+		</div>
+		<button type="submit">Submit</button>
+	</form>
+</div>
+}

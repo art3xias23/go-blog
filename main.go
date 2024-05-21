@@ -4,6 +4,7 @@ import (
 	"context"
 	"embed"
 	"fmt"
+	"io/fs"
 	"net/http"
 
 	"github.com/a-h/templ"
@@ -15,14 +16,18 @@ import (
 // go:embed secret.key
 var content embed.FS
 
-//go:embed components/assets/img/books/Generic.jpg
-var imageFile embed.FS
+//go:embed components/assets/img/*
+var images embed.FS
 
 func main() {
 	fileServerIcon := http.FileServer(http.Dir("./components/assets/icon/"))
 	http.Handle("/icon/", http.StripPrefix("/icon/", fileServerIcon))
 
-	fileServerImg := http.FileServer(http.Dir("./components/assets/img/"))
+	staticFs, err := fs.Sub(images, "components/assets/img")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fileServerImg := http.FileServer(http.FS(staticFs))
 	http.Handle("/img/", http.StripPrefix("/img/", fileServerImg))
 
 	fileServer := http.FileServer(http.Dir("./components/styles/"))
@@ -42,17 +47,10 @@ func main() {
 	http.HandleFunc("/letter-redirect", serveLetterRedirect)
 	http.HandleFunc("/good-redirect", serveGoodRedirect)
 
-	http.HandleFunc("/image/generic.jpg", genericImageHandler)
 	fmt.Println("Loaded on localhost:3000")
 
 	http.ListenAndServe("localhost:3000", nil)
 
-}
-
-func genericImageHandler(w http.ResponseWriter, r *http.Request){
-data, _ := imageFile.ReadFile("components/assets/img/books/Generic.jpg")
-w.Header().Set("Content-Type", "image/jpeg")
-w.Write(data)
 }
 
 func serveLetterRedirect(w http.ResponseWriter, r *http.Request) {
@@ -85,8 +83,6 @@ func serveGoodReads(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		return
 	}
-	fmt.Printf("Books count = %d", len(contents))
-
 
 	var goodreadsView = comps.Goodreads(contents)
 	// templ.Handler(blogView).ServeHTTP(w, r)

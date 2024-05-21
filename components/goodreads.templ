@@ -12,10 +12,10 @@ templ Goodreads(items []*rssHelper.Book) {
 	class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 gap-20 m-5">
 	for _, item:=range items {
 	<a href={ templ.SafeURL(getGrHxValsString(strconv.Itoa(item.BookID))) }>
-		<div class="font-bold text-2xl text-center w-full overflow-hidden">
+		<div class="font-bold text-xl text-center w-full overflow-hidden">
 			<h3>{ GetShortTitle(item.Title) }</h3>
 		</div>
-		<div class="italic text-xl text-center">
+		<div class="italic text-lg text-center">
 			<p>{ GetBookShelf(item.Bookshelves) }</p>
 		</div>
 		<div class="text-center mb-5">
@@ -23,7 +23,7 @@ templ Goodreads(items []*rssHelper.Book) {
 		</div>
 		<div class="text-center media-item-rating" data-rating={ strconv.Itoa(item.MyRating) }></div>
 		<div class="flex justify-center transform scale-100 w-full overflow-hidden">
-			<img class="transform scale-100 h-15 w-15 overflow-hidden" src="/image/generic.jpg"
+			<img class="transform scale-100 h-15 w-15 overflow-hidden" src="/img/generic.jpg"
 				alt="No image found" />
 		</div>
 	</a>

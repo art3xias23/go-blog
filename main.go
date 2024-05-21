@@ -12,8 +12,11 @@ import (
 	rssHelper "github.com/art3xias23/go-blog/rssHelper"
 )
 
-// go.embed secret.key
+// go:embed secret.key
 var content embed.FS
+
+//go:embed components/assets/img/books/Generic.jpg
+var imageFile embed.FS
 
 func main() {
 	fileServerIcon := http.FileServer(http.Dir("./components/assets/icon/"))
@@ -38,10 +41,18 @@ func main() {
 	http.HandleFunc("/goodreads", serveGoodReads)
 	http.HandleFunc("/letter-redirect", serveLetterRedirect)
 	http.HandleFunc("/good-redirect", serveGoodRedirect)
+
+	http.HandleFunc("/image/generic.jpg", genericImageHandler)
 	fmt.Println("Loaded on localhost:3000")
 
 	http.ListenAndServe("localhost:3000", nil)
 
+}
+
+func genericImageHandler(w http.ResponseWriter, r *http.Request){
+data, _ := imageFile.ReadFile("components/assets/img/books/Generic.jpg")
+w.Header().Set("Content-Type", "image/jpeg")
+w.Write(data)
 }
 
 func serveLetterRedirect(w http.ResponseWriter, r *http.Request) {

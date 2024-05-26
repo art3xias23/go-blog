@@ -83,6 +83,34 @@ func handleNewPostGet(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
+	if err:= r.ParseForm();	err!=nil{
+
+		fmt.Println("Error parsing form in handleNewPostPost")
+		fmt.Println(err)
+	}
+
+	title:=r.FormValue("title");
+	desc:=r.FormValue("desc");
+	content:=r.FormValue("content");
+	imgurl:=r.FormValue("imgurl");
+	tagList:=r.Form["tagItems"]
+
+	tags:= make([]string, 0)
+
+	for _, tag:= range tagList{
+
+		fmt.Printf("got first tag: %s", tag)
+		tags= append(tags, tag)
+	}
+
+	  fmt.Printf("Title: %s\n", title)
+    fmt.Printf("Description: %s\n", desc)
+    fmt.Printf("Content: %s\n", content)
+    fmt.Printf("Image URL: %s\n", imgurl)
+    for cc, tagg :=range tagList{
+	    fmt.Printf("Tag%d: %s\n", cc, tagg)
+    }
+
 }
 
 func serveLetterRedirect(w http.ResponseWriter, r *http.Request) {

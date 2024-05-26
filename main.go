@@ -44,6 +44,7 @@ func main() {
 	http.HandleFunc("/posts/{id}", servePost)
 	http.HandleFunc("/tags/{tag}", serveTag)
 	http.HandleFunc("/about", serveAbout)
+	http.HandleFunc("/tag-add", serveTagAdd)
 	http.HandleFunc("/letterboxd", serveLetterBoxd)
 	http.HandleFunc("/goodreads", serveGoodReads)
 	http.HandleFunc("/letter-redirect", serveLetterRedirect)
@@ -55,6 +56,18 @@ func main() {
 
 }
 
+func serveTagAdd(w http.ResponseWriter, r *http.Request){
+	if err:= r.ParseForm(); err!= nil{
+		fmt.Println("Error parsing form in TagAdd")
+		fmt.Println(err)
+	}
+	tag := r.FormValue("tag")
+	fmt.Printf("tag is %s\n", tag)
+
+	tagComponent:=comps.Tag(tag)
+	renderSenderContent(r, w, tagComponent)
+
+}
 func servePostNew(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":

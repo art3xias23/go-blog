@@ -38,9 +38,9 @@ func Posts(posts []domain.Post) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var2 string
-			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(common.GetEndpoint("posts", item.ID))
+			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(common.GetEndpoint("posts", item.ID.Hex()))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/posts.templ`, Line: 12, Col: 46}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/posts.templ`, Line: 12, Col: 52}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -114,7 +114,7 @@ func PostsMain(comp templ.Component) templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"max-w-[1440px] w-full m-auto mt-[150px]\"><div id=\"search\" class=\"container mx-auto flex justify-center my-10\"><input type=\"search\" class=\"border\" id=\"search-bar\" placeholder=\"search...\"></div></div><div id=\"blog-component\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"max-w-[1440px] w-full m-auto mt-[150px]\"><div id=\"search\" class=\"container mx-auto flex justify-center my-10\"><input type=\"search\" class=\"border\" id=\"search-bar\" placeholder=\"search...\"></div><div class=\"container mx-auto flex justify-center my-10\"><a class=\"bg-gray-500 rounded text-sm text-white\" href=\"posts/new\">Add New</a></div></div><div id=\"blog-component\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

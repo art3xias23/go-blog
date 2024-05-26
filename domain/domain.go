@@ -47,7 +47,7 @@ func ReadConfig() Config {
 }
 
 type Post struct {
-	ID            string    `bson:"_id"`
+	ID            primitive.ObjectID    `bson:"_id, omitempty"`
 	Title         string    `bson:"Title"`
 	Content       string    `bson:"Content"`
 	Description   string    `bson:"Description"`

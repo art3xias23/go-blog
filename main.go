@@ -12,6 +12,7 @@ import (
 	comps "github.com/art3xias23/go-blog/components"
 	"github.com/art3xias23/go-blog/domain"
 	rssHelper "github.com/art3xias23/go-blog/rssHelper"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 // go:embed secret.key
@@ -41,7 +42,7 @@ func main() {
 
 	http.Handle("/", templ.Handler(layout))
 	http.HandleFunc("/posts", servePosts)
-	http.HandleFunc("/post/new", servePostNew)
+	http.HandleFunc("/posts/new", servePostNew)
 	http.HandleFunc("/posts/{id}", servePost)
 	http.HandleFunc("/tags/{tag}", serveTag)
 	http.HandleFunc("/about", serveAbout)
@@ -63,7 +64,6 @@ func serveTagAdd(w http.ResponseWriter, r *http.Request){
 		fmt.Println(err)
 	}
 	tag := r.FormValue("tag")
-	fmt.Printf("tag is %s\n", tag)
 
 	tagComponent:=comps.Tag(tag)
 	renderSenderContent(r, w, tagComponent)
@@ -100,14 +100,9 @@ func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
 
 	for _, tag:= range tagList{
 
-		fmt.Printf("got first tag: %s", tag)
 		tags= append(tags, tag)
 	}
 
-	  fmt.Printf("Title: %s\n", title)
-    fmt.Printf("Description: %s\n", desc)
-    fmt.Printf("Content: %s\n", content)
-    fmt.Printf("Image URL: %s\n", imgurl)
     for cc, tagg :=range tagList{
 	    fmt.Printf("Tag%d: %s\n", cc, tagg)
     }
@@ -120,6 +115,7 @@ func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	post:= domain.Post{
+		ID: primitive.NewObjectID(),
 		Title: title,
 		Description: desc,
 		Content: content,
@@ -136,7 +132,6 @@ func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("{handleNewPostPost} error in inserting")
 		fmt.Println(err)
 	}
-	fmt.Printf("ResultId: %v", result)
 
 }
 
@@ -148,7 +143,6 @@ func serveLetterRedirect(w http.ResponseWriter, r *http.Request) {
 
 func serveGoodRedirect(w http.ResponseWriter, r *http.Request) {
 	redirectUrl := r.URL.Query().Get("url")
-	fmt.Println("Url is ", redirectUrl)
 	w.Header().Set("HX-Redirect", redirectUrl)
 	renderSenderContent(r, w, nil)
 }
@@ -159,7 +153,6 @@ func serveLetterBoxd(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(contents.Title)
 	var letterboxdView = comps.Letterboxd(contents.Items)
 	renderSenderContent(r, w, letterboxdView)
 }
@@ -197,7 +190,6 @@ func servePost(w http.ResponseWriter, r *http.Request) {
 
 	// mongocs := "mongodb://172.28.224.1:27017/"
 	idString := r.PathValue("id")
-	fmt.Printf("Post id is %s\n", idString)
 
 	mongoService, err := domain.NewMongoDbService()
 	if err != nil {
@@ -219,7 +211,6 @@ func serveTag(w http.ResponseWriter, r *http.Request) {
 
 	// mongocs := "mongodb://172.28.224.1:27017/"
 	tag := r.PathValue("tag")
-	fmt.Printf("Tag name is %s\n", tag)
 
 	mongoService, err := domain.NewMongoDbService()
 	if err != nil {

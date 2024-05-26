@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/fs"
 	"net/http"
+	"time"
 
 	"github.com/a-h/templ"
 	comps "github.com/art3xias23/go-blog/components"
@@ -110,6 +111,32 @@ func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
     for cc, tagg :=range tagList{
 	    fmt.Printf("Tag%d: %s\n", cc, tagg)
     }
+
+
+	mongoService, err := domain.NewMongoDbService()
+	if err!=nil{
+
+		fmt.Println("{handleNewPostPost} error in mongo")
+		fmt.Println(err)
+	}
+	post:= domain.Post{
+		Title: title,
+		Description: desc,
+		Content: content,
+		Tags: tags,
+		Author: "Konstantin Milchev",
+		ImageLocation: imgurl,
+		Created: time.Now(),
+
+	}
+
+	result, err:= mongoService.InsertPost(post)
+	if err!=nil{
+
+		fmt.Println("{handleNewPostPost} error in inserting")
+		fmt.Println(err)
+	}
+	fmt.Printf("ResultId: %v", result)
 
 }
 

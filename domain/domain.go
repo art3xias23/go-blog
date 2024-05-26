@@ -128,6 +128,16 @@ func (mongo *MongoDbService) GetPosts() ([]Post, error) {
 	return posts, nil
 }
 
+func(mongo *MongoDbService) InsertPost(post Post) (interface{}, error){
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	collection := mongo.client.Database("blog").Collection("posts")
+	result, error:=	 collection.InsertOne(ctx,  post)
+	return result.InsertedID, error
+	
+}
+
 func (mongo *MongoDbService) GetPostsByTag(tag string) ([]Post, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()

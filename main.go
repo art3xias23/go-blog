@@ -5,6 +5,8 @@ import (
 	"embed"
 	"fmt"
 	"io/fs"
+	"log"
+	"net"
 	"net/http"
 	"time"
 
@@ -52,20 +54,23 @@ func main() {
 	http.HandleFunc("/letter-redirect", serveLetterRedirect)
 	http.HandleFunc("/good-redirect", serveGoodRedirect)
 
-	fmt.Println("Loaded on localhost:3000")
+	//fmt.Println("Loaded on localhost:8100")
+	//http.ListenAndServe("localhost:8100", nil)
 
-	http.ListenAndServe("localhost:3000", nil)
+	addr := net.JoinHostPort("::", "8100")
+	server := &http.Server{Addr: addr}
+	log.Fatalln(server.ListenAndServe())
 
 }
 
-func serveTagAdd(w http.ResponseWriter, r *http.Request){
-	if err:= r.ParseForm(); err!= nil{
+func serveTagAdd(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
 		fmt.Println("Error parsing form in TagAdd")
 		fmt.Println(err)
 	}
 	tag := r.FormValue("tag")
 
-	tagComponent:=comps.Tag(tag)
+	tagComponent := comps.Tag(tag)
 	renderSenderContent(r, w, tagComponent)
 
 }
@@ -74,60 +79,58 @@ func servePostNew(w http.ResponseWriter, r *http.Request) {
 	case "GET":
 		handleNewPostGet(w, r)
 	case "POST":
-		handleNewPostPost(w,r)
+		handleNewPostPost(w, r)
 	}
 }
 
 func handleNewPostGet(w http.ResponseWriter, r *http.Request) {
 	newPostView := comps.PostNew()
-	renderSenderContent(r, w , newPostView)
+	renderSenderContent(r, w, newPostView)
 }
 
 func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
-	if err:= r.ParseForm();	err!=nil{
+	if err := r.ParseForm(); err != nil {
 
 		fmt.Println("Error parsing form in handleNewPostPost")
 		fmt.Println(err)
 	}
 
-	title:=r.FormValue("title");
-	desc:=r.FormValue("desc");
-	content:=r.FormValue("content");
-	imgurl:=r.FormValue("imgurl");
-	tagList:=r.Form["tagItems"]
+	title := r.FormValue("title")
+	desc := r.FormValue("desc")
+	content := r.FormValue("content")
+	imgurl := r.FormValue("imgurl")
+	tagList := r.Form["tagItems"]
 
-	tags:= make([]string, 0)
+	tags := make([]string, 0)
 
-	for _, tag:= range tagList{
+	for _, tag := range tagList {
 
-		tags= append(tags, tag)
+		tags = append(tags, tag)
 	}
 
-    for cc, tagg :=range tagList{
-	    fmt.Printf("Tag%d: %s\n", cc, tagg)
-    }
-
+	for cc, tagg := range tagList {
+		fmt.Printf("Tag%d: %s\n", cc, tagg)
+	}
 
 	mongoService, err := domain.NewMongoDbService()
-	if err!=nil{
+	if err != nil {
 
 		fmt.Println("{handleNewPostPost} error in mongo")
 		fmt.Println(err)
 	}
-	post:= domain.Post{
-		ID: primitive.NewObjectID(),
-		Title: title,
-		Description: desc,
-		Content: content,
-		Tags: tags,
-		Author: "Konstantin Milchev",
+	post := domain.Post{
+		ID:            primitive.NewObjectID(),
+		Title:         title,
+		Description:   desc,
+		Content:       content,
+		Tags:          tags,
+		Author:        "Konstantin Milchev",
 		ImageLocation: imgurl,
-		Created: time.Now(),
-
+		Created:       time.Now(),
 	}
 
-	_, err= mongoService.InsertPost(post)
-	if err!=nil{
+	_, err = mongoService.InsertPost(post)
+	if err != nil {
 
 		fmt.Println("{handleNewPostPost} error in inserting")
 		fmt.Println(err)

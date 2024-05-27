@@ -1,36 +1,67 @@
 package components
 
-templ PostNew(){
-<div class="container flex flex-col items-center">
-	<form action="/posts/new" method="POST" class="shadow-md rounded gap-4">
-		<div class="flex-col mb-4">
-			<label for="title" class="text-gray-700 text-sm font-bold my-2">Title</label>
-			<input required type="text"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="title" />
-		</div>
-		<div class="flex-col mb-4">
-			<label for="desc" class="text-gray-700 text-sm font-bold my-2">Description</label>
-			<input required type="text"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="desc" />
-		</div>
-		<div class="flex-col mb-4">
-			<label for="content" class="text-gray-700 text-sm font-bold my-2">Content</label>
-			<textarea  required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="content"/>
-		</div>
-		<div class="flex-col mb-4">
-			<label for="imgurl" class="text-gray-700 text-sm font-bold my-2">Image Url</label>
-			<input required  type="text"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="imgurl" />
-		</div>
-		<div class="flex-col mb-4">
-		<label class="text-gray-700 text-sm font-bold my-2">Tags</label>
-			<div name="tag-list">
+templ PostNew() {
+	<div class="container flex flex-col items-center">
+		<form action="/posts/new" method="POST" class="shadow-md rounded gap-4">
+			<div class="flex-col mb-4">
+				<label for="title" class="text-gray-700 text-sm font-bold my-2">Title</label>
+				<input
+					required
+					type="text"
+					class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					name="title"
+				/>
 			</div>
-			<div class="flex flex-col">
-				<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="tag" />
-				<button hx-post="/tag-add" hx-target="[name='tag-list']" hx-swap="beforeend">Add</button>
+			<div class="flex-col mb-4">
+				<label for="desc" class="text-gray-700 text-sm font-bold my-2">Description</label>
+				<input
+					required
+					type="text"
+					class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					name="desc"
+				/>
 			</div>
-		</div>
-		<div class="flex items-center justify-center">
-		<button type="submit" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Submit</button>
-		</div>
-	</form>
-</div>
+			<div class="flex-col mb-4">
+				<label for="content" class="text-gray-700 text-sm font-bold my-2">Content</label>
+				<textarea
+					required
+					class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					name="content"
+					id="myContent"
+				></textarea>
+				<div id="myOutput"></div>
+			</div>
+			<div class="flex-col mb-4">
+				<label for="imgurl" class="text-gray-700 text-sm font-bold my-2">Image Url</label>
+				<input
+					required
+					type="text"
+					class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					name="imgurl"
+				/>
+			</div>
+			<div class="flex-col mb-4">
+				<label class="text-gray-700 text-sm font-bold my-2">Tags</label>
+				<div name="tag-list"></div>
+				<div class="flex flex-col">
+					<input
+						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+						name="tag"
+					/>
+					<button
+						hx-post="/tag-add"
+						hx-target="[name='tag-list']"
+						hx-swap="beforeend"
+					>Add</button>
+				</div>
+			</div>
+			<div class="flex items-center justify-center">
+				<button
+					type="submit"
+					class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+				>Submit</button>
+			</div>
+		</form>
+	</div>
+<script src="/scripts/outputHTML.js"></script>
 }

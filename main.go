@@ -126,7 +126,7 @@ func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	result, err:= mongoService.InsertPost(post)
+	_, err= mongoService.InsertPost(post)
 	if err!=nil{
 
 		fmt.Println("{handleNewPostPost} error in inserting")

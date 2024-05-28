@@ -5,8 +5,8 @@ import (
 	"embed"
 	"fmt"
 	"io/fs"
-	"log"
-	"net"
+	// "log"
+	// "net"
 	"net/http"
 	"time"
 
@@ -54,12 +54,12 @@ func main() {
 	http.HandleFunc("/letter-redirect", serveLetterRedirect)
 	http.HandleFunc("/good-redirect", serveGoodRedirect)
 
-	//fmt.Println("Loaded on localhost:8100")
-	//http.ListenAndServe("localhost:8100", nil)
+	fmt.Println("Loaded on :3000")
+	http.ListenAndServe(":3000", nil)
 
-	addr := net.JoinHostPort("::", "8100")
-	server := &http.Server{Addr: addr}
-	log.Fatalln(server.ListenAndServe())
+	// addr := net.JoinHostPort("::", "8100")
+	// server := &http.Server{Addr: addr}
+	// log.Fatalln(server.ListenAndServe())
 
 }
 

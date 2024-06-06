@@ -5,7 +5,9 @@ import (
 	"embed"
 	"fmt"
 	"io/fs"
-	// "log"
+	"os"
+
+	"log"
 	// "net"
 	"net/http"
 	"time"
@@ -24,6 +26,17 @@ var content embed.FS
 var images embed.FS
 
 func main() {
+	logFile, err := os.OpenFile("app.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer logFile.Close()
+
+	log.SetOutput(logFile)
+	log.SetPrefix("LOG: ")
+	log.SetFlags(log.Ldate | log.Ltime | log.Llongfile)
+
+	log.Println("Enter App")
 	fileServerIcon := http.FileServer(http.Dir("./components/assets/icon/"))
 	http.Handle("/icon/", http.StripPrefix("/icon/", fileServerIcon))
 

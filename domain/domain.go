@@ -3,10 +3,9 @@ package domain
 import (
 	"context"
 	"embed"
-	"fmt"
 	"io/fs"
 	"time"
-
+"log"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -30,16 +29,13 @@ func ReadConfig() Config {
 	var config Config
 	yamlFile, err := fs.ReadFile(configFile, "creds.yaml")
 
-	fmt.Println("Printing yaml")
-	fmt.Println(yamlFile)
-
 	if err != nil {
-		fmt.Println("Error reading yaml", err)
+		log.Println("Error reading cr.yaml", err)
 	}
 
 	err = yaml.Unmarshal(yamlFile, &config)
 	if err != nil {
-		fmt.Println("Could not unmarshal yaml", err)
+		log.Println("Could not unmarshal cr.yaml", err)
 	}
 
 	return config
@@ -67,10 +63,6 @@ type MongoDbService struct {
 
 func NewMongoDbService() (*MongoDbService, error) {
 	var config = ReadConfig();
-	fmt.Println("Before returning config")
-	fmt.Println("username", config.MongoDb.Username)
-	fmt.Println("password", config.MongoDb.Password)
-	fmt.Println("url", config.MongoDb.Url)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -78,15 +70,17 @@ func NewMongoDbService() (*MongoDbService, error) {
 	var mongoConnection = "mongodb+srv://"+config.MongoDb.Username+":"+config.MongoDb.Password+"@"+config.MongoDb.Url
 
 
-	fmt.Println("mongoConnection", mongoConnection)
+	log.Println("MongoConnection: ", mongoConnection)
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoConnection))
 
 	if err != nil {
+		log.Printf("Could not connect to mongo: ", err)
 		panic(err)
 	}
 
 	err = client.Ping(ctx, readpref.Primary())
 	if err != nil {
+		log.Printf("Could not ping  mongo: ", err)
 		panic(err)
 	}
 
@@ -148,7 +142,7 @@ func (mongo *MongoDbService) GetPostsByTag(tag string) ([]Post, error) {
 	cursor, err := collection.Find(ctx, filter)
 
 	if err != nil {
-		fmt.Println("Could not find a collection for a tag", tag)
+		log.Println("Could not find a collection for a tag", tag)
 		return nil, err
 	}
 
@@ -161,7 +155,7 @@ func (mongo *MongoDbService) GetPostsByTag(tag string) ([]Post, error) {
 
 		err = cursor.Decode(&post)
 		if err != nil {
-			fmt.Println("Could not decode a tag result", tag)
+			log.Println("Could not decode a tag result", tag)
 			return nil, err
 		}
 
@@ -177,7 +171,7 @@ func (mongo *MongoDbService) GetPostById(id string) (Post, error) {
 	collection := mongo.client.Database("blog").Collection("posts")
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		fmt.Println("Invalid ID format: ", id)
+		log.Println("Invalid ID format: ", id)
 		return Post{}, err
 	}
 	filter := bson.M{"_id": objectID}
@@ -187,7 +181,7 @@ func (mongo *MongoDbService) GetPostById(id string) (Post, error) {
 	err = collection.FindOne(ctx, filter).Decode(&post)
 
 	if err != nil {
-		fmt.Println("Could not decode post for id: ", id)
+		log.Println("Could not decode post for id: ", id)
 		return Post{}, err
 	}
 

@@ -17,7 +17,7 @@ templ Posts(posts []domain.Post){
 			<h3>{item.Title}</h3>
 		</div>
 		<div class="h-full w-full overflow-hidden transform scale-90">
-			<img class="h-full w-full overflow-hidden transform scale-90" src={ common.GetImageSource(item.ImageLocation) }
+			<img class="h-full w-full overflow-hidden transform scale-90" src={ item.ImageLocation }
 				alt="blog-image" />
 		</div>
 		<div class="text-center h-full">

@@ -9,7 +9,7 @@ templ Post(post domain.Post) {
 			{ post.Title }
 		</div>
 		<div class="h-full w-full overflow-hidden transform scale-90">
-			<img class="h-full w-full overflow-hidden transform scale-90" src={ common.GetImageSource(post.ImageLocation) }
+			<img class="h-full w-full overflow-hidden transform scale-90" src={ post.ImageLocation }
 				alt="blog-image" />
 		</div>
 		<div id="post-description" class="mt-10">

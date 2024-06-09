@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"embed"
-	"fmt"
 	"io/fs"
 	"os"
 
@@ -26,9 +25,10 @@ var content embed.FS
 var images embed.FS
 
 func main() {
-	logFile, err := os.OpenFile("app.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	logFile, err := os.OpenFile("/home/tino/go/go-blog/app.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal(err)
+		logFile, err = os.OpenFile("app.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	}
 	defer logFile.Close()
 
@@ -42,8 +42,8 @@ func main() {
 
 	staticFs, err := fs.Sub(images, "components/assets/img")
 	if err != nil {
-		fmt.Println("Could not read static img files")
-		fmt.Println(err)
+		log.Println("Could not read static img files")
+		log.Println(err)
 	}
 	fileServerImg := http.FileServer(http.FS(staticFs))
 	http.Handle("/img/", http.StripPrefix("/img/", fileServerImg))
@@ -67,7 +67,7 @@ func main() {
 	http.HandleFunc("/letter-redirect", serveLetterRedirect)
 	http.HandleFunc("/good-redirect", serveGoodRedirect)
 
-	fmt.Println("Loaded on :3000")
+	log.Println("Loaded on :3000")
 	http.ListenAndServe(":3000", nil)
 
 	// addr := net.JoinHostPort("::", "8100")
@@ -78,8 +78,8 @@ func main() {
 
 func serveTagAdd(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
-		fmt.Println("Error parsing form in TagAdd")
-		fmt.Println(err)
+		log.Println("Error parsing form in TagAdd")
+		log.Println(err)
 	}
 	tag := r.FormValue("tag")
 
@@ -104,8 +104,8 @@ func handleNewPostGet(w http.ResponseWriter, r *http.Request) {
 func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
 
-		fmt.Println("Error parsing form in handleNewPostPost")
-		fmt.Println(err)
+		log.Println("Error parsing form in handleNewPostPost")
+		log.Println(err)
 	}
 
 	title := r.FormValue("title")
@@ -122,14 +122,13 @@ func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for cc, tagg := range tagList {
-		fmt.Printf("Tag%d: %s\n", cc, tagg)
+		log.Printf("Tag%d: %s\n", cc, tagg)
 	}
 
 	mongoService, err := domain.NewMongoDbService()
 	if err != nil {
 
-		fmt.Println("{handleNewPostPost} error in mongo")
-		fmt.Println(err)
+		log.Printf("error in mongo: ", err)
 	}
 	post := domain.Post{
 		ID:            primitive.NewObjectID(),
@@ -145,8 +144,7 @@ func handleNewPostPost(w http.ResponseWriter, r *http.Request) {
 	_, err = mongoService.InsertPost(post)
 	if err != nil {
 
-		fmt.Println("{handleNewPostPost} error in inserting")
-		fmt.Println(err)
+		log.Println("error in inserting", err)
 	}
 
 }
@@ -166,7 +164,7 @@ func serveGoodRedirect(w http.ResponseWriter, r *http.Request) {
 func serveLetterBoxd(w http.ResponseWriter, r *http.Request) {
 	contents, err := rssHelper.GetLetterBoxdRssData()
 	if err != nil {
-		fmt.Println(err)
+		log.Printf("Error in serveLetterBoxd:", err)
 		return
 	}
 	var letterboxdView = comps.Letterboxd(contents.Items)
@@ -176,7 +174,7 @@ func serveLetterBoxd(w http.ResponseWriter, r *http.Request) {
 func serveGoodReads(w http.ResponseWriter, r *http.Request) {
 	contents, err := rssHelper.GetGoodReadsRssData()
 	if err != nil {
-		fmt.Println(err)
+		log.Printf("Error in serveGoodReads:", err)
 		return
 	}
 
@@ -209,13 +207,13 @@ func servePost(w http.ResponseWriter, r *http.Request) {
 
 	mongoService, err := domain.NewMongoDbService()
 	if err != nil {
-		fmt.Println("Error creating MongoDB service:", err)
+		log.Printf("Error creating MongoDB service: ", err)
 		return
 	}
 
 	post, err := mongoService.GetPostById(idString)
 	if err != nil {
-		fmt.Println("Error obtaining post:", err)
+		log.Printf("Error obtaining post:", err)
 		return
 	}
 	postView := comps.Post(post)
@@ -230,13 +228,13 @@ func serveTag(w http.ResponseWriter, r *http.Request) {
 
 	mongoService, err := domain.NewMongoDbService()
 	if err != nil {
-		fmt.Println("Error creating MongoDB service:", err)
+		log.Printf("Error creating MongoDB service:", err)
 		return
 	}
 
 	posts, err := mongoService.GetPostsByTag(tag)
 	if err != nil {
-		fmt.Println("Error obtaining posts from tag:", err)
+		log.Printf("Error obtaining posts from tag:", err)
 		return
 	}
 	postView := comps.Posts(posts)
@@ -247,17 +245,18 @@ func serveTag(w http.ResponseWriter, r *http.Request) {
 
 func servePosts(w http.ResponseWriter, r *http.Request) {
 	// mongocs := "mongodb://172.28.224.1:27017/
+	log.Println("Started serving posts")
 
 	mongoService, err := domain.NewMongoDbService()
 	if err != nil {
-		fmt.Println("Error creating MongoDB service:", err)
+		log.Printf("Error creating MongoDB service:", err)
 		return
 	}
 	defer mongoService.Disconnect()
 
 	latestPosts, err := mongoService.GetPosts()
 	if err != nil {
-		fmt.Println("Error retrieving latest posts:", err)
+		log.Println("Error retrieving latest posts:", err)
 		return
 	}
 

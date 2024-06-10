@@ -1107,6 +1107,10 @@ video {
   content: '⭐⭐⭐⭐⭐';
 }
 
+a {
+  text-decoration: underline;
+}
+
 /* Htmx Spinner Item */
 
 .my-indicator{

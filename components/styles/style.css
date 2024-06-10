@@ -24,13 +24,15 @@ grid-column: 2;
 
 }
 
+a { text-decoration: underline; }
+
 
 
 #nav {
   max-width:1440px;
   margin:auto;
   width: 100%;
-  box-sizing: border-box;
+  box-sizini: border-box;
   display: grid;
 grid-template-columns: repeat(3, 1fr);
 gap: 30px;

@@ -22,7 +22,7 @@ templ Post(post domain.Post) {
 			@tagList(post.Tags)
 		</div>
 		<div id="content" class="my-10">
-			{ post.Content }
+			 @templ.Raw(post.Content) 
 		</div>
 	</div>
 }
@@ -40,4 +40,3 @@ templ tagList(tags []string) {
 		</div>
 	}
 }
-

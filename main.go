@@ -24,6 +24,9 @@ var content embed.FS
 //go:embed components/assets/img/*
 var images embed.FS
 
+//go:embed components/assets/scripts/*
+var scripts embed.FS
+
 func main() {
 	logFile, err := os.OpenFile("/home/tino/go/go-blog/app.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
@@ -51,7 +54,8 @@ func main() {
 	fileServer := http.FileServer(http.Dir("./components/styles/"))
 	http.Handle("/styles/", http.StripPrefix("/styles/", fileServer))
 
-	fileServerjs := http.FileServer(http.Dir("./components/assets/scripts"))
+	staticFsJs, err := fs.Sub(scripts, "components/assets/scripts")
+	fileServerjs := http.FileServer(http.FS(staticFsJs))
 	http.Handle("/scripts/", http.StripPrefix("/scripts/", fileServerjs))
 	layout := comps.Layout(nil)
 

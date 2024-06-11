@@ -76,7 +76,7 @@ func head() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = title("Tinolog").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = title("Tinolog1").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -144,7 +144,7 @@ func jsScript() templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<script src=\"/scripts/script.js\"></script><script src=\"/scripts/outputHTML.js\"></script>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<script type=\"application/javascript\" src=\"/scripts/script.js\"></script><script type=\"application/javascript\" src=\"/scripts/outputHTML.js\"></script>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -24,7 +24,7 @@ templ head() {
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	@unsafeScript(_style)
-	@title("Tinolog")
+	@title("Tinolog1")
 	@htmxScript()
 	@jsScript()
 	<script src="https://kit.fontawesome.com/8dcf44513b.js" crossorigin="anonymous"></script>
@@ -46,8 +46,8 @@ templ htmxScript() {
 }
 
 templ jsScript() {
-<script src="/scripts/script.js"></script>
-<script src="/scripts/outputHTML.js"></script>
+<script type="application/javascript" src="/scripts/script.js"></script>
+<script type="application/javascript" src="/scripts/outputHTML.js"></script>
 }
 
 templ body(comp templ.Component) {

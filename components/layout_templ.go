@@ -322,7 +322,7 @@ func sidebar() templ.Component {
 			templ_7745c5c3_Var10 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"sidebar\" class=\"fixed top-0 right-0 w-3/4 h-full z-50 transform bg-white transition-transform duration-300 ease-in-out translate-x-full\"><div id=\"closemenu\" class=\"fixed top-0 right-0 mt-5 me-4\"><i class=\"fa-solid fa-xmark\"></i></div><div id=\"sidebaritems\" class=\"flex items-center h-full ms-5 text-gray-600 text-base font-medium\"><ul class=\"space-y-4\"><li>Posts</li><li>Letterboxd</li><li>Goodreads</li><li>Github</li><li>Email</li></ul></div></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"sidebar\" class=\"fixed top-0 right-0 w-3/4 h-full z-50 transform bg-white transition-transform duration-300 ease-in-out translate-x-full\"><div class=\"closemenu fixed top-0 right-0 mt-5 me-4\"><i class=\"fa-solid fa-xmark\"></i></div><div id=\"sidebaritems\" class=\"flex items-center h-full ms-5 text-gray-600 text-base font-medium\"><ul class=\"space-y-4\"><li><a hx-get=\"/posts\" hx-target=\"main\" hx-push-url=\"true\" class=\"closemenu cursor-pointer\">Posts</a></li><li><a hx-get=\"/letterboxd\" hx-target=\"main\" hx-push-url=\"true\" class=\"closemenu cursor-pointer\">Letterboxd</a></li><li><a hx-get=\"/goodreads\" hx-target=\"main\" hx-push-url=\"true\" class=\"closemenu cursor-pointer\">Goodreads</a></li><li><a href=\"https://github.com/art3xias23\" class=\"closemenu cursor-pointer\">Github</a></li><li><a href=\"mailto:konstantin.v.milchev@gmail.com\" class=\"closemenu cursor-pointer\">Email</a></li></ul></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

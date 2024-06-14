@@ -288,7 +288,7 @@ func main(comp templ.Component) templ.Component {
 			templ_7745c5c3_Var9 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"spinner_wrapper\" class=\"flex justify-center\"><img id=\"spinner\" class=\"my-indicator\" src=\"/img/spinner.svg\"></div><div class=\"content container mx-auto m-7\"><main>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"spinner_wrapper\" class=\"flex justify-center\"><img id=\"spinner\" class=\"my-indicator\" src=\"/img/spinner.svg\"></div><div class=\"content container mx-auto m-7\"><main class=\"\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -21,7 +21,7 @@ templ Post(post domain.Post) {
 		<div class="flex justify-around w-full my-3 text-sm">
 			@tagList(post.Tags)
 		</div>
-		<div id="content" class="my-10">
+		<div id="content" class="my-10 max-w-full mx-auto flex-col flex-wrap">
 			 @templ.Raw(post.Content) 
 		</div>
 	</div>

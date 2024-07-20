@@ -206,7 +206,6 @@ func serveAbout(w http.ResponseWriter, r *http.Request) {
 }
 func servePost(w http.ResponseWriter, r *http.Request) {
 
-	// mongocs := "mongodb://172.28.224.1:27017/"
 	idString := r.PathValue("id")
 
 	mongoService, err := domain.NewMongoDbService()

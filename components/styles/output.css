@@ -862,10 +862,6 @@ video {
   overflow: hidden;
 }
 
-.overflow-x-auto {
-  overflow-x: auto;
-}
-
 .rounded {
   border-radius: 0.25rem;
 }
@@ -1135,6 +1131,27 @@ a {
 
 .htmx-request.my-indicator{
   display:inline;
+}
+
+/* Actual Blog css*/
+
+ul {
+  list-style-type: disc;
+  /* or circle, square, etc. */
+  margin-left: 20px;
+  /* ensure some margin for the marker */
+}
+
+li {
+  margin: 5px 0;
+  /* add some margin between items */
+}
+
+/* Reset potential inherited styles */
+
+ul, li {
+  list-style: initial;
+  display: list-item;
 }
 
 .hover\:scale-125:hover {

@@ -76,7 +76,7 @@ func head() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = title("Tinolog1").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = title("Tino's Blog").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

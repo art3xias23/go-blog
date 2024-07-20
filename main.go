@@ -59,7 +59,7 @@ func main() {
 	http.Handle("/scripts/", http.StripPrefix("/scripts/", fileServerjs))
 	layout := comps.Layout(nil)
 
-	http.Handle("/", templ.Handler(layout))
+	http.Handle("/", servePosts)
 	http.HandleFunc("/posts", servePosts)
 	http.HandleFunc("/posts/new", servePostNew)
 	http.HandleFunc("/posts/{id}", servePost)

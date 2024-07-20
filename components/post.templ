@@ -5,14 +5,14 @@ import "github.com/art3xias23/go-blog/common"
 
 templ Post(post domain.Post) {
 	<div id="post" class="max-w-3xl mx-auto flex flex-col justify-center items-center text-lg">
-		<div id="post-title">
+		<div id="post-title" class="title">
 			{ post.Title }
 		</div>
 		<div class="h-full w-full overflow-hidden transform scale-90">
 			<img class="h-full w-full overflow-hidden transform scale-90" src={ post.ImageLocation }
 				alt="blog-image" />
 		</div>
-		<div id="post-description" class="mt-10">
+		<div id="post-description" class="description" class="mt-10">
 			{ post.Description }
 		</div>
 		<div id="post-date" class="w-full mt-5 mb-3 text-center text-sm">

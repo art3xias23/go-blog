@@ -57,9 +57,8 @@ func main() {
 	staticFsJs, err := fs.Sub(scripts, "components/assets/scripts")
 	fileServerjs := http.FileServer(http.FS(staticFsJs))
 	http.Handle("/scripts/", http.StripPrefix("/scripts/", fileServerjs))
-	layout := comps.Layout(nil)
 
-	http.Handle("/", servePosts)
+	http.HandleFunc("/", servePosts)
 	http.HandleFunc("/posts", servePosts)
 	http.HandleFunc("/posts/new", servePostNew)
 	http.HandleFunc("/posts/{id}", servePost)

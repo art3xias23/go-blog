@@ -10,7 +10,7 @@ I ended up creating a cloud instance on [Hetzner](https://www.hetzner.com/), hos
 
 I will possibly be making small tweaks in the future like hosting the db source elsewhere as the free tier on Atlas is only 512 megs, but the majority of the works seems to be completed.
 
-The website is hosted at [blog.pragmatino.xyz](blog.pragmatino.xyz)
+The website is hosted at [https://blog.pragmatino.xyz](https://blog.pragmatino.xyz)
 
 ## Running locally
 After git cloning or downloading open the directory and run 
